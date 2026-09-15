@@ -1,0 +1,2194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>OCd — Partner With OverclockedDevs</title>
+<meta name="description" content="Partner with OverclockedDevs to support student builders, hackathons and technology experiences across Delhi NCR." />
+<meta name="theme-color" content="#FFD400" />
+
+<meta property="og:title" content="OCd — Partner With OverclockedDevs" />
+<meta property="og:description" content="Build with the next generation of student builders." />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Climate+Crisis&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+:root {
+--red: #F02A24;
+--red-dark: #B80000;
+--yellow: #FFD400;
+--yellow-bright: #FFE500;
+--white: #FFFFFF;
+--off-white: #FFF7E6;
+--black: #0D0D0D;
+--black-soft: #151515;
+--black-light: #1D1D1D;
+--gray: #858585;
+--gray-dark: #303030;
+--border: rgba(255,255,255,.15);
+--border-dark: rgba(0,0,0,.16);
+--font-display: "Climate Crisis", sans-serif;
+--font-accent: "Bungee", sans-serif;
+--font-body: "Space Grotesk", sans-serif;
+--ease: cubic-bezier(.2,.8,.2,1);
+--max-width: 1500px;
+}
+
+* { box-sizing: border-box; }
+
+html {
+scroll-behavior: smooth;
+background: var(--black);
+}
+
+body {
+margin: 0;
+background: var(--yellow);
+color: var(--black);
+font-family: var(--font-body);
+overflow-x: hidden;
+}
+
+body::before {
+content: "";
+position: fixed;
+inset: 0;
+z-index: 100;
+pointer-events: none;
+opacity: .045;
+background-image:
+repeating-linear-gradient(
+0deg,
+rgba(0,0,0,.7) 0,
+rgba(0,0,0,.7) 1px,
+transparent 1px,
+transparent 4px
+);
+mix-blend-mode: multiply;
+}
+
+body::after {
+content: "";
+position: fixed;
+inset: 0;
+z-index: 99;
+pointer-events: none;
+opacity: .055;
+background-image:
+radial-gradient(circle at 20% 30%, #000 0 1px, transparent 1px),
+radial-gradient(circle at 80% 70%, #000 0 1px, transparent 1px);
+background-size: 17px 17px, 23px 23px;
+mix-blend-mode: multiply;
+}
+
+::selection {
+background: var(--black);
+color: var(--yellow);
+}
+
+a {
+color: inherit;
+text-decoration: none;
+}
+
+button,
+a {
+-webkit-tap-highlight-color: transparent;
+}
+
+img {
+display: block;
+max-width: 100%;
+}
+
+.container {
+width: min(calc(100% - 48px), var(--max-width));
+margin-inline: auto;
+}
+
+.display {
+font-family: var(--font-display);
+text-transform: uppercase;
+letter-spacing: .025em;
+line-height: .92;
+}
+
+.accent {
+font-family: var(--font-accent);
+letter-spacing: .055em;
+}
+
+.eyebrow {
+display: inline-flex;
+align-items: center;
+gap: 10px;
+font-family: var(--font-accent);
+font-size: 11px;
+line-height: 1;
+letter-spacing: .07em;
+text-transform: uppercase;
+}
+
+.eyebrow::before {
+content: "";
+width: 8px;
+height: 8px;
+background: currentColor;
+display: block;
+}
+
+.mono {
+font-size: 11px;
+text-transform: uppercase;
+letter-spacing: .08em;
+font-weight: 600;
+}
+
+.section {
+position: relative;
+padding: 150px 0;
+overflow: hidden;
+}
+
+.section-head {
+display: grid;
+grid-template-columns: 160px 1fr;
+gap: 40px;
+margin-bottom: 85px;
+}
+
+.section-index {
+font-family: var(--font-accent);
+font-size: 12px;
+letter-spacing: .07em;
+padding-top: 9px;
+}
+
+.section-title {
+margin: 0;
+max-width: 1050px;
+font-size: clamp(3.3rem, 7.5vw, 8rem);
+letter-spacing: .025em;
+}
+
+.section-copy {
+max-width: 650px;
+font-size: clamp(1rem, 1.35vw, 1.2rem);
+line-height: 1.65;
+margin: 30px 0 0;
+}
+
+.btn {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+min-height: 54px;
+padding: 0 23px;
+border: 1px solid var(--black);
+font-family: var(--font-accent);
+font-size: 11px;
+letter-spacing: .055em;
+transition:
+transform .35s var(--ease),
+background .35s var(--ease),
+color .35s var(--ease),
+box-shadow .35s var(--ease);
+}
+
+.btn:hover {
+transform: translate(-4px,-4px);
+box-shadow: 7px 7px 0 var(--black);
+}
+
+.btn-dark {
+background: var(--black);
+color: var(--yellow);
+}
+
+.btn-red {
+background: var(--red);
+color: var(--white);
+border-color: var(--red);
+}
+
+.btn-light {
+background: var(--yellow);
+color: var(--black);
+}
+
+/* NAV */
+.nav {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+z-index: 80;
+padding: 18px 24px;
+pointer-events: none;
+}
+
+.nav-inner {
+max-width: 1500px;
+margin: auto;
+display: flex;
+align-items: center;
+justify-content: space-between;
+min-height: 60px;
+padding: 7px 9px 7px 12px;
+background: rgba(255,212,0,.9);
+border: 1px solid rgba(13,13,13,.18);
+backdrop-filter: blur(12px);
+pointer-events: auto;
+}
+
+.nav-brand {
+display: flex;
+align-items: center;
+gap: 12px;
+font-family: var(--font-accent);
+font-size: 12px;
+letter-spacing: .05em;
+}
+
+.nav-logo {
+width: 42px;
+height: 42px;
+object-fit: contain;
+mix-blend-mode: multiply;
+}
+
+.nav-links {
+display: flex;
+align-items: center;
+gap: 26px;
+font-size: 11px;
+font-weight: 700;
+letter-spacing: .08em;
+text-transform: uppercase;
+}
+
+.nav-links a {
+position: relative;
+}
+
+.nav-links a::after {
+content: "";
+position: absolute;
+left: 0;
+right: 0;
+bottom: -6px;
+height: 2px;
+transform: scaleX(0);
+transform-origin: right;
+background: var(--black);
+transition: transform .3s var(--ease);
+}
+
+.nav-links a:hover::after {
+transform: scaleX(1);
+transform-origin: left;
+}
+
+.nav-cta {
+min-height: 43px;
+padding-inline: 16px;
+background: var(--black);
+color: var(--yellow);
+border: 0;
+font-family: var(--font-accent);
+font-size: 10px;
+letter-spacing: .06em;
+}
+
+.menu-btn {
+display: none;
+width: 44px;
+height: 44px;
+border: 1px solid var(--black);
+background: transparent;
+font-family: var(--font-accent);
+font-size: 10px;
+}
+
+/* HERO */
+.hero {
+min-height: 100svh;
+position: relative;
+display: flex;
+align-items: flex-end;
+padding: 150px 0 45px;
+background: var(--yellow);
+overflow: hidden;
+}
+
+.hero-grid {
+position: absolute;
+inset: 0;
+opacity: .1;
+background-image:
+linear-gradient(rgba(13,13,13,.55) 1px, transparent 1px),
+linear-gradient(90deg, rgba(13,13,13,.55) 1px, transparent 1px);
+background-size: 70px 70px;
+mask-image: linear-gradient(to bottom, transparent, #000 25%, #000 75%, transparent);
+}
+
+.hero-glow {
+position: absolute;
+width: 60vw;
+height: 60vw;
+max-width: 850px;
+max-height: 850px;
+border-radius: 50%;
+right: -12vw;
+top: -15vw;
+background: var(--yellow-bright);
+filter: blur(80px);
+opacity: .65;
+}
+
+.hero-mark {
+position: absolute;
+right: 3vw;
+top: 18%;
+width: min(49vw, 720px);
+opacity: .98;
+transform: rotate(-3deg);
+transform-origin: center;
+animation: markFloat 7s ease-in-out infinite;
+}
+
+.hero-mark img {
+width: 100%;
+height: auto;
+object-fit: contain;
+mix-blend-mode: multiply;
+}
+
+@keyframes markFloat {
+0%,100% { transform: rotate(-3deg) translateY(0); }
+50% { transform: rotate(-1.5deg) translateY(-12px); }
+}
+
+.hero-content {
+position: relative;
+z-index: 2;
+width: 100%;
+}
+
+.hero-meta {
+display: flex;
+justify-content: space-between;
+align-items: flex-start;
+margin-bottom: 38px;
+}
+
+.hero-meta-left {
+display: flex;
+flex-direction: column;
+gap: 8px;
+}
+
+.hero-meta-right {
+text-align: right;
+}
+
+.hero-title {
+margin: 0;
+max-width: 1000px;
+font-size: clamp(4.4rem, 11.8vw, 13rem);
+letter-spacing: .025em;
+line-height: .86;
+}
+
+.hero-title span {
+display: block;
+}
+
+.hero-title .stroke {
+color: transparent;
+-webkit-text-stroke: 2px var(--black);
+}
+
+.hero-bottom {
+display: grid;
+grid-template-columns: 1fr auto;
+align-items: end;
+gap: 40px;
+margin-top: 55px;
+}
+
+.hero-description {
+max-width: 540px;
+font-size: 17px;
+line-height: 1.55;
+font-weight: 500;
+}
+
+.hero-actions {
+display: flex;
+gap: 10px;
+flex-wrap: wrap;
+justify-content: flex-end;
+}
+
+.scroll-cue {
+position: absolute;
+bottom: 48px;
+left: 50%;
+transform: translateX(-50%);
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 9px;
+font-family: var(--font-accent);
+font-size: 9px;
+letter-spacing: .08em;
+}
+
+.scroll-cue::after {
+content: "";
+width: 1px;
+height: 45px;
+background: var(--black);
+animation: scrollLine 1.8s ease-in-out infinite;
+}
+
+@keyframes scrollLine {
+0%,100% { transform: scaleY(.35); transform-origin: top; }
+50% { transform: scaleY(1); transform-origin: top; }
+}
+
+/* TICKER */
+.ticker {
+background: var(--black);
+color: var(--yellow);
+border-block: 1px solid var(--black);
+overflow: hidden;
+white-space: nowrap;
+}
+
+.ticker-track {
+display: inline-flex;
+align-items: center;
+min-width: max-content;
+padding: 18px 0;
+animation: ticker 22s linear infinite;
+}
+
+.ticker span {
+font-family: var(--font-display);
+font-size: clamp(1.5rem, 3vw, 3.5rem);
+letter-spacing: .04em;
+padding-inline: 28px;
+}
+
+@keyframes ticker {
+to { transform: translateX(-50%); }
+}
+
+/* INTRO */
+.intro {
+background: var(--off-white);
+}
+
+.intro-layout {
+display: grid;
+grid-template-columns: .85fr 1.15fr;
+gap: 90px;
+align-items: start;
+}
+
+.intro-statement {
+font-size: clamp(3rem, 6.3vw, 7rem);
+margin: 0;
+letter-spacing: .025em;
+}
+
+.intro-copy {
+padding-top: 10px;
+max-width: 680px;
+font-size: 18px;
+line-height: 1.7;
+}
+
+.intro-copy p {
+margin: 0 0 25px;
+}
+
+.principles {
+margin-top: 70px;
+border-top: 1px solid var(--border-dark);
+}
+
+.principle {
+display: grid;
+grid-template-columns: 110px 1fr auto;
+gap: 25px;
+align-items: center;
+padding: 28px 0;
+border-bottom: 1px solid var(--border-dark);
+}
+
+.principle-num {
+font-family: var(--font-accent);
+font-size: 10px;
+}
+
+.principle-name {
+font-family: var(--font-display);
+font-size: clamp(2rem, 4vw, 4.2rem);
+letter-spacing: .035em;
+}
+
+.principle-desc {
+max-width: 260px;
+font-size: 13px;
+line-height: 1.5;
+text-align: right;
+}
+
+/* REACH */
+.reach {
+background: var(--black);
+color: var(--white);
+}
+
+.reach .eyebrow {
+color: var(--yellow);
+}
+
+.reach-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+border-top: 1px solid var(--border);
+border-bottom: 1px solid var(--border);
+}
+
+.stat {
+min-height: 390px;
+padding: 35px 30px;
+border-right: 1px solid var(--border);
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+}
+
+.stat:last-child {
+border-right: 0;
+}
+
+.stat-number {
+font-family: var(--font-display);
+font-size: clamp(4.8rem, 10vw, 10rem);
+letter-spacing: .025em;
+line-height: .85;
+color: var(--yellow);
+}
+
+.stat-label {
+font-family: var(--font-accent);
+font-size: 11px;
+line-height: 1.5;
+letter-spacing: .06em;
+max-width: 210px;
+}
+
+.stat-note {
+color: #aaa;
+font-size: 12px;
+line-height: 1.5;
+max-width: 280px;
+margin-top: 8px;
+}
+
+/* EVENTS */
+.events {
+background: var(--off-white);
+}
+
+.event-feature {
+position: relative;
+display: grid;
+grid-template-columns: 1.4fr .6fr;
+min-height: 600px;
+background: var(--red);
+color: var(--white);
+overflow: hidden;
+margin-bottom: 20px;
+}
+
+.event-feature::before {
+content: "01";
+position: absolute;
+right: -20px;
+bottom: -80px;
+font-family: var(--font-display);
+font-size: 28vw;
+line-height: .7;
+color: rgba(0,0,0,.12);
+letter-spacing: .04em;
+}
+
+.event-main {
+position: relative;
+z-index: 1;
+padding: 55px;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+border-right: 1px solid rgba(255,255,255,.3);
+}
+
+.event-main h3 {
+margin: 25px 0 0;
+font-family: var(--font-display);
+font-size: clamp(4rem, 9vw, 9.5rem);
+line-height: .85;
+letter-spacing: .025em;
+}
+
+.event-main p {
+max-width: 530px;
+margin: 30px 0 0;
+font-size: 17px;
+line-height: 1.55;
+}
+
+.event-meta {
+position: relative;
+z-index: 1;
+padding: 55px 38px;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+}
+
+.event-meta-grid {
+display: grid;
+gap: 24px;
+}
+
+.meta-item {
+border-top: 1px solid rgba(255,255,255,.3);
+padding-top: 12px;
+}
+
+.meta-label {
+display: block;
+font-family: var(--font-accent);
+font-size: 9px;
+letter-spacing: .08em;
+margin-bottom: 8px;
+opacity: .75;
+}
+
+.meta-value {
+font-size: 15px;
+line-height: 1.4;
+font-weight: 600;
+}
+
+.event-secondary {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 20px;
+}
+
+.event-card {
+background: var(--yellow);
+min-height: 390px;
+padding: 35px;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+border: 1px solid var(--border-dark);
+transition: transform .45s var(--ease);
+}
+
+.event-card:hover {
+transform: translateY(-9px);
+}
+
+.event-card:nth-child(2) {
+background: var(--black);
+color: var(--white);
+border-color: var(--black);
+}
+
+.event-card h4 {
+margin: 35px 0 15px;
+font-family: var(--font-display);
+font-size: clamp(2.8rem, 5vw, 5.5rem);
+line-height: .88;
+letter-spacing: .035em;
+}
+
+.event-card p {
+margin: 0;
+max-width: 480px;
+line-height: 1.55;
+font-size: 14px;
+}
+
+.event-card-bottom {
+display: flex;
+justify-content: space-between;
+gap: 20px;
+align-items: end;
+margin-top: 40px;
+}
+
+/* AUDIENCE */
+.audience {
+background: var(--yellow);
+}
+
+.audience-type {
+font-family: var(--font-display);
+font-size: clamp(3.5rem, 9vw, 10rem);
+line-height: .84;
+letter-spacing: .025em;
+text-align: center;
+border-top: 1px solid var(--border-dark);
+}
+
+.audience-type div {
+padding: 22px 0 25px;
+border-bottom: 1px solid var(--border-dark);
+transition:
+padding-left .5s var(--ease),
+color .35s var(--ease);
+}
+
+.audience-type div:hover {
+padding-left: 4vw;
+color: var(--red);
+}
+
+/* WHY PARTNER */
+.why {
+background: var(--black);
+color: var(--white);
+}
+
+.why .eyebrow {
+color: var(--yellow);
+}
+
+.why-grid {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+border-top: 1px solid var(--border);
+border-bottom: 1px solid var(--border);
+}
+
+.why-card {
+min-height: 370px;
+padding: 30px;
+border-right: 1px solid var(--border);
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+transition: background .35s var(--ease), color .35s var(--ease);
+}
+
+.why-card:last-child {
+border-right: 0;
+}
+
+.why-card:hover {
+background: var(--yellow);
+color: var(--black);
+}
+
+.why-card-num {
+font-family: var(--font-accent);
+font-size: 10px;
+}
+
+.why-card h3 {
+margin: 0;
+font-family: var(--font-display);
+font-size: clamp(2.3rem, 4vw, 4rem);
+line-height: .9;
+letter-spacing: .035em;
+}
+
+.why-card p {
+margin: 0;
+font-size: 13px;
+line-height: 1.55;
+max-width: 240px;
+}
+
+/* OPPORTUNITIES */
+.opportunities {
+background: var(--off-white);
+}
+
+.opportunity-grid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+border-top: 1px solid var(--border-dark);
+}
+
+.opportunity {
+min-height: 290px;
+padding: 35px;
+border-bottom: 1px solid var(--border-dark);
+border-right: 1px solid var(--border-dark);
+transition: background .35s var(--ease), color .35s var(--ease);
+}
+
+.opportunity:nth-child(even) {
+border-right: 0;
+}
+
+.opportunity:hover {
+background: var(--yellow);
+}
+
+.opportunity-top {
+display: flex;
+justify-content: space-between;
+gap: 20px;
+margin-bottom: 80px;
+}
+
+.opportunity-num {
+font-family: var(--font-accent);
+font-size: 10px;
+}
+
+.opportunity-arrow {
+font-size: 22px;
+transition: transform .35s var(--ease);
+}
+
+.opportunity:hover .opportunity-arrow {
+transform: translate(5px,-5px);
+}
+
+.opportunity h3 {
+margin: 0 0 12px;
+font-family: var(--font-display);
+font-size: clamp(2rem, 3.4vw, 3.7rem);
+line-height: .9;
+letter-spacing: .035em;
+}
+
+.opportunity p {
+margin: 0;
+max-width: 520px;
+font-size: 14px;
+line-height: 1.55;
+}
+
+/* EXCHANGE */
+.exchange {
+background: var(--red);
+color: var(--white);
+}
+
+.exchange .section-index {
+color: var(--white);
+}
+
+.exchange-list {
+border-top: 1px solid rgba(255,255,255,.4);
+}
+
+.exchange-row {
+display: grid;
+grid-template-columns: 110px 1fr 1.1fr;
+gap: 30px;
+align-items: center;
+padding: 27px 0;
+border-bottom: 1px solid rgba(255,255,255,.4);
+}
+
+.exchange-num {
+font-family: var(--font-accent);
+font-size: 10px;
+}
+
+.exchange-name {
+font-family: var(--font-display);
+font-size: clamp(1.8rem, 3.2vw, 3.4rem);
+line-height: .9;
+letter-spacing: .035em;
+}
+
+.exchange-desc {
+font-size: 14px;
+line-height: 1.55;
+max-width: 470px;
+}
+
+/* PROOF */
+.proof {
+background: var(--off-white);
+}
+
+.proof-card {
+display: grid;
+grid-template-columns: 1.25fr .75fr;
+min-height: 650px;
+background: var(--black);
+color: var(--white);
+overflow: hidden;
+}
+
+.proof-main {
+padding: 55px;
+position: relative;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+}
+
+.proof-main::after {
+content: "12H";
+position: absolute;
+right: -35px;
+bottom: -80px;
+font-family: var(--font-display);
+font-size: 25vw;
+color: rgba(255,212,0,.08);
+line-height: .8;
+letter-spacing: .04em;
+}
+
+.proof-logo-wrap {
+position: relative;
+z-index: 2;
+width: min(300px, 70%);
+min-height: 120px;
+display: flex;
+align-items: center;
+justify-content: flex-start;
+background: var(--yellow);
+padding: 18px;
+}
+
+.proof-logo {
+max-width: 100%;
+max-height: 100px;
+object-fit: contain;
+}
+
+.proof-main h3 {
+position: relative;
+z-index: 2;
+margin: 35px 0 20px;
+max-width: 750px;
+font-family: var(--font-display);
+font-size: clamp(3.8rem, 8vw, 8rem);
+line-height: .86;
+letter-spacing: .025em;
+}
+
+.proof-main p {
+position: relative;
+z-index: 2;
+max-width: 580px;
+font-size: 16px;
+line-height: 1.55;
+color: #ddd;
+}
+
+.proof-meta {
+padding: 55px 38px;
+border-left: 1px solid var(--border);
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+}
+
+.proof-meta-list {
+display: grid;
+gap: 23px;
+}
+
+.proof-stat {
+border-top: 1px solid var(--border);
+padding-top: 12px;
+}
+
+.proof-stat strong {
+display: block;
+font-family: var(--font-display);
+font-size: clamp(2.4rem, 4vw, 4.5rem);
+line-height: .9;
+color: var(--yellow);
+letter-spacing: .025em;
+}
+
+.proof-stat span {
+display: block;
+margin-top: 9px;
+font-family: var(--font-accent);
+font-size: 9px;
+letter-spacing: .07em;
+line-height: 1.5;
+}
+
+.partner-strip {
+display: flex;
+flex-wrap: wrap;
+gap: 10px;
+margin-top: 35px;
+}
+
+.partner-pill {
+padding: 10px 12px;
+border: 1px solid rgba(255,255,255,.25);
+font-size: 11px;
+font-weight: 600;
+letter-spacing: .04em;
+}
+
+/* BIG CTA */
+.big-cta {
+min-height: 90svh;
+display: flex;
+align-items: center;
+background: var(--red);
+color: var(--black);
+position: relative;
+overflow: hidden;
+}
+
+.big-cta::before {
+content: "OCd";
+position: absolute;
+right: -3vw;
+bottom: -7vw;
+font-family: var(--font-display);
+font-size: 32vw;
+line-height: .75;
+letter-spacing: .04em;
+color: rgba(0,0,0,.12);
+}
+
+.cta-content {
+position: relative;
+z-index: 2;
+max-width: 1200px;
+}
+
+.cta-title {
+margin: 0;
+font-size: clamp(5rem, 13vw, 15rem);
+letter-spacing: .025em;
+line-height: .82;
+}
+
+.cta-copy {
+max-width: 600px;
+margin: 45px 0 30px;
+font-size: 18px;
+line-height: 1.6;
+}
+
+/* FOOTER */
+footer {
+background: var(--black);
+color: var(--white);
+padding: 80px 0 35px;
+}
+
+.footer-top {
+display: flex;
+justify-content: space-between;
+align-items: flex-start;
+gap: 40px;
+padding-bottom: 75px;
+}
+
+.footer-brand {
+display: flex;
+align-items: center;
+gap: 20px;
+}
+
+.footer-logo {
+width: 95px;
+height: 95px;
+object-fit: contain;
+background: var(--yellow);
+padding: 9px;
+}
+
+.footer-brand-name {
+font-family: var(--font-display);
+font-size: clamp(2rem, 4vw, 4rem);
+letter-spacing: .04em;
+}
+
+.footer-tagline {
+margin-top: 7px;
+color: var(--yellow);
+font-family: var(--font-accent);
+font-size: 10px;
+letter-spacing: .07em;
+}
+
+.footer-links {
+display: flex;
+gap: 28px;
+flex-wrap: wrap;
+font-family: var(--font-accent);
+font-size: 9px;
+letter-spacing: .07em;
+}
+
+.footer-links a {
+transition: color .25s ease;
+}
+
+.footer-links a:hover {
+color: var(--yellow);
+}
+
+.footer-bottom {
+padding-top: 20px;
+border-top: 1px solid var(--border);
+display: flex;
+justify-content: space-between;
+gap: 30px;
+color: #888;
+font-size: 11px;
+line-height: 1.5;
+}
+
+/* REVEAL */
+.reveal {
+opacity: 0;
+transform: translateY(35px);
+transition: opacity .9s var(--ease), transform .9s var(--ease);
+}
+
+.reveal.is-visible {
+opacity: 1;
+transform: none;
+}
+
+.delay-1 { transition-delay: .08s; }
+.delay-2 { transition-delay: .16s; }
+.delay-3 { transition-delay: .24s; }
+
+/* RESPONSIVE */
+@media (max-width: 1050px) {
+.nav-links {
+display: none;
+}
+
+.menu-btn {
+display: block;
+}
+
+.nav-cta {
+display: none;
+}
+
+.hero-mark {
+width: 54vw;
+right: -2vw;
+top: 20%;
+}
+
+.hero-title {
+max-width: 760px;
+}
+
+.intro-layout {
+grid-template-columns: 1fr;
+gap: 45px;
+}
+
+.why-grid {
+grid-template-columns: 1fr 1fr;
+}
+
+.why-card:nth-child(2) {
+border-right: 0;
+}
+
+.why-card:nth-child(-n+2) {
+border-bottom: 1px solid var(--border);
+}
+
+.event-feature {
+grid-template-columns: 1fr;
+}
+
+.event-main {
+min-height: 520px;
+border-right: 0;
+border-bottom: 1px solid rgba(255,255,255,.3);
+}
+
+.event-meta {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 35px;
+}
+
+.proof-card {
+grid-template-columns: 1fr;
+}
+
+.proof-meta {
+border-left: 0;
+border-top: 1px solid var(--border);
+}
+
+.proof-meta-list {
+grid-template-columns: repeat(3, 1fr);
+}
+}
+
+@media (max-width: 720px) {
+.container {
+width: min(calc(100% - 30px), var(--max-width));
+}
+
+.nav {
+padding: 10px 10px;
+}
+
+.nav-inner {
+min-height: 54px;
+}
+
+.nav-logo {
+width: 37px;
+height: 37px;
+}
+
+.nav-brand span {
+display: none;
+}
+
+.section {
+padding: 95px 0;
+}
+
+.section-head {
+grid-template-columns: 1fr;
+gap: 18px;
+margin-bottom: 52px;
+}
+
+.section-title {
+font-size: clamp(3rem, 15vw, 5.5rem);
+}
+
+.hero {
+min-height: 100svh;
+padding: 125px 0 32px;
+}
+
+.hero-grid {
+background-size: 42px 42px;
+}
+
+.hero-mark {
+width: 92vw;
+max-width: none;
+right: -13vw;
+top: 20%;
+opacity: .18;
+}
+
+.hero-meta {
+margin-bottom: 30px;
+}
+
+.hero-meta-right {
+max-width: 100px;
+}
+
+.hero-title {
+font-size: 18vw;
+line-height: .9;
+letter-spacing: .018em;
+max-width: 100%;
+}
+
+.hero-title .stroke {
+-webkit-text-stroke-width: 1px;
+}
+
+.hero-bottom {
+grid-template-columns: 1fr;
+gap: 24px;
+margin-top: 42px;
+}
+
+.hero-description {
+max-width: 420px;
+font-size: 15px;
+}
+
+.hero-actions {
+justify-content: flex-start;
+}
+
+.scroll-cue {
+display: none;
+}
+
+.principle {
+grid-template-columns: 50px 1fr;
+gap: 10px;
+padding: 23px 0;
+}
+
+.principle-desc {
+grid-column: 2;
+max-width: none;
+text-align: left;
+}
+
+.principle-name {
+font-size: clamp(2rem, 12vw, 4rem);
+}
+
+.reach-grid {
+grid-template-columns: 1fr;
+}
+
+.stat {
+min-height: 270px;
+border-right: 0;
+border-bottom: 1px solid var(--border);
+}
+
+.stat:last-child {
+border-bottom: 0;
+}
+
+.event-main {
+padding: 32px;
+min-height: 470px;
+}
+
+.event-main h3 {
+font-size: 19vw;
+}
+
+.event-meta {
+padding: 32px;
+grid-template-columns: 1fr;
+}
+
+.event-secondary {
+grid-template-columns: 1fr;
+}
+
+.event-card {
+min-height: 330px;
+}
+
+.audience-type {
+font-size: 15vw;
+}
+
+.why-grid {
+grid-template-columns: 1fr;
+}
+
+.why-card {
+min-height: 280px;
+border-right: 0 !important;
+border-bottom: 1px solid var(--border);
+}
+
+.why-card:last-child {
+border-bottom: 0;
+}
+
+.opportunity-grid {
+grid-template-columns: 1fr;
+}
+
+.opportunity {
+min-height: 260px;
+border-right: 0;
+}
+
+.opportunity-top {
+margin-bottom: 60px;
+}
+
+.exchange-row {
+grid-template-columns: 48px 1fr;
+gap: 10px;
+padding: 22px 0;
+}
+
+.exchange-desc {
+grid-column: 2;
+}
+
+.proof-main {
+padding: 32px;
+min-height: 520px;
+}
+
+.proof-meta {
+padding: 32px;
+}
+
+.proof-meta-list {
+grid-template-columns: 1fr;
+}
+
+.proof-logo-wrap {
+width: 100%;
+}
+
+.cta-title {
+font-size: 20vw;
+}
+
+.cta-copy {
+font-size: 15px;
+margin-top: 30px;
+}
+
+.footer-top {
+flex-direction: column;
+padding-bottom: 50px;
+}
+
+.footer-bottom {
+flex-direction: column;
+}
+}
+
+@media (prefers-reduced-motion: reduce) {
+html { scroll-behavior: auto; }
+
+*,
+*::before,
+*::after {
+animation-duration: .001ms !important;
+animation-iteration-count: 1 !important;
+transition-duration: .001ms !important;
+}
+
+.reveal {
+opacity: 1;
+transform: none;
+}
+}
+</style>
+</head>
+
+<body>
+<!--
+OCd PARTNER PROPOSAL
+---------------------------------------------------------
+Expected assets beside this file:
+/proposal/OCd-logo.png
+/proposal/sps.png
+
+Replace YOUR_EMAIL_HERE with the official partnership email.
+-->
+
+<header class="nav">
+<div class="nav-inner">
+<a class="nav-brand" href="../" aria-label="OCd home">
+<img class="nav-logo" src="OCd-logo.png" alt="OCd logo" />
+<span>PARTNER PROPOSAL</span>
+</a>
+
+<nav class="nav-links" aria-label="Proposal navigation">
+<a href="#idea">THE IDEA</a>
+<a href="#reach">REACH</a>
+<a href="#events">EVENTS</a>
+<a href="#partner">PARTNER</a>
+</nav>
+
+<a class="nav-cta" href="#contact">PARTNER WITH OCd →</a>
+
+<button class="menu-btn" type="button" aria-label="Open navigation" aria-expanded="false">
+MENU
+</button>
+</div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero" id="top">
+<div class="hero-grid" aria-hidden="true"></div>
+<div class="hero-glow" aria-hidden="true"></div>
+
+<div class="hero-mark" aria-hidden="true">
+<img src="OCd-logo.png" alt="" />
+</div>
+
+<div class="container hero-content">
+<div class="hero-meta reveal">
+<div class="hero-meta-left">
+<span class="eyebrow">OCd / Partner Proposal</span>
+<span class="mono">Delhi NCR · India</span>
+</div>
+<div class="hero-meta-right mono">
+EST. 2026<br />
+DIGITAL PROPOSAL
+</div>
+</div>
+
+<h1 class="hero-title display reveal delay-1">
+<span>BUILD.</span>
+<span class="stroke">THE</span>
+<span>NEXT</span>
+<span>GENERATION.</span>
+</h1>
+
+<div class="hero-bottom reveal delay-2">
+<p class="hero-description">
+OCd creates spaces where young builders experiment, collaborate and ship —
+through hackathons and technology experiences across Delhi NCR.
+</p>
+
+<div class="hero-actions">
+<a class="btn btn-dark" href="#partner">PARTNER WITH OCd →</a>
+<a class="btn btn-light" href="#idea">EXPLORE OCd ↓</a>
+</div>
+</div>
+</div>
+
+<div class="scroll-cue" aria-hidden="true">
+SCROLL
+</div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+<div class="ticker-track">
+<span>BUILD</span><span>✦</span><span>BREAK</span><span>✦</span><span>FORK</span><span>✦</span><span>FIX</span><span>✦</span>
+<span>BUILD</span><span>✦</span><span>BREAK</span><span>✦</span><span>FORK</span><span>✦</span><span>FIX</span><span>✦</span>
+</div>
+</div>
+
+<!-- IDEA -->
+<section class="section intro" id="idea">
+<div class="container">
+<div class="section-head reveal">
+<div class="section-index">01 / THE IDEA</div>
+<div>
+<span class="eyebrow">What is OCd?</span>
+</div>
+</div>
+
+<div class="intro-layout">
+<h2 class="intro-statement display reveal">
+NOT JUST EVENTS.<br />
+A REASON TO BUILD.
+</h2>
+
+<div class="intro-copy reveal delay-1">
+<p>
+OverclockedDevs is a Delhi NCR student-led hackathon organization creating
+spaces where young builders can turn ideas into working projects.
+</p>
+<p>
+We bring together students, developers, designers, makers and creators
+around one simple idea: make something.
+</p>
+<p>
+Our identity is built around four actions.
+</p>
+
+<div class="principles">
+<div class="principle">
+<span class="principle-num">01</span>
+<span class="principle-name">BUILD.</span>
+<span class="principle-desc">Create something from nothing.</span>
+</div>
+<div class="principle">
+<span class="principle-num">02</span>
+<span class="principle-name">BREAK.</span>
+<span class="principle-desc">Experiment. Challenge assumptions.</span>
+</div>
+<div class="principle">
+<span class="principle-num">03</span>
+<span class="principle-name">FORK.</span>
+<span class="principle-desc">Take ideas somewhere unexpected.</span>
+</div>
+<div class="principle">
+<span class="principle-num">04</span>
+<span class="principle-name">FIX.</span>
+<span class="principle-desc">Learn, iterate and ship.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- REACH -->
+<section class="section reach" id="reach">
+<div class="container">
+<div class="section-head reveal">
+<div class="section-index">02 / THE REACH</div>
+<div>
+<span class="eyebrow">Current footprint</span>
+<p class="section-copy">
+A growing student-building ecosystem, starting from Delhi NCR.
+</p>
+</div>
+</div>
+
+<div class="reach-grid">
+<article class="stat reveal">
+<span class="mono">STUDENT REACH</span>
+<strong class="stat-number">300+</strong>
+<div>
+<div class="stat-label">STUDENTS REACHED</div>
+<p class="stat-note">Through OCd's partner network and event ecosystem.</p>
+</div>
+</article>
+
+<article class="stat reveal delay-1">
+<span class="mono">UPCOMING</span>
+<strong class="stat-number">3</strong>
+<div>
+<div class="stat-label">UPCOMING HACKATHONS</div>
+<p class="stat-note">Falling Sun, Compile Delhi and Blueprint Delhi.</p>
+</div>
+</article>
+
+<article class="stat reveal delay-2">
+<span class="mono">BASE</span>
+<strong class="stat-number" style="font-size:clamp(3.5rem,7vw,7rem)">DELHI<br />NCR</strong>
+<div>
+<div class="stat-label">WHERE WE BUILD</div>
+<p class="stat-note">The current operating region for OCd.</p>
+</div>
+</article>
+</div>
+</div>
+</section>
+
+<!-- EVENTS -->
+<section class="section events" id="events">
+<div class="container">
+<div class="section-head reveal">
+<div class="section-index">03 / THE EVENTS</div>
+<div>
+<span class="eyebrow">What we're building</span>
+<p class="section-copy">
+Three upcoming experiences, each built around a different way to make.
+</p>
+</div>
+</div>
+
+<article class="event-feature reveal">
+<div class="event-main">
+<div>
+<span class="accent">EVENT 01 / OCTOBER 2026</span>
+<h3>FALLING<br />SUN</h3>
+<p>
+A student hackathon spanning Web Dev, Game Dev and Hardware.
+Designed to give young builders a place to experiment and ship.
+</p>
+</div>
+<div class="mono">ONLINE REGISTRATION · VENUE CAPACITY 200</div>
+</div>
+
+<div class="event-meta">
+<div class="event-meta-grid">
+<div class="meta-item">
+<span class="meta-label">TRACKS</span>
+<div class="meta-value">Web Development<br />Game Development<br />Hardware</div>
+</div>
+<div class="meta-item">
+<span class="meta-label">FORMAT</span>
+<div class="meta-value">Student Hackathon</div>
+</div>
+<div class="meta-item">
+<span class="meta-label">REGISTRATION</span>
+<div class="meta-value">Online applications open</div>
+</div>
+</div>
+<span class="mono">01 / 03</span>
+</div>
+</article>
+
+<div class="event-secondary">
+<article class="event-card reveal">
+<div>
+<span class="accent">EVENT 02 / NOVEMBER 2026</span>
+<h4>COMPILE<br />DELHI</h4>
+<p>Focused on Agentic AI and the builders exploring what comes next.</p>
+</div>
+<div class="event-card-bottom">
+<span class="mono">CAPACITY 100</span>
+<span class="mono">01 / 03</span>
+</div>
+</article>
+
+<article class="event-card reveal delay-1">
+<div>
+<span class="accent">EVENT 03 / NOVEMBER 2026</span>
+<h4>BLUEPRINT<br />DELHI</h4>
+<p>Focused on Creative Web and the intersection of design, code and expression.</p>
+</div>
+<div class="event-card-bottom">
+<span class="mono">CAPACITY 150</span>
+<span class="mono">03 / 03</span>
+</div>
+</article>
+</div>
+
+<p class="mono" style="margin:25px 0 0;opacity:.65">
+Online registrations are not capped. Attendees are selected based on venue capacity.
+</p>
+</div>
+</section>
+
+<!-- AUDIENCE -->
+<section class="section audience">
+<div class="container">
+<div class="section-head reveal">
+<div class="section-index">04 / THE AUDIENCE</div>
+<div>
+<span class="eyebrow">The people</span>
+<p class="section-copy">
+The builders, creators and experimenters who turn technology into things people can use.
+</p>
+</div>
+</div>
+
+<div class="audience-type reveal">
+<div>BUILDERS</div>
+<div>DEVELOPERS</div>
+<div>DESIGNERS</div>
+<div>MAKERS</div>
+<div>CREATORS</div>
+<div>EXPERIMENTERS</div>
+</div>
+</div>
+</section>
+
+<!-- WHY PARTNER -->
+<section class="section why" id="partner">
+<div class="container">
+<div class="section-head reveal">
+<div class="section-index">05 / WHY PARTNER</div>
+<div>
+<span class="eyebrow">Build with them</span>
+<h2 class="section-title display">DON'T JUST REACH STUDENTS. BUILD WITH THEM.</h2>
+</div>
+</div>
+
+<div class="why-grid">
+<article class="why-card reveal">
+<span class="why-card-num">01 / VISIBILITY</span>
+<h3>BE<br />SEEN.</h3>
+<p>Put your brand in the spaces where student builders are already creating.</p>
+</article>
+
+<article class="why-card reveal delay-1">
+<span class="why-card-num">02 / ENGAGEMENT</span>
+<h3>GET<br />INVOLVED.</h3>
+<p>Move beyond logos through workshops, mentorship, challenges and experiences.</p>
+</article>
+
+<article class="why-card reveal delay-2">
+<span class="why-card-num">03 / EXPERIENCE</span>
+<h3>PUT TECH<br />IN HANDS.</h3>
+<p>Give builders a reason to try the products, platforms and technology you make.</p>
+</article>
+
+<article class="why-card reveal delay-3">
+<span class="why-card-num">04 / TALENT</span>
+<h3>MEET<br />BUILDERS.</h3>
+<p>Create opportunities to discover promising young people through real projects.</p>
+</article>
+</div>
+</div>
+</section>
+
+<!-- OPPORTUNITIES -->
+<section class="section opportunities">
+<div class="container">
+<div class="section-head reveal">
+<div class="section-index">06 / OPPORTUNITIES</div>
+<div>
+<span class="eyebrow">Ways to collaborate</span>
+<h2 class="section-title display">YOUR BRAND.<br />OUR BUILDERS.</h2>
+</div>
+</div>
+
+<div class="opportunity-grid">
+<article class="opportunity reveal">
+<div class="opportunity-top">
+<span class="opportunity-num">01</span>
+<span class="opportunity-arrow">↗</span>
+</div>
+<h3>EVENT PARTNER</h3>
+<p>Support an OCd hackathon and become part of the event experience.</p>
+</article>
+
+<article class="opportunity reveal delay-1">
+<div class="opportunity-top">
+<span class="opportunity-num">02</span>
+<span class="opportunity-arrow">↗</span>
+</div>
+<h3>TECH PARTNER</h3>
+<p>Put your tools, APIs or developer products directly into builders' hands.</p>
+</article>
+
+<article class="opportunity reveal">
+<div class="opportunity-top">
+<span class="opportunity-num">03</span>
+<span class="opportunity-arrow">↗</span>
+</div>
+<h3>PRIZE PARTNER</h3>
+<p>Power prizes that motivate participants to ship ambitious projects.</p>
+</article>
+
+<article class="opportunity reveal delay-1">
+<div class="opportunity-top">
+<span class="opportunity-num">04</span>
+<span class="opportunity-arrow">↗</span>
+</div>
+<h3>WORKSHOP PARTNER</h3>
+<p>Bring technical knowledge directly to student builders.</p>
+</article>
+
+<article class="opportunity reveal">
+<div class="opportunity-top">
+<span class="opportunity-num">05</span>
+<span class="opportunity-arrow">↗</span>
+</div>
+<h3>MENTORSHIP PARTNER</h3>
+<p>Connect industry professionals with participants working on real projects.</p>
+</article>
+
+<article class="opportunity reveal delay-1">
+<div class="opportunity-top">
+<span class="opportunity-num">06</span>
+<span class="opportunity-arrow">↗</span>
+</div>
+<h3>COMMUNITY PARTNER</h3>
+<p>Help expand access to student builders across Delhi NCR.</p>
+</article>
+
+<article class="opportunity reveal">
+<div class="opportunity-top">
+<span class="opportunity-num">07</span>
+<span class="opportunity-arrow">↗</span>
+</div>
+<h3>CUSTOM ACTIVATION</h3>
+<p>Create something unique together around your brand, technology or mission.</p>
+</article>
+
+<article class="opportunity reveal delay-1">
+<div class="opportunity-top">
+<span class="opportunity-num">08</span>
+<span class="opportunity-arrow">↗</span>
+</div>
+<h3>LET'S INVENT IT</h3>
+<p>Have a different idea? We can shape a partnership around the experience you want to create.</p>
+</article>
+</div>
+</div>
+</section>
+
+<!-- EXCHANGE -->
+<section class="section exchange">
+<div class="container">
+<div class="section-head reveal">
+<div class="section-index">07 / THE EXCHANGE</div>
+<div>
+<span class="eyebrow">What your brand can get</span>
+<h2 class="section-title display">YOU BRING SUPPORT.<br />WE BUILD THE EXPERIENCE.</h2>
+</div>
+</div>
+
+<div class="exchange-list">
+<div class="exchange-row reveal">
+<span class="exchange-num">01</span>
+<span class="exchange-name">LOGO PLACEMENT</span>
+<span class="exchange-desc">Brand presence across relevant event materials, depending on partnership scope.</span>
+</div>
+
+<div class="exchange-row reveal">
+<span class="exchange-num">02</span>
+<span class="exchange-name">SOCIAL VISIBILITY</span>
+<span class="exchange-desc">Promotion through relevant OCd event communications and campaign moments.</span>
+</div>
+
+<div class="exchange-row reveal">
+<span class="exchange-num">03</span>
+<span class="exchange-name">ON-GROUND BRANDING</span>
+<span class="exchange-desc">Physical presence at participating events where applicable.</span>
+</div>
+
+<div class="exchange-row reveal">
+<span class="exchange-num">04</span>
+<span class="exchange-name">WORKSHOPS</span>
+<span class="exchange-desc">Opportunities to educate and engage builders around useful technology.</span>
+</div>
+
+<div class="exchange-row reveal">
+<span class="exchange-num">05</span>
+<span class="exchange-name">MENTORSHIP</span>
+<span class="exchange-desc">Connect your team with participants and help them move projects forward.</span>
+</div>
+
+<div class="exchange-row reveal">
+<span class="exchange-num">06</span>
+<span class="exchange-name">PRIZES</span>
+<span class="exchange-desc">Recognition associated with supporting project outcomes and builder experiences.</span>
+</div>
+
+<div class="exchange-row reveal">
+<span class="exchange-num">07</span>
+<span class="exchange-name">PRODUCT / API</span>
+<span class="exchange-desc">Opportunities for developers to experience relevant technology in real projects.</span>
+</div>
+
+<div class="exchange-row reveal">
+<span class="exchange-num">08</span>
+<span class="exchange-name">TALENT DISCOVERY</span>
+<span class="exchange-desc">Meet promising young builders through events and project-based experiences.</span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- PROOF -->
+<section class="section proof">
+<div class="container">
+<div class="section-head reveal">
+<div class="section-index">08 / PROOF</div>
+<div>
+<span class="eyebrow">We've already started</span>
+<h2 class="section-title display">BUILDING IS BETTER THAN TALKING.</h2>
+</div>
+</div>
+
+<article class="proof-card reveal">
+<div class="proof-main">
+<div>
+<div class="proof-logo-wrap">
+<img class="proof-logo" src="sps.png" alt="Sprint & Spawn logo" />
+</div>
+
+<h3>SPRINT &<br />SPAWN</h3>
+
+<p>
+A 12-hour high-octane hackathon built around Game Dev and Web Dev.
+Free to attend, with builders coming together at PW NSP Pitampura.
+</p>
+
+<div class="partner-strip">
+<span class="partner-pill">FUELER</span>
+<span class="partner-pill">CODING MAFIA</span>
+<span class="partner-pill">GEN.XYZ</span>
+<span class="partner-pill">CODECRAFTERS</span>
+</div>
+</div>
+
+<a
+class="btn btn-light"
+href="https://sprintandspawn.xyz/"
+target="_blank"
+rel="noopener noreferrer"
+style="width:max-content;margin-top:30px"
+>
+VISIT SPRINT & SPAWN →
+</a>
+</div>
+
+<div class="proof-meta">
+<div class="proof-meta-list">
+<div class="proof-stat">
+<strong>270</strong>
+<span>APPLICATIONS / REGISTRATIONS</span>
+</div>
+<div class="proof-stat">
+<strong>150</strong>
+<span>SELECTED / VENUE ATTENDANCE</span>
+</div>
+<div class="proof-stat">
+<strong>12H</strong>
+<span>HACKATHON DURATION</span>
+</div>
+</div>
+
+<div>
+<div class="mono" style="color:#888;margin-bottom:12px">EVENT DATA</div>
+<div style="font-size:14px;line-height:1.7">
+6 September 2026<br />
+PW NSP Pitampura<br />
+Game Dev · Web Dev<br />
+Free
+</div>
+</div>
+</div>
+</article>
+</div>
+</section>
+
+<!-- BIG CTA -->
+<section class="big-cta" id="contact">
+<div class="container">
+<div class="cta-content reveal">
+<span class="eyebrow">09 / LET'S BUILD</span>
+<h2 class="cta-title display">BUILD<br />WITH OCd.</h2>
+
+<p class="cta-copy">
+Have a product, platform, idea or opportunity for student builders?
+Let's create something meaningful together.
+</p>
+
+<!-- Replace YOUR_EMAIL_HERE with the official partnership email. -->
+<a class="btn btn-dark" href="mailto:YOUR_EMAIL_HERE">
+PARTNER WITH OCd →
+</a>
+</div>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="container">
+<div class="footer-top">
+<div class="footer-brand">
+<img class="footer-logo" src="OCd-logo.png" alt="OCd logo" />
+<div>
+<div class="footer-brand-name">OCd</div>
+<div class="footer-tagline">BUILD. BREAK. FORK. FIX.</div>
+</div>
+</div>
+
+<nav class="footer-links" aria-label="Footer navigation">
+<a href="../">OCd HOME</a>
+<a href="#events">EVENTS</a>
+<a href="https://sprintandspawn.xyz/" target="_blank" rel="noopener noreferrer">SPRINT & SPAWN</a>
+<a href="#contact">PARTNER</a>
+</nav>
+</div>
+
+<div class="footer-bottom">
+<span>© 2026 OverclockedDevs</span>
+<span>DELHI NCR · INDIA · EST. 2026</span>
+</div>
+</div>
+</footer>
+
+<script>
+(() => {
+const revealItems = document.querySelectorAll(".reveal");
+
+if ("IntersectionObserver" in window) {
+const observer = new IntersectionObserver(
+(entries, obs) => {
+entries.forEach((entry) => {
+if (entry.isIntersecting) {
+entry.target.classList.add("is-visible");
+obs.unobserve(entry.target);
+}
+});
+},
+{ threshold: 0.12, rootMargin: "0px 0px -30px 0px" }
+);
+
+revealItems.forEach((item) => observer.observe(item));
+} else {
+revealItems.forEach((item) => item.classList.add("is-visible"));
+}
+
+const menuButton = document.querySelector(".menu-btn");
+const navInner = document.querySelector(".nav-inner");
+
+if (menuButton && navInner) {
+const menu = document.createElement("div");
+menu.className = "mobile-menu";
+menu.innerHTML = `
+<a href="#idea">THE IDEA</a>
+<a href="#reach">REACH</a>
+<a href="#events">EVENTS</a>
+<a href="#partner">PARTNER</a>
+`;
+
+Object.assign(menu.style, {
+position: "absolute",
+top: "calc(100% + 8px)",
+left: "0",
+right: "0",
+display: "grid",
+background: "var(--black)",
+color: "var(--yellow)",
+border: "1px solid var(--black)",
+padding: "8px",
+transform: "translateY(-8px)",
+opacity: "0",
+pointerEvents: "none",
+transition: "opacity .25s ease, transform .25s ease"
+});
+
+menu.querySelectorAll("a").forEach((link) => {
+Object.assign(link.style, {
+padding: "17px 13px",
+fontFamily: "var(--font-accent)",
+fontSize: "10px",
+letterSpacing: ".07em",
+borderBottom: "1px solid rgba(255,255,255,.12)"
+});
+
+link.addEventListener("click", () => {
+menu.style.opacity = "0";
+menu.style.transform = "translateY(-8px)";
+menu.style.pointerEvents = "none";
+menuButton.setAttribute("aria-expanded", "false");
+});
+});
+
+navInner.style.position = "relative";
+navInner.appendChild(menu);
+
+menuButton.addEventListener("click", () => {
+const open = menuButton.getAttribute("aria-expanded") === "true";
+menuButton.setAttribute("aria-expanded", String(!open));
+
+if (open) {
+menu.style.opacity = "0";
+menu.style.transform = "translateY(-8px)";
+menu.style.pointerEvents = "none";
+} else {
+menu.style.opacity = "1";
+menu.style.transform = "translateY(0)";
+menu.style.pointerEvents = "auto";
+}
+});
+}
+
+// Small pointer parallax on the desktop hero logo.
+const heroMark = document.querySelector(".hero-mark");
+
+if (heroMark && window.matchMedia("(pointer:fine)").matches) {
+window.addEventListener("pointermove", (event) => {
+const x = (event.clientX / window.innerWidth - 0.5) * 10;
+const y = (event.clientY / window.innerHeight - 0.5) * 10;
+heroMark.style.transform = `rotate(-3deg) translate(${x}px, ${y}px)`;
+}, { passive: true });
+}
+})();
+</script>
+</body>
+</html>
+
