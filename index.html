@@ -1,2936 +1,2107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>OverclockedDevs — OCd</title>
+
+    <meta
+        name="description"
+        content="OverclockedDevs — high-energy hackathons, builders, and technology events from Delhi NCR."
+    >
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bungee&family=Climate+Crisis&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        /* =========================================================
+           OCd — DESIGN SYSTEM
+        ========================================================= */
+
+        :root {
+            --red: #F02A24;
+            --red-dark: #B80000;
+            --yellow: #FFD400;
+            --yellow-bright: #FFE500;
+            --white: #FFFFFF;
+            --off-white: #FFF7E6;
+            --black: #0D0D0D;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--black);
+            color: var(--white);
+            font-family: "Space Grotesk", sans-serif;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        ::selection {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+
+        /* =========================================================
+           CRT / GRAIN EFFECT
+        ========================================================= */
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9999;
+
+            opacity: .055;
+
+            background-image:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent 0px,
+                    transparent 2px,
+                    rgba(255,255,255,.7) 3px
+                );
+
+            mix-blend-mode: overlay;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9998;
 
-<title>OverclockedDevs — Build Different.</title>
+            background-image:
+                radial-gradient(
+                    circle at center,
+                    transparent 0%,
+                    rgba(0,0,0,.18) 100%
+                );
+        }
 
-<!-- =====================================================
-     FONTS
-===================================================== -->
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        /* =========================================================
+           NAVBAR
+        ========================================================= */
 
-<link
-    href="https://fonts.googleapis.com/css2?family=Bungee&family=Climate+Crisis&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
->
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
 
+            z-index: 1000;
 
-<style>
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
 
-/* =========================================================
-   OCd BRAND SYSTEM
-========================================================= */
+            padding: 18px 5vw;
 
-:root {
+            background: rgba(13,13,13,.72);
+            backdrop-filter: blur(14px);
 
-    --red: #F02A24;
-    --red-dark: #B80000;
+            border-bottom: 1px solid rgba(255,255,255,.1);
+        }
 
-    --yellow: #FFD400;
-    --yellow-bright: #FFE500;
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
 
-    --white: #FFFFFF;
-    --cream: #FFF7E6;
+            text-decoration: none;
 
-    --black: #0D0D0D;
+            font-family: "Bungee", sans-serif;
+            font-size: 18px;
+        }
 
-    --gray: #151515;
-    --muted: #888888;
+        .nav-logo-mark {
+            width: 38px;
+            height: 38px;
 
-    --border: rgba(255,255,255,.18);
+            display: grid;
+            place-items: center;
 
-}
+            background: var(--yellow);
+            color: var(--black);
 
+            font-family: "Bungee", sans-serif;
+            font-size: 13px;
 
-/* =========================================================
-   RESET
-========================================================= */
+            border: 2px solid var(--white);
+        }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 35px;
 
-html {
-    scroll-behavior: smooth;
-}
+            font-family: "Bungee", sans-serif;
+            font-size: 11px;
+        }
 
-body {
+        .nav-links a {
+            text-decoration: none;
+            position: relative;
+        }
 
-    background: var(--black);
+        .nav-links a::after {
+            content: "";
 
-    color: var(--white);
+            position: absolute;
+            left: 0;
+            bottom: -6px;
 
-    font-family: "Space Grotesk", sans-serif;
+            width: 0;
+            height: 2px;
 
-    overflow-x: hidden;
+            background: var(--red);
 
-}
+            transition: width .2s ease;
+        }
 
-a {
-    color: inherit;
-    text-decoration: none;
-}
+        .nav-links a:hover::after {
+            width: 100%;
+        }
 
+        .nav-cta {
+            padding: 12px 17px;
 
-/* =========================================================
-   CRT GRAIN
-========================================================= */
+            background: var(--red);
+            color: var(--white);
 
-body::before {
+            border: 0;
 
-    content: "";
+            transition: .2s ease;
+        }
 
-    position: fixed;
+        .nav-cta:hover {
+            background: var(--yellow);
+            color: var(--black);
+        }
 
-    inset: 0;
 
-    pointer-events: none;
+        /* =========================================================
+           HERO
+        ========================================================= */
 
-    z-index: 9999;
+        .hero {
+            min-height: 100vh;
 
-    opacity: .035;
+            position: relative;
 
-    background-image:
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
 
-}
+            padding: 150px 6vw 100px;
 
-body::after {
+            overflow: hidden;
 
-    content: "";
+            background:
+                linear-gradient(
+                    rgba(13,13,13,.9),
+                    rgba(13,13,13,.96)
+                ),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent 0px,
+                    transparent 50px,
+                    rgba(255,255,255,.025) 51px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent 0px,
+                    transparent 50px,
+                    rgba(255,255,255,.025) 51px
+                );
+        }
 
-    position: fixed;
+        .hero-grid {
+            position: absolute;
+            inset: 0;
 
-    inset: 0;
+            background-image:
+                linear-gradient(
+                    rgba(255,255,255,.035) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,.035) 1px,
+                    transparent 1px
+                );
 
-    pointer-events: none;
+            background-size: 55px 55px;
 
-    z-index: 9998;
+            mask-image: linear-gradient(
+                to bottom,
+                black,
+                transparent 90%
+            );
+        }
 
-    background:
-        repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 3px,
-            rgba(255,255,255,.015) 4px
-        );
+        .hero-bg-text {
+            position: absolute;
 
-}
+            right: -3vw;
+            top: 15vh;
 
+            font-family: "Climate Crisis", sans-serif;
 
-/* =========================================================
-   GLOBAL
-========================================================= */
+            font-size: 25vw;
+            line-height: .7;
 
-.container {
+            color: transparent;
 
-    width: min(1250px, 92%);
+            -webkit-text-stroke: 1px rgba(255,255,255,.08);
 
-    margin: auto;
+            user-select: none;
+            pointer-events: none;
+        }
 
-}
+        .hero-content {
+            position: relative;
+            z-index: 2;
 
-section {
+            max-width: 1250px;
+        }
 
-    padding: 130px 0;
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
 
-}
+            font-family: "Bungee", sans-serif;
+            font-size: 11px;
 
-h1,
-h2,
-h3 {
+            color: var(--yellow);
 
-    font-family: "Climate Crisis", sans-serif;
+            letter-spacing: .1em;
+        }
 
-    font-weight: 400;
+        .hero-eyebrow::before {
+            content: "";
 
-    text-transform: uppercase;
+            width: 28px;
+            height: 3px;
 
-}
+            background: var(--red);
+        }
 
-.eyebrow {
+        .hero-title {
+            font-family: "Climate Crisis", sans-serif;
 
-    font-family: "Bungee", sans-serif;
+            font-size: clamp(4rem, 10vw, 9.5rem);
 
-    font-size: 10px;
+            line-height: .92;
 
-    letter-spacing: .15em;
+            /*
+                Kept deliberately close to zero.
+                Climate Crisis naturally compresses letters.
+            */
+            letter-spacing: -.02em;
+            word-spacing: .06em;
 
-    color: var(--yellow);
+            max-width: 1100px;
 
-}
+            margin-top: 25px;
 
+            text-transform: uppercase;
+        }
 
-/* =========================================================
-   NAVIGATION
-========================================================= */
+        .hero-title .red {
+            color: var(--red);
+            letter-spacing: -.018em;
+        }
 
-.nav {
+        .hero-title .outline {
+            color: transparent;
 
-    position: fixed;
+            -webkit-text-stroke: 2px rgba(255,255,255,.95);
 
-    top: 15px;
+            letter-spacing: -.01em;
+        }
 
-    left: 50%;
+        .hero-subtitle {
+            max-width: 580px;
 
-    transform: translateX(-50%);
+            margin-top: 35px;
 
-    width: min(1200px, 92%);
+            color: rgba(255,255,255,.68);
 
-    z-index: 1000;
+            font-size: 18px;
+            line-height: 1.65;
+        }
 
-    padding: 10px 12px;
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
 
-    background: rgba(13,13,13,.82);
+            margin-top: 38px;
+        }
 
-    backdrop-filter: blur(18px);
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
 
-    border: 1px solid rgba(255,255,255,.2);
+            min-height: 50px;
 
-}
+            padding: 0 22px;
 
-.nav-inner {
+            text-decoration: none;
 
-    display: flex;
+            font-family: "Bungee", sans-serif;
+            font-size: 11px;
 
-    align-items: center;
+            border: 1px solid var(--white);
 
-    justify-content: space-between;
+            transition:
+                transform .2s ease,
+                background .2s ease,
+                color .2s ease;
+        }
 
-}
+        .button:hover {
+            transform: translateY(-3px);
+        }
 
-.logo {
+        .button-primary {
+            background: var(--yellow);
+            color: var(--black);
 
-    width: 45px;
+            border-color: var(--yellow);
+        }
 
-    height: 45px;
+        .button-primary:hover {
+            background: var(--red);
+            border-color: var(--red);
+            color: var(--white);
+        }
 
-    object-fit: cover;
+        .button-secondary {
+            background: transparent;
+        }
 
-    border-radius: 50%;
+        .button-secondary:hover {
+            background: var(--white);
+            color: var(--black);
+        }
 
-}
+        .hero-bottom {
+            position: absolute;
 
-.nav-links {
+            bottom: 30px;
+            left: 6vw;
+            right: 6vw;
 
-    display: flex;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
 
-    gap: 30px;
+            font-size: 10px;
 
-    font-size: 13px;
+            color: rgba(255,255,255,.45);
 
-    font-weight: 700;
+            font-family: "Bungee", sans-serif;
+            letter-spacing: .08em;
+        }
 
-}
+        .scroll-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-.nav-links a {
+        .scroll-line {
+            width: 45px;
+            height: 1px;
 
-    position: relative;
+            background: var(--yellow);
+        }
 
-}
 
-.nav-links a::after {
+        /* =========================================================
+           TICKER
+        ========================================================= */
 
-    content: "";
+        .ticker {
+            overflow: hidden;
 
-    position: absolute;
+            background: var(--yellow);
+            color: var(--black);
 
-    left: 0;
+            border-top: 2px solid var(--black);
+            border-bottom: 2px solid var(--black);
 
-    bottom: -6px;
+            padding: 13px 0;
 
-    width: 0;
+            white-space: nowrap;
+        }
 
-    height: 2px;
+        .ticker-track {
+            display: inline-flex;
 
-    background: var(--yellow);
+            animation: ticker 24s linear infinite;
 
-    transition: .25s;
+            font-family: "Bungee", sans-serif;
+            font-size: 14px;
+        }
 
-}
+        .ticker-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 30px;
 
-.nav-links a:hover::after {
+            margin-right: 30px;
+        }
 
-    width: 100%;
+        .ticker-item::after {
+            content: "✦";
+            color: var(--red);
+        }
 
-}
+        @keyframes ticker {
+            from {
+                transform: translateX(0);
+            }
 
-.nav-button {
+            to {
+                transform: translateX(-50%);
+            }
+        }
 
-    background: var(--yellow);
 
-    color: var(--black);
+        /* =========================================================
+           SECTION BASE
+        ========================================================= */
 
-    padding: 12px 18px;
+        section {
+            position: relative;
+        }
 
-    font-family: "Bungee";
+        .section {
+            padding: 120px 6vw;
+        }
 
-    font-size: 9px;
+        .section-label {
+            font-family: "Bungee", sans-serif;
 
-    transition: .2s;
+            font-size: 11px;
 
-}
+            color: var(--red);
 
-.nav-button:hover {
+            letter-spacing: .12em;
 
-    background: var(--red);
+            margin-bottom: 20px;
+        }
 
-    color: white;
+        .section-title {
+            font-family: "Climate Crisis", sans-serif;
 
-    transform: rotate(-2deg);
+            font-size: clamp(3.5rem, 8vw, 8rem);
 
-}
+            line-height: .88;
 
+            letter-spacing: -.02em;
 
-/* =========================================================
-   HERO
-========================================================= */
+            text-transform: uppercase;
+        }
 
-.hero {
 
-    min-height: 100vh;
+        /* =========================================================
+           MANIFESTO
+        ========================================================= */
 
-    position: relative;
+        .manifesto {
+            min-height: 700px;
 
-    display: flex;
+            display: grid;
 
-    align-items: center;
+            grid-template-columns: .75fr 1.25fr;
 
-    overflow: hidden;
+            gap: 80px;
 
-    padding-top: 110px;
+            background: var(--off-white);
+            color: var(--black);
+        }
 
-}
+        .manifesto-copy {
+            align-self: end;
+        }
 
+        .manifesto-copy .section-label {
+            color: var(--red-dark);
+        }
 
-/* Background grid */
+        .manifesto-text {
+            font-size: clamp(1.5rem, 3vw, 3rem);
 
-.grid {
+            line-height: 1.2;
 
-    position: absolute;
+            max-width: 850px;
 
-    inset: 0;
+            font-weight: 600;
+        }
 
-    background-image:
+        .manifesto-text strong {
+            color: var(--red-dark);
+        }
 
-        linear-gradient(
-            rgba(255,255,255,.055) 1px,
-            transparent 1px
-        ),
+        .manifesto-side {
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+        }
 
-        linear-gradient(
-            90deg,
-            rgba(255,255,255,.055) 1px,
-            transparent 1px
-        );
+        .manifesto-stamp {
+            width: 230px;
+            height: 230px;
 
-    background-size: 55px 55px;
+            display: grid;
+            place-items: center;
 
-    mask-image:
-        linear-gradient(
-            to bottom,
-            black 0%,
-            rgba(0,0,0,.7) 45%,
-            transparent 100%
-        );
+            border: 8px solid var(--black);
 
-}
+            transform: rotate(-7deg);
 
+            font-family: "Bungee", sans-serif;
 
-/* Huge background OCd */
+            text-align: center;
 
-.hero-bg {
+            font-size: 20px;
 
-    position: absolute;
+            line-height: 1.2;
+        }
 
-    right: -4vw;
 
-    bottom: -5vw;
+        /* =========================================================
+           SPRINT & SPAWN
+        ========================================================= */
 
-    font-family: "Climate Crisis";
+        .event-feature {
+            min-height: 700px;
 
-    font-size: 35vw;
+            padding: 110px 6vw;
 
-    line-height: .7;
+            display: grid;
 
-    color: transparent;
+            grid-template-columns: 1fr 1.2fr;
 
-    -webkit-text-stroke:
-        1px rgba(255,255,255,.065);
+            gap: 80px;
 
-    pointer-events: none;
+            align-items: center;
 
-}
+            background:
+                linear-gradient(
+                    rgba(13,13,13,.94),
+                    rgba(13,13,13,.94)
+                ),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent 0,
+                    transparent 3px,
+                    rgba(255,255,255,.025) 4px
+                );
 
+            border-top: 1px solid rgba(255,255,255,.15);
+            border-bottom: 1px solid rgba(255,255,255,.15);
+        }
 
-/* =========================================================
-   ORBIT
-========================================================= */
+        .event-logo-wrap {
+            min-height: 440px;
 
-.orbit {
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-    position: absolute;
+            border: 2px solid rgba(255,255,255,.15);
 
-    width: 430px;
+            background: #111;
 
-    height: 430px;
+            position: relative;
 
-    border:
-        1px solid rgba(255,212,0,.28);
+            overflow: hidden;
+        }
 
-    border-radius: 50%;
+        .event-logo-wrap::before {
+            content: "OCd // ARCHIVE";
 
-    right: 10%;
+            position: absolute;
 
-    top: 20%;
+            top: 18px;
+            left: 20px;
 
-    animation:
-        spin 20s linear infinite;
+            font-family: "Bungee", sans-serif;
 
-}
+            font-size: 11px;
 
-.orbit::before {
+            color: var(--yellow);
 
-    content: "";
+            letter-spacing: .12em;
+        }
 
-    position: absolute;
+        .event-logo-wrap::after {
+            content: "2026";
 
-    width: 13px;
+            position: absolute;
 
-    height: 13px;
+            right: 20px;
+            bottom: 15px;
 
-    background: var(--red);
+            font-family: "Bungee", sans-serif;
 
-    border-radius: 50%;
+            font-size: 12px;
 
-    top: 50%;
+            color: var(--red);
+        }
 
-    left: -7px;
+        .event-logo {
+            width: min(75%, 430px);
 
-    box-shadow:
-        0 0 25px var(--red);
+            max-height: 360px;
 
-}
+            object-fit: contain;
 
-@keyframes spin {
+            transition:
+                transform .35s ease;
+        }
 
-    to {
-        transform: rotate(360deg);
-    }
+        .event-logo-wrap:hover .event-logo {
+            transform: scale(1.04) rotate(-1deg);
+        }
 
-}
+        .event-info .eyebrow {
+            font-family: "Bungee", sans-serif;
 
+            color: var(--yellow);
 
-/* =========================================================
-   HERO CONTENT
-========================================================= */
+            font-size: 12px;
 
-.hero-content {
+            letter-spacing: .12em;
 
-    position: relative;
+            margin-bottom: 20px;
+        }
 
-    z-index: 2;
+        .event-info h2 {
+            font-family: "Climate Crisis", sans-serif;
 
-}
+            font-size: clamp(4rem, 8vw, 8rem);
 
+            line-height: .82;
 
-/*
-    IMPORTANT:
-    Climate Crisis is naturally extremely compressed.
+            letter-spacing: -.025em;
 
-    Previous tracking:
-        -.07em
+            margin: 0 0 35px;
+        }
 
-    New tracking:
-        -.02em
+        .event-info h2 span {
+            color: var(--red);
+        }
 
-    This keeps the poster feel while improving
-    letter separation and word recognition.
-*/
+        .event-description {
+            max-width: 620px;
 
-.hero-title {
+            color: rgba(255,255,255,.72);
 
-    font-family: "Climate Crisis", sans-serif;
+            font-size: 18px;
 
-    font-size:
-        clamp(
-            4rem,
-            10vw,
-            9.5rem
-        );
+            line-height: 1.65;
 
-    line-height: .92;
+            margin-bottom: 40px;
+        }
 
-    letter-spacing: -.02em;
+        .event-meta {
+            display: grid;
 
-    word-spacing: .06em;
+            grid-template-columns: repeat(2, 1fr);
 
-    max-width: 1050px;
+            gap: 1px;
 
-    margin-top: 24px;
+            background: rgba(255,255,255,.15);
 
-    text-transform: uppercase;
+            border: 1px solid rgba(255,255,255,.15);
 
-}
+            margin-bottom: 35px;
+        }
 
+        .event-meta div {
+            padding: 22px;
 
-/* RED WORD */
+            background: #0d0d0d;
+        }
 
-.hero-title .red {
+        .event-meta span {
+            display: block;
 
-    color: var(--red);
+            font-family: "Bungee", sans-serif;
 
-    letter-spacing: -.018em;
+            color: rgba(255,255,255,.4);
 
-}
+            font-size: 10px;
 
+            margin-bottom: 8px;
+        }
 
-/* OUTLINE WORD */
+        .event-meta strong {
+            font-family: "Space Grotesk", sans-serif;
 
-.hero-title .outline {
+            font-size: 15px;
+        }
 
-    color: transparent;
+        .event-button {
+            display: inline-flex;
 
-    -webkit-text-stroke:
-        2px rgba(255,255,255,.95);
+            padding: 17px 25px;
 
-    letter-spacing: -.01em;
+            background: var(--yellow);
 
-}
+            color: var(--black);
 
+            font-family: "Bungee", sans-serif;
 
-/* HERO DESCRIPTION */
+            font-size: 12px;
 
-.hero-description {
+            text-decoration: none;
 
-    max-width: 590px;
+            transition: .2s ease;
+        }
 
-    margin-top: 42px;
+        .event-button:hover {
+            background: var(--red);
 
-    color: #b7b7b7;
+            color: white;
 
-    font-size: 17px;
+            transform: translateY(-3px);
+        }
 
-    line-height: 1.75;
 
-    font-weight: 500;
+        /* =========================================================
+           UPCOMING EVENTS
+        ========================================================= */
 
-}
+        .upcoming {
+            background: var(--black);
+        }
 
+        .upcoming-header {
+            display: flex;
 
-/* HERO BUTTONS */
+            justify-content: space-between;
+            align-items: flex-end;
 
-.hero-buttons {
+            gap: 40px;
 
-    display: flex;
+            margin-bottom: 70px;
+        }
 
-    gap: 12px;
+        .upcoming-note {
+            max-width: 350px;
 
-    margin-top: 30px;
+            color: rgba(255,255,255,.5);
 
-    flex-wrap: wrap;
+            line-height: 1.6;
 
-}
+            font-size: 14px;
+        }
 
+        .events-grid {
+            display: grid;
 
-/* =========================================================
-   BUTTONS
-========================================================= */
+            grid-template-columns: repeat(3, 1fr);
 
-.btn {
+            gap: 18px;
+        }
 
-    display: inline-flex;
+        .event-card {
+            min-height: 460px;
 
-    align-items: center;
+            display: flex;
+            flex-direction: column;
 
-    justify-content: center;
+            padding: 28px;
 
-    padding: 15px 22px;
+            position: relative;
 
-    border: 2px solid white;
+            overflow: hidden;
 
-    font-family: "Bungee";
+            background: #151515;
 
-    font-size: 9px;
+            border: 1px solid rgba(255,255,255,.12);
 
-    transition:
-        transform .2s,
-        box-shadow .2s,
-        background .2s;
+            transition:
+                transform .25s ease,
+                border-color .25s ease;
+        }
 
-}
+        .event-card:hover {
+            transform: translateY(-8px);
 
-.btn:hover {
+            border-color: var(--yellow);
+        }
 
-    transform:
-        translate(-4px,-4px)
-        rotate(-1deg);
+        .event-card:nth-child(2) {
+            background: var(--red);
 
-    box-shadow:
-        6px 6px 0 var(--yellow);
+            color: var(--white);
+        }
 
-}
+        .event-card:nth-child(3) {
+            background: var(--yellow);
 
-.btn-red {
+            color: var(--black);
+        }
 
-    background: var(--red);
+        .event-number {
+            font-family: "Bungee", sans-serif;
 
-    border-color: var(--red);
+            font-size: 11px;
 
-}
+            opacity: .6;
 
-.btn-yellow {
+            margin-bottom: auto;
+        }
 
-    background: var(--yellow);
+        .event-status {
+            position: absolute;
 
-    color: var(--black);
+            top: 25px;
+            right: 25px;
 
-    border-color: var(--yellow);
+            padding: 7px 10px;
 
-}
+            font-family: "Bungee", sans-serif;
 
+            font-size: 9px;
 
-/* =========================================================
-   HERO STATUS
-========================================================= */
+            background: var(--yellow);
 
-.hero-status {
+            color: var(--black);
+        }
 
-    position: absolute;
+        .event-card:nth-child(2) .event-status {
+            background: var(--white);
+        }
 
-    right: 8%;
+        .event-card:nth-child(3) .event-status {
+            background: var(--black);
 
-    bottom: 12%;
+            color: var(--yellow);
+        }
 
-    width: 190px;
+        .event-card h3 {
+            font-family: "Climate Crisis", sans-serif;
 
-    padding: 16px;
+            font-size: clamp(2.5rem, 4vw, 4.8rem);
 
-    background:
-        rgba(13,13,13,.88);
+            line-height: .82;
 
-    border:
-        1px solid var(--yellow);
+            letter-spacing: -.02em;
 
-    transform: rotate(4deg);
+            text-transform: uppercase;
 
-    box-shadow:
-        8px 8px 0 rgba(0,0,0,.4);
+            margin-bottom: 25px;
+        }
 
-}
+        .event-card p {
+            font-size: 14px;
 
-.status-top {
+            line-height: 1.55;
 
-    display: flex;
+            opacity: .7;
 
-    justify-content: space-between;
+            margin-bottom: 25px;
+        }
 
-    align-items: center;
+        .event-details {
+            border-top: 1px solid currentColor;
 
-    font-family: "Bungee";
+            padding-top: 18px;
 
-    font-size: 8px;
+            display: grid;
 
-}
+            gap: 8px;
 
-.dot {
+            font-size: 12px;
+        }
 
-    width: 8px;
+        .event-detail {
+            display: flex;
 
-    height: 8px;
+            justify-content: space-between;
 
-    display: inline-block;
+            gap: 15px;
+        }
 
-    border-radius: 50%;
+        .event-detail span:first-child {
+            opacity: .55;
+        }
 
-    background: #35ff5b;
+        .card-link {
+            display: inline-block;
 
-    box-shadow:
-        0 0 15px #35ff5b;
+            margin-top: 28px;
 
-}
+            font-family: "Bungee", sans-serif;
 
-.hero-status h4 {
+            font-size: 10px;
 
-    font-family: "Bungee";
+            text-decoration: none;
+        }
 
-    color: var(--yellow);
 
-    margin-top: 20px;
+        /* =========================================================
+           STATS
+        ========================================================= */
 
-    font-size: 12px;
+        .stats {
+            background: var(--red);
 
-    line-height: 1.5;
+            color: var(--white);
 
-}
+            padding: 90px 6vw;
+        }
 
+        .stats-grid {
+            display: grid;
 
-/* =========================================================
-   TICKER
-========================================================= */
+            grid-template-columns: repeat(4, 1fr);
 
-.ticker {
+            gap: 0;
 
-    background: var(--yellow);
+            border-top: 1px solid rgba(255,255,255,.4);
+            border-bottom: 1px solid rgba(255,255,255,.4);
+        }
 
-    color: var(--black);
+        .stat {
+            padding: 35px 25px;
 
-    border-block:
-        4px solid var(--black);
+            border-right: 1px solid rgba(255,255,255,.35);
+        }
 
-    overflow: hidden;
+        .stat:last-child {
+            border-right: none;
+        }
 
-    white-space: nowrap;
+        .stat-number {
+            font-family: "Climate Crisis", sans-serif;
 
-    padding: 15px 0;
+            font-size: clamp(3rem, 6vw, 6rem);
 
-    font-family: "Bungee";
+            line-height: .8;
 
-    font-size: 15px;
+            letter-spacing: -.02em;
+        }
 
-}
+        .stat-label {
+            margin-top: 20px;
 
-.ticker-track {
+            font-family: "Bungee", sans-serif;
 
-    display: inline-block;
+            font-size: 10px;
 
-    animation:
-        ticker 18s linear infinite;
+            opacity: .7;
 
-}
+            letter-spacing: .08em;
+        }
 
-.ticker span {
 
-    margin-right: 60px;
+        /* =========================================================
+           PARTNERS
+        ========================================================= */
 
-}
+        .partners {
+            background: var(--off-white);
 
-@keyframes ticker {
+            color: var(--black);
+        }
 
-    from {
-        transform: translateX(0);
-    }
+        .partners-grid {
+            margin-top: 70px;
 
-    to {
-        transform: translateX(-50%);
-    }
+            display: grid;
 
-}
+            grid-template-columns: repeat(4, 1fr);
 
+            border-top: 2px solid var(--black);
+            border-left: 2px solid var(--black);
+        }
 
-/* =========================================================
-   MANIFESTO
-========================================================= */
+        .partner {
+            min-height: 140px;
 
-.manifesto {
+            display: grid;
+            place-items: center;
 
-    position: relative;
+            padding: 20px;
 
-}
+            border-right: 2px solid var(--black);
+            border-bottom: 2px solid var(--black);
 
-.manifesto-grid {
+            font-family: "Bungee", sans-serif;
 
-    display: grid;
+            font-size: 13px;
 
-    grid-template-columns:
-        1fr 1fr;
+            text-align: center;
+        }
 
-    gap: 80px;
+        .partner:nth-child(even) {
+            background: var(--yellow);
+        }
 
-    align-items: center;
 
-}
+        /* =========================================================
+           PARTNER CTA
+        ========================================================= */
 
-.manifesto h2 {
+        .partner-cta {
+            padding: 120px 6vw;
 
-    font-size:
-        clamp(
-            3.5rem,
-            7vw,
-            7rem
-        );
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--black) 0%,
+                    #151515 100%
+                );
 
-    line-height: .88;
+            position: relative;
 
-    letter-spacing: -.02em;
+            overflow: hidden;
+        }
 
-}
+        .partner-cta::before {
+            content: "PARTNER";
 
-.manifesto h2 span {
+            position: absolute;
 
-    color: var(--red);
+            right: -40px;
+            bottom: -90px;
 
-}
+            font-family: "Climate Crisis", sans-serif;
 
-.manifesto-copy {
+            font-size: 22vw;
 
-    color: #999;
+            color: transparent;
 
-    font-size: 18px;
+            -webkit-text-stroke: 1px rgba(255,255,255,.05);
 
-    line-height: 1.75;
+            pointer-events: none;
+        }
 
-}
+        .partner-cta-content {
+            position: relative;
+            z-index: 2;
 
-.big-number {
+            max-width: 950px;
+        }
 
-    margin-top: 50px;
+        .partner-cta h2 {
+            font-family: "Climate Crisis", sans-serif;
 
-    font-family: "Climate Crisis";
+            font-size: clamp(4rem, 9vw, 9rem);
 
-    font-size: 12rem;
+            line-height: .85;
 
-    line-height: .7;
+            letter-spacing: -.025em;
 
-    color: var(--yellow);
+            margin-bottom: 35px;
+        }
 
-    opacity: .9;
+        .partner-cta h2 span {
+            color: var(--yellow);
+        }
 
-}
+        .partner-cta p {
+            max-width: 600px;
 
+            color: rgba(255,255,255,.6);
 
-/* =========================================================
-   FEATURE — SPRINT & SPAWN
-========================================================= */
+            font-size: 17px;
 
-.feature {
+            line-height: 1.6;
 
-    background: var(--cream);
+            margin-bottom: 35px;
+        }
 
-    color: var(--black);
 
-    position: relative;
+        /* =========================================================
+           FOOTER
+        ========================================================= */
 
-    overflow: hidden;
+        footer {
+            padding: 45px 6vw;
 
-}
+            background: var(--yellow);
 
-.feature::before {
+            color: var(--black);
 
-    content: "PAST EVENT";
+            display: flex;
 
-    position: absolute;
+            justify-content: space-between;
 
-    top: 40px;
+            align-items: center;
 
-    right: -30px;
+            gap: 30px;
+        }
 
-    font-family: "Bungee";
+        .footer-logo {
+            font-family: "Climate Crisis", sans-serif;
 
-    font-size: 80px;
+            font-size: 35px;
 
-    color: rgba(0,0,0,.04);
+            letter-spacing: -.02em;
+        }
 
-    transform: rotate(90deg);
+        .footer-text {
+            font-size: 12px;
 
-}
+            opacity: .65;
+        }
 
-.feature-grid {
+        .footer-links {
+            display: flex;
 
-    display: grid;
+            gap: 20px;
 
-    grid-template-columns:
-        1.1fr .9fr;
+            font-family: "Bungee", sans-serif;
 
-    min-height: 650px;
+            font-size: 10px;
+        }
 
-}
+        .footer-links a {
+            text-decoration: none;
+        }
 
 
-/* EVENT POSTER */
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
 
-.poster {
+        @media (max-width: 1000px) {
 
-    background: var(--red);
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
 
-    position: relative;
+            .event-card {
+                min-height: 400px;
+            }
 
-    overflow: hidden;
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
 
-    padding: 50px;
+            .stat:nth-child(2) {
+                border-right: none;
+            }
 
-    display: flex;
+            .stat:nth-child(-n+2) {
+                border-bottom: 1px solid rgba(255,255,255,.35);
+            }
 
-    align-items: flex-end;
+            .partners-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
 
-}
+            .manifesto {
+                grid-template-columns: 1fr;
+            }
 
-.poster::before {
+            .manifesto-side {
+                justify-content: flex-start;
+            }
+        }
 
-    content: "";
 
-    position: absolute;
+        @media (max-width: 850px) {
 
-    width: 600px;
+            nav {
+                padding: 14px 20px;
+            }
 
-    height: 600px;
+            .nav-links {
+                display: none;
+            }
 
-    border:
-        3px solid var(--yellow);
+            .hero {
+                padding:
+                    130px 5vw
+                    90px;
+            }
 
-    border-radius: 50%;
+            .hero-title {
+                font-size: 17vw;
 
-    top: -200px;
+                line-height: .95;
 
-    left: -100px;
+                letter-spacing: -.015em;
 
-}
+                word-spacing: .04em;
+            }
 
-.poster::after {
+            .hero-title .outline {
+                -webkit-text-stroke: 1.5px white;
+            }
 
-    content: "";
+            .hero-subtitle {
+                font-size: 16px;
+            }
 
-    position: absolute;
+            .hero-bottom {
+                left: 5vw;
+                right: 5vw;
+            }
 
-    inset: 0;
+            .section {
+                padding: 80px 5vw;
+            }
 
-    background:
-        repeating-linear-gradient(
-            90deg,
-            transparent 0 10px,
-            rgba(0,0,0,.07) 11px 12px
-        );
+            .upcoming-header {
+                flex-direction: column;
 
-}
+                align-items: flex-start;
+            }
 
-.poster-title {
+            .event-feature {
+                grid-template-columns: 1fr;
 
-    position: relative;
+                gap: 45px;
 
-    z-index: 2;
+                padding:
+                    70px 5vw;
+            }
 
-    font-family:
-        "Climate Crisis";
+            .event-logo-wrap {
+                min-height: 320px;
+            }
 
-    font-size:
-        clamp(
-            4rem,
-            9vw,
-            9rem
-        );
+            .event-logo {
+                width: 70%;
+            }
 
-    line-height: .78;
+            .event-info h2 {
+                font-size: 18vw;
+            }
 
-    letter-spacing: -.02em;
+            footer {
+                flex-direction: column;
 
-    color: white;
+                align-items: flex-start;
+            }
+        }
 
-    text-shadow:
-        8px 8px 0 var(--black);
 
-}
+        @media (max-width: 600px) {
 
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
 
-/* EVENT INFO */
+            .stat {
+                border-right: none;
 
-.feature-info {
+                border-bottom:
+                    1px solid
+                    rgba(255,255,255,.35);
+            }
 
-    padding: 70px;
+            .stat:last-child {
+                border-bottom: none;
+            }
 
-    display: flex;
+            .partners-grid {
+                grid-template-columns: 1fr;
+            }
 
-    flex-direction: column;
+            .hero-buttons {
+                flex-direction: column;
+            }
 
-    justify-content: center;
+            .button {
+                width: 100%;
+            }
 
-}
+            .event-meta {
+                grid-template-columns: 1fr;
+            }
 
-.feature-info h2 {
+            .event-feature {
+                padding:
+                    60px 20px;
+            }
 
-    font-size: 5rem;
+            .event-logo-wrap {
+                min-height: 270px;
+            }
+        }
 
-    line-height: .86;
 
-    letter-spacing: -.015em;
+        @media (max-width: 500px) {
 
-    margin-top: 15px;
+            .hero-title {
+                font-size: 18vw;
 
-}
+                line-height: .98;
 
-.feature-info p {
+                letter-spacing: 0;
+            }
 
-    line-height: 1.7;
+            .hero-title .red {
+                letter-spacing: 0;
+            }
 
-    margin: 30px 0;
+            .hero-title .outline {
+                letter-spacing: 0;
+            }
 
-    max-width: 500px;
+            .hero-bg-text {
+                font-size: 45vw;
+            }
 
-}
+            .manifesto-stamp {
+                width: 180px;
+                height: 180px;
 
+                font-size: 15px;
+            }
 
-/* =========================================================
-   STATS
-========================================================= */
+            .event-card {
+                padding: 22px;
+            }
+        }
 
-.stats {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
-    border:
-        2px solid var(--black);
-
-    margin-bottom: 25px;
-
-}
-
-.stat {
-
-    padding: 20px;
-
-    border:
-        1px solid var(--black);
-
-}
-
-.stat-number {
-
-    display: block;
-
-    font-family:
-        "Climate Crisis";
-
-    font-size: 42px;
-
-    line-height: .9;
-
-}
-
-.stat-label {
-
-    display: block;
-
-    margin-top: 8px;
-
-    font-family:
-        "Bungee";
-
-    font-size: 8px;
-
-}
-
-
-/* =========================================================
-   EVENTS
-========================================================= */
-
-.events-heading {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: end;
-
-    margin-bottom: 55px;
-
-}
-
-.events-heading h2 {
-
-    font-size:
-        clamp(
-            3.5rem,
-            7vw,
-            7rem
-        );
-
-    line-height: .82;
-
-    letter-spacing: -.02em;
-
-}
-
-.events-heading p {
-
-    max-width: 400px;
-
-    color: #888;
-
-    line-height: 1.7;
-
-}
-
-.event-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap: 25px;
-
-}
-
-
-/* =========================================================
-   EVENT CARDS
-========================================================= */
-
-.event-card {
-
-    min-height: 430px;
-
-    padding: 25px;
-
-    border:
-        2px solid white;
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: space-between;
-
-    position: relative;
-
-    overflow: hidden;
-
-    transition:
-        transform .3s;
-
-}
-
-.event-card:hover {
-
-    transform:
-        translateY(-12px)
-        rotate(0deg) !important;
-
-}
-
-
-/* FALLING SUN */
-
-.event-card.falling {
-
-    background: var(--yellow);
-
-    color: var(--black);
-
-    border-color: var(--yellow);
-
-    transform:
-        rotate(-2deg);
-
-}
-
-
-/* COMPILE */
-
-.event-card.compile {
-
-    background: var(--red);
-
-    border-color: var(--red);
-
-    transform:
-        rotate(1deg);
-
-}
-
-
-/* BLUEPRINT */
-
-.event-card.blueprint {
-
-    background: var(--cream);
-
-    color: var(--black);
-
-    border-color: var(--cream);
-
-    transform:
-        rotate(-1deg);
-
-}
-
-.event-card::after {
-
-    content: "OCd";
-
-    position: absolute;
-
-    right: -30px;
-
-    bottom: -70px;
-
-    font-family:
-        "Climate Crisis";
-
-    font-size: 170px;
-
-    opacity: .08;
-
-}
-
-.event-number {
-
-    font-family:
-        "Bungee";
-
-    font-size: 9px;
-
-}
-
-.event-card h3 {
-
-    font-size: 42px;
-
-    line-height: .88;
-
-    letter-spacing: -.015em;
-
-    margin-top: 100px;
-
-}
-
-.event-card p {
-
-    margin-top: 15px;
-
-    font-size: 14px;
-
-    line-height: 1.5;
-
-}
-
-.event-bottom {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: end;
-
-}
-
-.capacity {
-
-    font-family:
-        "Bungee";
-
-    font-size: 8px;
-
-}
-
-
-/* =========================================================
-   NUMBERS
-========================================================= */
-
-.numbers {
-
-    background: var(--red);
-
-    color: white;
-
-    overflow: hidden;
-
-}
-
-.number-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(4,1fr);
-
-    margin-top: 40px;
-
-    border-top:
-        1px solid rgba(255,255,255,.3);
-
-    border-bottom:
-        1px solid rgba(255,255,255,.3);
-
-}
-
-.number {
-
-    padding: 50px 20px;
-
-    border-right:
-        1px solid rgba(255,255,255,.3);
-
-}
-
-.number:last-child {
-
-    border-right: none;
-
-}
-
-.number strong {
-
-    display: block;
-
-    font-family:
-        "Climate Crisis";
-
-    font-size:
-        clamp(
-            3rem,
-            6vw,
-            6rem
-        );
-
-    line-height: .8;
-
-    letter-spacing: -.02em;
-
-}
-
-.number span {
-
-    display: block;
-
-    margin-top: 20px;
-
-    font-family:
-        "Bungee";
-
-    font-size: 9px;
-
-}
-
-
-/* =========================================================
-   PARTNERS
-========================================================= */
-
-.partners {
-
-    border-block:
-        1px solid var(--border);
-
-}
-
-.partner-header {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: end;
-
-    margin-bottom: 40px;
-
-}
-
-.partner-header h2 {
-
-    font-size: 5rem;
-
-    line-height: .82;
-
-    letter-spacing: -.02em;
-
-}
-
-.partner-list {
-
-    display: flex;
-
-    flex-wrap: wrap;
-
-    gap: 10px;
-
-}
-
-.partner {
-
-    border:
-        1px solid #333;
-
-    background: #111;
-
-    padding: 20px 30px;
-
-    font-family:
-        "Bungee";
-
-    font-size: 10px;
-
-    transition: .2s;
-
-}
-
-.partner:hover {
-
-    background: var(--yellow);
-
-    color: var(--black);
-
-    border-color: var(--yellow);
-
-    transform:
-        rotate(-2deg);
-
-}
-
-
-/* =========================================================
-   BUSINESS CTA
-========================================================= */
-
-.business {
-
-    background: var(--yellow);
-
-    color: var(--black);
-
-    position: relative;
-
-    overflow: hidden;
-
-}
-
-.business::before {
-
-    content: "BUILD";
-
-    position: absolute;
-
-    right: -40px;
-
-    bottom: -100px;
-
-    font-family:
-        "Climate Crisis";
-
-    font-size: 30vw;
-
-    opacity: .07;
-
-}
-
-.business-content {
-
-    position: relative;
-
-    z-index: 2;
-
-}
-
-.business h2 {
-
-    font-size:
-        clamp(
-            4rem,
-            8vw,
-            8rem
-        );
-
-    line-height: .82;
-
-    letter-spacing: -.02em;
-
-}
-
-.business p {
-
-    max-width: 600px;
-
-    font-size: 19px;
-
-    line-height: 1.7;
-
-    margin: 35px 0;
-
-}
-
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-footer {
-
-    padding: 70px 0 30px;
-
-}
-
-.footer-top {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    gap: 50px;
-
-}
-
-.footer-logo {
-
-    width: 75px;
-
-    border-radius: 50%;
-
-    margin-bottom: 20px;
-
-}
-
-.footer-description {
-
-    max-width: 350px;
-
-    color: #777;
-
-    line-height: 1.6;
-
-}
-
-.footer-links {
-
-    display: flex;
-
-    gap: 80px;
-
-}
-
-.footer-column {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 12px;
-
-    font-size: 13px;
-
-}
-
-.footer-column strong {
-
-    font-family:
-        "Bungee";
-
-    font-size: 9px;
-
-    color: var(--yellow);
-
-    margin-bottom: 8px;
-
-}
-
-.footer-column a:hover {
-
-    color: var(--yellow);
-
-}
-
-.footer-bottom {
-
-    margin-top: 80px;
-
-    padding-top: 20px;
-
-    border-top:
-        1px solid #222;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    color: #555;
-
-    font-size: 11px;
-
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media(max-width:850px) {
-
-
-    .nav-links {
-        display: none;
-    }
-
-
-    .hero {
-
-        min-height: 900px;
-
-        padding-top: 130px;
-
-    }
-
-
-    .hero-title {
-
-        font-size: 17vw;
-
-        line-height: .95;
-
-        letter-spacing: -.015em;
-
-        word-spacing: .04em;
-
-    }
-
-
-    .hero-title .outline {
-
-        -webkit-text-stroke:
-            1.5px white;
-
-    }
-
-
-    .hero-description {
-
-        font-size: 16px;
-
-        line-height: 1.65;
-
-        margin-top: 32px;
-
-        max-width: 95%;
-
-    }
-
-
-    .hero-bg {
-
-        font-size: 60vw;
-
-    }
-
-
-    .orbit {
-
-        width: 250px;
-
-        height: 250px;
-
-        right: -100px;
-
-        top: 20%;
-
-    }
-
-
-    .hero-status {
-
-        position: relative;
-
-        right: auto;
-
-        bottom: auto;
-
-        margin-top: 55px;
-
-    }
-
-
-    .manifesto-grid,
-    .feature-grid,
-    .event-grid {
-
-        grid-template-columns: 1fr;
-
-    }
-
-
-    .manifesto h2 {
-
-        font-size: 15vw;
-
-    }
-
-
-    .big-number {
-
-        font-size: 35vw;
-
-    }
-
-
-    .poster {
-
-        min-height: 450px;
-
-    }
-
-
-    .poster-title {
-
-        font-size: 17vw;
-
-    }
-
-
-    .feature-info {
-
-        padding: 50px 7%;
-
-    }
-
-
-    .feature-info h2 {
-
-        font-size: 15vw;
-
-    }
-
-
-    .events-heading,
-    .partner-header,
-    .footer-top {
-
-        flex-direction: column;
-
-        align-items: flex-start;
-
-        gap: 25px;
-
-    }
-
-
-    .events-heading h2,
-    .partner-header h2 {
-
-        font-size: 15vw;
-
-    }
-
-
-    .number-grid {
-
-        grid-template-columns:
-            repeat(2,1fr);
-
-    }
-
-
-    .number {
-
-        border-bottom:
-            1px solid rgba(255,255,255,.3);
-
-    }
-
-
-    .footer-links {
-
-        flex-wrap: wrap;
-
-        gap: 35px;
-
-    }
-
-
-    .footer-bottom {
-
-        flex-direction: column;
-
-        gap: 10px;
-
-    }
-
-}
-
-
-/* =========================================================
-   SMALL MOBILE
-========================================================= */
-
-@media(max-width:500px) {
-
-
-    .hero-title {
-
-        font-size: 18vw;
-
-        line-height: .98;
-
-        letter-spacing: 0;
-
-    }
-
-
-    .hero-title .red {
-
-        letter-spacing: 0;
-
-    }
-
-
-    .hero-title .outline {
-
-        letter-spacing: 0;
-
-    }
-
-
-    .hero-buttons {
-
-        flex-direction: column;
-
-        align-items: stretch;
-
-    }
-
-
-    .btn {
-
-        width: 100%;
-
-    }
-
-
-    .stats {
-
-        grid-template-columns: 1fr 1fr;
-
-    }
-
-
-    .stat-number {
-
-        font-size: 30px;
-
-    }
-
-
-    .event-card {
-
-        min-height: 390px;
-
-    }
-
-
-}
-
-</style>
+    </style>
 </head>
 
 
 <body>
 
 
-<!-- =====================================================
-     NAVIGATION
-========================================================= -->
+    <!-- =========================================================
+         NAV
+    ========================================================= -->
 
-<nav class="nav">
+    <nav>
 
-    <div class="nav-inner">
-
-
-        <a href="#">
-
-            <!-- Replace with your actual logo -->
-
-            <img
-                src="OCd-logo.png"
-                class="logo"
-                alt="OverclockedDevs"
-            >
-
+        <a href="#" class="nav-logo">
+            <span class="nav-logo-mark">OCd</span>
+            OVERCLOCKEDDEVS
         </a>
-
 
         <div class="nav-links">
-
-            <a href="#events">
-                EVENTS
-            </a>
-
-            <a href="#story">
-                OCd
-            </a>
-
-            <a href="#partners">
-                PARTNERS
-            </a>
-
-            <a href="#contact">
-                WORK WITH US
-            </a>
-
+            <a href="#about">ABOUT</a>
+            <a href="#events">EVENTS</a>
+            <a href="#partners">PARTNERS</a>
+            <a href="#contact" class="nav-cta">WORK WITH US ↗</a>
         </div>
 
-
-        <a
-            href="#events"
-            class="nav-button"
-        >
-            EVENTS ↗
-        </a>
+    </nav>
 
 
-    </div>
+    <!-- =========================================================
+         HERO
+    ========================================================= -->
 
-</nav>
+    <header class="hero">
 
+        <div class="hero-grid"></div>
 
-
-<!-- =====================================================
-     HERO
-========================================================= -->
-
-<header class="hero">
-
-
-    <div class="grid"></div>
-
-
-    <div class="hero-bg">
-        OCd
-    </div>
-
-
-    <div class="orbit"></div>
-
-
-    <div class="container hero-content">
-
-
-        <div class="eyebrow">
-
-            DELHI-NCR / EST. 2026
-
+        <div class="hero-bg-text">
+            OCd
         </div>
 
+        <div class="hero-content">
 
-        <h1 class="hero-title">
+            <div class="hero-eyebrow">
+                DELHI NCR // EST. 2026
+            </div>
 
-            BUILD
+            <h1 class="hero-title">
+                BUILD
+                <span class="red">DIFFERENT.</span><br>
 
-            <br>
-
-            <span class="red">
-                DIFFERENT.
-            </span>
-
-            <br>
-
-            <span class="outline">
-                SHIP
-            </span>
-
-            IT.
-
-        </h1>
-
-
-        <p class="hero-description">
-
-            OverclockedDevs creates high-energy
-            hackathons and builder events for
-            developers, creators and people who
-            would rather make something than
-            just talk about it.
-
-        </p>
-
-
-        <div class="hero-buttons">
-
-
-            <a
-                href="#events"
-                class="btn btn-red"
-            >
-                SEE THE EVENTS →
-            </a>
-
-
-            <a
-                href="#contact"
-                class="btn"
-            >
-                WORK WITH OCd
-            </a>
-
-
-        </div>
-
-
-        <div class="hero-status">
-
-
-            <div class="status-top">
-
-                <span>
-                    SYSTEM STATUS
+                <span class="outline">
+                    SHIP IT.
                 </span>
+            </h1>
 
-                <span class="dot"></span>
+            <p class="hero-subtitle">
+                OverclockedDevs is a student-focused hackathon organization
+                creating high-energy spaces to build, experiment and ship.
+            </p>
 
-            </div>
+            <div class="hero-buttons">
 
+                <a
+                    href="#events"
+                    class="button button-primary"
+                >
+                    EXPLORE EVENTS ↘
+                </a>
 
-            <h4>
-                3 EVENTS LOADING...
-            </h4>
-
-
-            <div
-                style="
-                    margin-top:12px;
-                    height:4px;
-                    background:#333;
-                "
-            >
-
-                <div
-                    style="
-                        width:72%;
-                        height:100%;
-                        background:#FFD400;
-                    "
-                ></div>
+                <a
+                    href="#contact"
+                    class="button button-secondary"
+                >
+                    PARTNER WITH OCd ↗
+                </a>
 
             </div>
-
 
         </div>
 
 
-    </div>
+        <div class="hero-bottom">
 
-</header>
-
-
-
-<!-- =====================================================
-     TICKER
-========================================================= -->
-
-<div class="ticker">
-
-    <div class="ticker-track">
-
-        <span>BUILD</span>
-
-        <span>BREAK THINGS</span>
-
-        <span>MAKE GAMES</span>
-
-        <span>WRITE CODE</span>
-
-        <span>SHIP IT</span>
-
-        <span>BUILD</span>
-
-        <span>BREAK THINGS</span>
-
-        <span>MAKE GAMES</span>
-
-        <span>WRITE CODE</span>
-
-        <span>SHIP IT</span>
-
-    </div>
-
-</div>
-
-
-
-<!-- =====================================================
-     MANIFESTO
-========================================================= -->
-
-<section
-    class="manifesto"
-    id="story"
->
-
-    <div class="container manifesto-grid">
-
-
-        <div>
-
-
-            <div class="eyebrow">
-                THE OCd MANIFESTO
+            <div>
+                OVERCLOCKEDDEVS // OCd
             </div>
 
-
-            <h2>
-
-                DON'T JUST
-
-                <br>
-
-                <span>ATTEND.</span>
-
-                <br>
-
-                BUILD.
-
-            </h2>
-
-
-            <div class="big-number">
-                01
+            <div class="scroll-indicator">
+                SCROLL
+                <span class="scroll-line"></span>
             </div>
-
 
         </div>
 
+    </header>
+
+
+    <!-- =========================================================
+         TICKER
+    ========================================================= -->
+
+    <div class="ticker">
+
+        <div class="ticker-track">
+
+            <div class="ticker-item">
+                HACK
+            </div>
+
+            <div class="ticker-item">
+                BUILD
+            </div>
+
+            <div class="ticker-item">
+                BREAK
+            </div>
+
+            <div class="ticker-item">
+                LEARN
+            </div>
+
+            <div class="ticker-item">
+                SHIP
+            </div>
+
+            <div class="ticker-item">
+                REPEAT
+            </div>
+
+            <div class="ticker-item">
+                HACK
+            </div>
+
+            <div class="ticker-item">
+                BUILD
+            </div>
+
+            <div class="ticker-item">
+                BREAK
+            </div>
+
+            <div class="ticker-item">
+                LEARN
+            </div>
+
+            <div class="ticker-item">
+                SHIP
+            </div>
+
+            <div class="ticker-item">
+                REPEAT
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         ABOUT / MANIFESTO
+    ========================================================= -->
+
+    <section
+        class="section manifesto"
+        id="about"
+    >
 
         <div class="manifesto-copy">
 
-
-            <p>
-
-                OverclockedDevs is a Delhi-NCR
-                based hackathon organization
-                built around one simple idea:
-
-                <br><br>
-
-                Give people the room,
-                tools and pressure to make
-                something real.
-
-                <br><br>
-
-                We organize hackathons,
-                game jams and technical
-                events where ideas have
-                a deadline.
-
-            </p>
-
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     SPRINT & SPAWN
-========================================================= -->
-
-<section class="feature">
-
-
-    <div class="feature-grid">
-
-
-        <div class="poster">
-
-
-            <div class="poster-title">
-
-                SPRINT
-
-                <br>
-
-                &
-
-                <br>
-
-                SPAWN
-
+            <div class="section-label">
+                // THE OCd MANIFESTO
             </div>
 
+            <p class="manifesto-text">
+                We don't want another event where people sit,
+                listen and leave.
+
+                <br><br>
+
+                We want people to
+                <strong>BUILD.</strong>
+
+                <br><br>
+
+                Messy ideas.
+                Weird experiments.
+                Late-night commits.
+
+                <br><br>
+
+                Things that
+                <strong>actually ship.</strong>
+            </p>
 
         </div>
 
 
-        <div class="feature-info">
+        <div class="manifesto-side">
+
+            <div class="manifesto-stamp">
+                NO<br>
+                BORING<br>
+                HACKATHONS.
+            </div>
+
+        </div>
+
+    </section>
 
 
-            <div
-                class="eyebrow"
-                style="color:#F02A24"
+    <!-- =========================================================
+         SPRINT & SPAWN
+    ========================================================= -->
+
+    <section
+        class="event-feature"
+        id="sprint-spawn"
+    >
+
+        <div class="event-logo-wrap">
+
+            <a
+                href="https://sprintandspawn.xyz/"
+                target="_blank"
+                rel="noopener"
             >
 
-                PAST EVENT /
-                06 SEPTEMBER 2026
+                <img
+                    src="sps.png"
+                    alt="Sprint & Spawn logo"
+                    class="event-logo"
+                >
 
+            </a>
+
+        </div>
+
+
+        <div class="event-info">
+
+            <div class="eyebrow">
+                PAST EVENT // 06.09.2026
             </div>
 
-
             <h2>
-
-                12 HOURS.
-
-                <br>
-
-                ZERO
-
-                <br>
-
-                EXCUSES.
-
+                SPRINT<br>
+                <span>&</span> SPAWN
             </h2>
 
-
-            <p>
-
-                Sprint & Spawn was a
-                12-hour high-octane hackathon
-                held at PW NSP Pitampura.
-
-                <br><br>
-
-                Builders competed across
-                Game Development and
-                Web Development.
-
+            <p class="event-description">
+                A 12-hour high-octane hackathon built for students
+                who wanted to stop planning and start shipping.
             </p>
 
 
-            <div class="stats">
+            <div class="event-meta">
 
-
-                <div class="stat">
-
-                    <span class="stat-number">
-                        270
-                    </span>
-
-                    <span class="stat-label">
-                        APPLICATIONS
-                    </span>
-
+                <div>
+                    <span>VENUE</span>
+                    <strong>
+                        PW NSP Pitampura
+                    </strong>
                 </div>
 
-
-                <div class="stat">
-
-                    <span class="stat-number">
-                        150
-                    </span>
-
-                    <span class="stat-label">
-                        BUILDERS
-                    </span>
-
+                <div>
+                    <span>TRACKS</span>
+                    <strong>
+                        WEB DEV + GAME DEV
+                    </strong>
                 </div>
 
-
-                <div class="stat">
-
-                    <span class="stat-number">
-                        12H
-                    </span>
-
-                    <span class="stat-label">
-                        HACKATHON
-                    </span>
-
+                <div>
+                    <span>BUILDERS</span>
+                    <strong>
+                        150 SELECTED
+                    </strong>
                 </div>
 
-
-                <div class="stat">
-
-                    <span class="stat-number">
-                        02
-                    </span>
-
-                    <span class="stat-label">
-                        TRACKS
-                    </span>
-
+                <div>
+                    <span>APPLICATIONS</span>
+                    <strong>
+                        270+
+                    </strong>
                 </div>
-
 
             </div>
 
 
             <a
-                href="#"
-                class="btn btn-red"
+                href="https://sprintandspawn.xyz/"
+                target="_blank"
+                rel="noopener"
+                class="event-button"
             >
-                VIEW EVENT →
+                VISIT EVENT SITE ↗
             </a>
-
 
         </div>
 
-
-    </div>
-
-
-</section>
+    </section>
 
 
+    <!-- =========================================================
+         UPCOMING EVENTS
+    ========================================================= -->
 
-<!-- =====================================================
-     UPCOMING EVENTS
-========================================================= -->
+    <section
+        class="section upcoming"
+        id="events"
+    >
 
-<section id="events">
-
-
-    <div class="container">
-
-
-        <div class="events-heading">
-
+        <div class="upcoming-header">
 
             <div>
 
-
-                <div class="eyebrow">
-                    UPCOMING
+                <div class="section-label">
+                    // NEXT UP
                 </div>
 
-
-                <h2>
-
-                    NEXT
-
-                    <br>
-
-                    UP.
-
+                <h2 class="section-title">
+                    UPCOMING<br>
+                    BUILDS
                 </h2>
-
 
             </div>
 
-
-            <p>
-
-                Three new hackathons
-                are coming to Delhi-NCR.
-
-                Applications are open to
-                everyone. Attendance is
-                selected based on venue
-                capacity.
-
+            <p class="upcoming-note">
+                Three new OCd hackathons are landing across
+                October and November 2026.
+                Applications are open online, with venue
+                attendance selected according to capacity.
             </p>
-
 
         </div>
 
 
-
-        <div class="event-grid">
+        <div class="events-grid">
 
 
             <!-- FALLING SUN -->
 
-            <article class="event-card falling">
+            <article class="event-card">
 
+                <div class="event-number">
+                    OCd // 001
+                </div>
+
+                <div class="event-status">
+                    APPLICATIONS OPEN
+                </div>
 
                 <div>
 
-
-                    <div class="event-number">
-                        01 / OCT 2026
-                    </div>
-
-
                     <h3>
-
-                        FALLING
-
-                        <br>
-
+                        FALLING<br>
                         SUN
-
                     </h3>
 
-
                     <p>
-
-                        Web Dev
-                        · Game Dev
-                        · Hardware
-
+                        Build across software and hardware.
+                        Bring an idea, turn it into something
+                        real and put it in front of other builders.
                     </p>
 
+                    <div class="event-details">
 
-                </div>
+                        <div class="event-detail">
+                            <span>WHEN</span>
+                            <strong>OCTOBER 2026</strong>
+                        </div>
 
+                        <div class="event-detail">
+                            <span>TRACKS</span>
+                            <strong>
+                                WEB / GAME / HARDWARE
+                            </strong>
+                        </div>
 
-                <div class="event-bottom">
+                        <div class="event-detail">
+                            <span>VENUE CAPACITY</span>
+                            <strong>200</strong>
+                        </div>
 
-
-                    <span class="capacity">
-
-                        CAPACITY / 200
-
-                    </span>
-
+                    </div>
 
                     <a
                         href="#"
-                        class="btn"
+                        class="card-link"
                     >
-
-                        EXPLORE →
-
+                        APPLY / REGISTER ↗
                     </a>
-
 
                 </div>
 
-
             </article>
-
 
 
             <!-- COMPILE DELHI -->
 
-            <article class="event-card compile">
+            <article class="event-card">
 
+                <div class="event-number">
+                    OCd // 002
+                </div>
+
+                <div class="event-status">
+                    APPLICATIONS OPEN
+                </div>
 
                 <div>
 
-
-                    <div class="event-number">
-                        02 / NOV 2026
-                    </div>
-
-
                     <h3>
-
-                        COMPILE
-
-                        <br>
-
+                        COMPILE<br>
                         DELHI
-
                     </h3>
 
-
                     <p>
-
-                        Agentic AI
-
+                        A focused build sprint around
+                        agentic AI — turning ideas into
+                        working systems.
                     </p>
 
+                    <div class="event-details">
 
-                </div>
+                        <div class="event-detail">
+                            <span>WHEN</span>
+                            <strong>NOVEMBER 2026</strong>
+                        </div>
 
+                        <div class="event-detail">
+                            <span>TRACK</span>
+                            <strong>AGENTIC AI</strong>
+                        </div>
 
-                <div class="event-bottom">
+                        <div class="event-detail">
+                            <span>VENUE CAPACITY</span>
+                            <strong>100</strong>
+                        </div>
 
-
-                    <span class="capacity">
-
-                        CAPACITY / 100
-
-                    </span>
-
+                    </div>
 
                     <a
                         href="#"
-                        class="btn"
+                        class="card-link"
                     >
-
-                        EXPLORE →
-
+                        APPLY / REGISTER ↗
                     </a>
-
 
                 </div>
 
-
             </article>
-
 
 
             <!-- BLUEPRINT DELHI -->
 
-            <article class="event-card blueprint">
+            <article class="event-card">
 
+                <div class="event-number">
+                    OCd // 003
+                </div>
+
+                <div class="event-status">
+                    APPLICATIONS OPEN
+                </div>
 
                 <div>
 
-
-                    <div class="event-number">
-                        03 / NOV 2026
-                    </div>
-
-
                     <h3>
-
-                        BLUEPRINT
-
-                        <br>
-
+                        BLUEPRINT<br>
                         DELHI
-
                     </h3>
 
-
                     <p>
-
-                        Creative Web
-
+                        A creative-web focused hackathon
+                        for people who care about making
+                        the web look as good as it works.
                     </p>
 
+                    <div class="event-details">
 
-                </div>
+                        <div class="event-detail">
+                            <span>WHEN</span>
+                            <strong>NOVEMBER 2026</strong>
+                        </div>
 
+                        <div class="event-detail">
+                            <span>TRACK</span>
+                            <strong>CREATIVE WEB</strong>
+                        </div>
 
-                <div class="event-bottom">
+                        <div class="event-detail">
+                            <span>VENUE CAPACITY</span>
+                            <strong>150</strong>
+                        </div>
 
-
-                    <span class="capacity">
-
-                        CAPACITY / 150
-
-                    </span>
-
+                    </div>
 
                     <a
                         href="#"
-                        class="btn btn-red"
+                        class="card-link"
                     >
-
-                        EXPLORE →
-
+                        APPLY / REGISTER ↗
                     </a>
 
-
                 </div>
-
 
             </article>
 
-
         </div>
 
-
-    </div>
-
-
-</section>
+    </section>
 
 
+    <!-- =========================================================
+         STATS
+    ========================================================= -->
 
-<!-- =====================================================
-     NUMBERS
-========================================================= -->
+    <section class="stats">
 
-<section class="numbers">
+        <div class="stats-grid">
 
+            <div class="stat">
 
-    <div class="container">
-
-
-        <div class="eyebrow">
-
-            THE RECEIPTS
-
-        </div>
-
-
-        <div class="number-grid">
-
-
-            <div class="number">
-
-                <strong>
-                    270
-                </strong>
-
-                <span>
-                    APPLICATIONS
-                </span>
-
-            </div>
-
-
-            <div class="number">
-
-                <strong>
-                    150
-                </strong>
-
-                <span>
-                    BUILDERS
-                </span>
-
-            </div>
-
-
-            <div class="number">
-
-                <strong>
-                    300+
-                </strong>
-
-                <span>
-                    STUDENTS REACHED
-                </span>
-
-            </div>
-
-
-            <div class="number">
-
-                <strong>
-                    03
-                </strong>
-
-                <span>
-                    HACKATHONS NEXT
-                </span>
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-
-</section>
-
-
-
-<!-- =====================================================
-     PARTNERS
-========================================================= -->
-
-<section
-    class="partners"
-    id="partners"
->
-
-
-    <div class="container">
-
-
-        <div class="partner-header">
-
-
-            <div>
-
-
-                <div class="eyebrow">
-
-                    BUILT WITH
-
+                <div class="stat-number">
+                    270+
                 </div>
 
-
-                <h2>
-
-                    OUR
-
-                    <br>
-
-                    PARTNERS.
-
-                </h2>
-
+                <div class="stat-label">
+                    SPRINT & SPAWN APPLICATIONS
+                </div>
 
             </div>
 
 
-            <p
-                style="
-                    max-width:300px;
-                    color:#777;
-                    line-height:1.6;
-                "
-            >
+            <div class="stat">
 
-                People and organizations
-                that helped make Sprint &
-                Spawn happen.
+                <div class="stat-number">
+                    150
+                </div>
 
-            </p>
+                <div class="stat-label">
+                    BUILDERS AT SPRINT & SPAWN
+                </div>
 
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-number">
+                    300+
+                </div>
+
+                <div class="stat-label">
+                    STUDENT REACH WITH PARTNERS
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-number">
+                    3
+                </div>
+
+                <div class="stat-label">
+                    UPCOMING HACKATHONS
+                </div>
+
+            </div>
 
         </div>
 
+    </section>
 
-        <div class="partner-list">
 
+    <!-- =========================================================
+         PARTNERS
+    ========================================================= -->
+
+    <section
+        class="section partners"
+        id="partners"
+    >
+
+        <div class="section-label">
+            // PEOPLE WHO HELP US BUILD
+        </div>
+
+        <h2 class="section-title">
+            PARTNERS<br>
+            & ALLIES
+        </h2>
+
+
+        <div class="partners-grid">
 
             <div class="partner">
                 FUELER
             </div>
 
-
             <div class="partner">
                 CODING MAFIA
             </div>
-
 
             <div class="partner">
                 GEN.XYZ
             </div>
 
-
             <div class="partner">
                 CODECRAFTERS
             </div>
 
+            <div class="partner">
+                PARTNER
+            </div>
 
             <div class="partner">
-                PARTNER 05
+                PARTNER
             </div>
-
 
             <div class="partner">
-                PARTNER 06
+                YOUR LOGO
             </div>
 
-
-        </div>
-
-
-    </div>
-
-
-</section>
-
-
-
-<!-- =====================================================
-     BUSINESS CTA
-========================================================= -->
-
-<section
-    class="business"
-    id="contact"
->
-
-
-    <div class="container business-content">
-
-
-        <div
-            class="eyebrow"
-            style="color:#000"
-        >
-
-            COLLEGES /
-            COMPANIES /
-            BRANDS
-
-        </div>
-
-
-        <h2>
-
-            GOT A
-
-            <br>
-
-            ROOM?
-
-            <br>
-
-            LET'S
-
-            <br>
-
-            BUILD.
-
-        </h2>
-
-
-        <p>
-
-            Bring OverclockedDevs to your
-            campus, company or community.
-
-            We design and run hackathons,
-            game jams and technical events
-            that bring builders into the room.
-
-        </p>
-
-
-        <a
-            href="mailto:hello@overclockeddevs.com"
-            class="btn"
-            style="
-                background:#0D0D0D;
-                color:white;
-                border-color:#0D0D0D;
-            "
-        >
-
-            START A CONVERSATION ↗
-
-        </a>
-
-
-    </div>
-
-
-</section>
-
-
-
-<!-- =====================================================
-     FOOTER
-========================================================= -->
-
-<footer>
-
-
-    <div class="container">
-
-
-        <div class="footer-top">
-
-
-            <div>
-
-
-                <img
-                    src="OCd-logo.png"
-                    class="footer-logo"
-                    alt="OverclockedDevs"
-                >
-
-
-                <p class="footer-description">
-
-                    OverclockedDevs.
-
-                    <br>
-
-                    Hackathons.
-                    Game jams.
-                    Builder events.
-
-                    <br>
-
-                    Delhi-NCR.
-
-                </p>
-
-
+            <div class="partner">
+                YOUR LOGO
             </div>
 
+        </div>
+
+    </section>
 
 
-            <div class="footer-links">
+    <!-- =========================================================
+         PARTNER CTA
+    ========================================================= -->
 
+    <section
+        class="partner-cta"
+        id="contact"
+    >
 
-                <div class="footer-column">
+        <div class="partner-cta-content">
 
-
-                    <strong>
-                        EXPLORE
-                    </strong>
-
-
-                    <a href="#events">
-                        Events
-                    </a>
-
-
-                    <a href="#story">
-                        About OCd
-                    </a>
-
-
-                    <a href="#partners">
-                        Partners
-                    </a>
-
-
-                </div>
-
-
-
-                <div class="footer-column">
-
-
-                    <strong>
-                        WORK WITH US
-                    </strong>
-
-
-                    <a href="#contact">
-                        Host an Event
-                    </a>
-
-
-                    <a href="#contact">
-                        Sponsor
-                    </a>
-
-
-                    <a href="#contact">
-                        Partner
-                    </a>
-
-
-                </div>
-
-
-
-                <div class="footer-column">
-
-
-                    <strong>
-                        SOCIAL
-                    </strong>
-
-
-                    <!-- Replace these -->
-
-                    <a href="#">
-                        Instagram ↗
-                    </a>
-
-
-                    <a href="#">
-                        LinkedIn ↗
-                    </a>
-
-
-                </div>
-
-
+            <div class="section-label">
+                // BUILD WITH OCd
             </div>
 
+            <h2>
+                GOT A<br>
+                <span>GOOD IDEA?</span>
+            </h2>
+
+            <p>
+                We work with brands, colleges, communities and
+                technology partners to create better experiences
+                for student builders.
+            </p>
+
+            <!-- Replace this email with your actual contact email -->
+
+            <a
+                href="mailto:hello@overclockeddevs.com"
+                class="button button-primary"
+            >
+                LET'S TALK ↗
+            </a>
 
         </div>
 
+    </section>
 
 
-        <div class="footer-bottom">
+    <!-- =========================================================
+         FOOTER
+    ========================================================= -->
 
+    <footer>
 
-            <span>
-                © 2026 OVERCLOCKEDDEVS
-            </span>
+        <div class="footer-logo">
+            OCd
+        </div>
 
+        <div class="footer-text">
+            © 2026 OVERCLOCKEDDEVS.
+            DELHI NCR, INDIA.
+        </div>
 
-            <span>
-                KEEP THE CLOCK RUNNING.
-            </span>
+        <div class="footer-links">
 
+            <a href="#">
+                INSTAGRAM
+            </a>
+
+            <a href="#">
+                LINKEDIN
+            </a>
+
+            <a href="#">
+                EMAIL
+            </a>
 
         </div>
 
-
-    </div>
-
-
-</footer>
+    </footer>
 
 
 </body>
