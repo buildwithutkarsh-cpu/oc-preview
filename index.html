@@ -11,7 +11,6 @@
         content="OverclockedDevs — high-energy hackathons, builders, and technology events from Delhi NCR."
     >
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -23,7 +22,7 @@
     <style>
 
         /* =========================================================
-           OCd — DESIGN SYSTEM
+           DESIGN SYSTEM
         ========================================================= */
 
         :root {
@@ -34,6 +33,8 @@
             --white: #FFFFFF;
             --off-white: #FFF7E6;
             --black: #0D0D0D;
+            --gray: #151515;
+            --line: rgba(255,255,255,.14);
         }
 
         * {
@@ -64,7 +65,7 @@
 
 
         /* =========================================================
-           CRT / GRAIN EFFECT
+           CRT / GRAIN
         ========================================================= */
 
         body::before {
@@ -74,17 +75,15 @@
             pointer-events: none;
             z-index: 9999;
 
-            opacity: .055;
+            opacity: .045;
 
-            background-image:
+            background:
                 repeating-linear-gradient(
                     0deg,
                     transparent 0px,
                     transparent 2px,
                     rgba(255,255,255,.7) 3px
                 );
-
-            mix-blend-mode: overlay;
         }
 
         body::after {
@@ -94,7 +93,7 @@
             pointer-events: none;
             z-index: 9998;
 
-            background-image:
+            background:
                 radial-gradient(
                     circle at center,
                     transparent 0%,
@@ -104,7 +103,7 @@
 
 
         /* =========================================================
-           NAVBAR
+           NAV
         ========================================================= */
 
         nav {
@@ -112,7 +111,6 @@
             top: 0;
             left: 0;
             width: 100%;
-
             z-index: 1000;
 
             display: flex;
@@ -135,7 +133,7 @@
             text-decoration: none;
 
             font-family: "Bungee", sans-serif;
-            font-size: 18px;
+            font-size: 17px;
         }
 
         .nav-logo-mark {
@@ -148,19 +146,19 @@
             background: var(--yellow);
             color: var(--black);
 
-            font-family: "Bungee", sans-serif;
-            font-size: 13px;
-
             border: 2px solid var(--white);
+
+            font-family: "Bungee", sans-serif;
+            font-size: 12px;
         }
 
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 35px;
+            gap: 34px;
 
             font-family: "Bungee", sans-serif;
-            font-size: 11px;
+            font-size: 10px;
         }
 
         .nav-links a {
@@ -168,7 +166,7 @@
             position: relative;
         }
 
-        .nav-links a::after {
+        .nav-links a:not(.nav-cta)::after {
             content: "";
 
             position: absolute;
@@ -183,7 +181,7 @@
             transition: width .2s ease;
         }
 
-        .nav-links a:hover::after {
+        .nav-links a:not(.nav-cta):hover::after {
             width: 100%;
         }
 
@@ -191,9 +189,7 @@
             padding: 12px 17px;
 
             background: var(--red);
-            color: var(--white);
-
-            border: 0;
+            color: white;
 
             transition: .2s ease;
         }
@@ -224,19 +220,7 @@
             background:
                 linear-gradient(
                     rgba(13,13,13,.9),
-                    rgba(13,13,13,.96)
-                ),
-                repeating-linear-gradient(
-                    0deg,
-                    transparent 0px,
-                    transparent 50px,
-                    rgba(255,255,255,.025) 51px
-                ),
-                repeating-linear-gradient(
-                    90deg,
-                    transparent 0px,
-                    transparent 50px,
-                    rgba(255,255,255,.025) 51px
+                    rgba(13,13,13,.97)
                 );
         }
 
@@ -257,11 +241,12 @@
 
             background-size: 55px 55px;
 
-            mask-image: linear-gradient(
-                to bottom,
-                black,
-                transparent 90%
-            );
+            mask-image:
+                linear-gradient(
+                    to bottom,
+                    black,
+                    transparent 90%
+                );
         }
 
         .hero-bg-text {
@@ -295,10 +280,10 @@
             align-items: center;
             gap: 10px;
 
+            color: var(--yellow);
+
             font-family: "Bungee", sans-serif;
             font-size: 11px;
-
-            color: var(--yellow);
 
             letter-spacing: .1em;
         }
@@ -313,22 +298,18 @@
         }
 
         .hero-title {
+            margin-top: 25px;
+
+            max-width: 1100px;
+
             font-family: "Climate Crisis", sans-serif;
 
             font-size: clamp(4rem, 10vw, 9.5rem);
 
             line-height: .92;
 
-            /*
-                Kept deliberately close to zero.
-                Climate Crisis naturally compresses letters.
-            */
             letter-spacing: -.02em;
             word-spacing: .06em;
-
-            max-width: 1100px;
-
-            margin-top: 25px;
 
             text-transform: uppercase;
         }
@@ -366,25 +347,22 @@
         }
 
         .button {
+            min-height: 50px;
+
             display: inline-flex;
             align-items: center;
             justify-content: center;
-
-            min-height: 50px;
 
             padding: 0 22px;
 
             text-decoration: none;
 
+            border: 1px solid var(--white);
+
             font-family: "Bungee", sans-serif;
             font-size: 11px;
 
-            border: 1px solid var(--white);
-
-            transition:
-                transform .2s ease,
-                background .2s ease,
-                color .2s ease;
+            transition: .2s ease;
         }
 
         .button:hover {
@@ -393,15 +371,14 @@
 
         .button-primary {
             background: var(--yellow);
-            color: var(--black);
-
             border-color: var(--yellow);
+            color: var(--black);
         }
 
         .button-primary:hover {
             background: var(--red);
             border-color: var(--red);
-            color: var(--white);
+            color: white;
         }
 
         .button-secondary {
@@ -409,7 +386,7 @@
         }
 
         .button-secondary:hover {
-            background: var(--white);
+            background: white;
             color: var(--black);
         }
 
@@ -424,11 +401,10 @@
             justify-content: space-between;
             align-items: center;
 
-            font-size: 10px;
-
-            color: rgba(255,255,255,.45);
+            color: rgba(255,255,255,.4);
 
             font-family: "Bungee", sans-serif;
+            font-size: 10px;
             letter-spacing: .08em;
         }
 
@@ -441,7 +417,6 @@
         .scroll-line {
             width: 45px;
             height: 1px;
-
             background: var(--yellow);
         }
 
@@ -453,13 +428,13 @@
         .ticker {
             overflow: hidden;
 
+            padding: 13px 0;
+
             background: var(--yellow);
             color: var(--black);
 
             border-top: 2px solid var(--black);
             border-bottom: 2px solid var(--black);
-
-            padding: 13px 0;
 
             white-space: nowrap;
         }
@@ -498,27 +473,22 @@
 
 
         /* =========================================================
-           SECTION BASE
+           GENERAL SECTIONS
         ========================================================= */
-
-        section {
-            position: relative;
-        }
 
         .section {
             padding: 120px 6vw;
         }
 
         .section-label {
-            font-family: "Bungee", sans-serif;
-
-            font-size: 11px;
+            margin-bottom: 20px;
 
             color: var(--red);
 
-            letter-spacing: .12em;
+            font-family: "Bungee", sans-serif;
+            font-size: 11px;
 
-            margin-bottom: 20px;
+            letter-spacing: .12em;
         }
 
         .section-title {
@@ -560,11 +530,11 @@
         }
 
         .manifesto-text {
+            max-width: 850px;
+
             font-size: clamp(1.5rem, 3vw, 3rem);
 
             line-height: 1.2;
-
-            max-width: 850px;
 
             font-weight: 600;
         }
@@ -590,12 +560,10 @@
 
             transform: rotate(-7deg);
 
-            font-family: "Bungee", sans-serif;
-
             text-align: center;
 
+            font-family: "Bungee", sans-serif;
             font-size: 20px;
-
             line-height: 1.2;
         }
 
@@ -629,8 +597,8 @@
                     rgba(255,255,255,.025) 4px
                 );
 
-            border-top: 1px solid rgba(255,255,255,.15);
-            border-bottom: 1px solid rgba(255,255,255,.15);
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
         }
 
         .event-logo-wrap {
@@ -640,28 +608,26 @@
             align-items: center;
             justify-content: center;
 
-            border: 2px solid rgba(255,255,255,.15);
-
-            background: #111;
-
             position: relative;
 
             overflow: hidden;
+
+            background: #111;
+
+            border: 2px solid rgba(255,255,255,.15);
         }
 
         .event-logo-wrap::before {
             content: "OCd // ARCHIVE";
 
             position: absolute;
-
             top: 18px;
             left: 20px;
 
-            font-family: "Bungee", sans-serif;
-
-            font-size: 11px;
-
             color: var(--yellow);
+
+            font-family: "Bungee", sans-serif;
+            font-size: 11px;
 
             letter-spacing: .12em;
         }
@@ -670,26 +636,22 @@
             content: "2026";
 
             position: absolute;
-
             right: 20px;
             bottom: 15px;
 
-            font-family: "Bungee", sans-serif;
-
-            font-size: 12px;
-
             color: var(--red);
+
+            font-family: "Bungee", sans-serif;
+            font-size: 12px;
         }
 
         .event-logo {
             width: min(75%, 430px);
-
             max-height: 360px;
 
             object-fit: contain;
 
-            transition:
-                transform .35s ease;
+            transition: transform .35s ease;
         }
 
         .event-logo-wrap:hover .event-logo {
@@ -697,18 +659,19 @@
         }
 
         .event-info .eyebrow {
-            font-family: "Bungee", sans-serif;
+            margin-bottom: 20px;
 
             color: var(--yellow);
 
+            font-family: "Bungee", sans-serif;
             font-size: 12px;
 
             letter-spacing: .12em;
-
-            margin-bottom: 20px;
         }
 
         .event-info h2 {
+            margin-bottom: 35px;
+
             font-family: "Climate Crisis", sans-serif;
 
             font-size: clamp(4rem, 8vw, 8rem);
@@ -716,8 +679,6 @@
             line-height: .82;
 
             letter-spacing: -.025em;
-
-            margin: 0 0 35px;
         }
 
         .event-info h2 span {
@@ -727,13 +688,12 @@
         .event-description {
             max-width: 620px;
 
+            margin-bottom: 40px;
+
             color: rgba(255,255,255,.72);
 
             font-size: 18px;
-
             line-height: 1.65;
-
-            margin-bottom: 40px;
         }
 
         .event-meta {
@@ -743,34 +703,31 @@
 
             gap: 1px;
 
+            margin-bottom: 35px;
+
             background: rgba(255,255,255,.15);
 
             border: 1px solid rgba(255,255,255,.15);
-
-            margin-bottom: 35px;
         }
 
         .event-meta div {
             padding: 22px;
 
-            background: #0d0d0d;
+            background: var(--black);
         }
 
         .event-meta span {
             display: block;
 
-            font-family: "Bungee", sans-serif;
+            margin-bottom: 8px;
 
             color: rgba(255,255,255,.4);
 
+            font-family: "Bungee", sans-serif;
             font-size: 10px;
-
-            margin-bottom: 8px;
         }
 
         .event-meta strong {
-            font-family: "Space Grotesk", sans-serif;
-
             font-size: 15px;
         }
 
@@ -780,21 +737,18 @@
             padding: 17px 25px;
 
             background: var(--yellow);
-
             color: var(--black);
 
-            font-family: "Bungee", sans-serif;
-
-            font-size: 12px;
-
             text-decoration: none;
+
+            font-family: "Bungee", sans-serif;
+            font-size: 12px;
 
             transition: .2s ease;
         }
 
         .event-button:hover {
             background: var(--red);
-
             color: white;
 
             transform: translateY(-3px);
@@ -802,176 +756,385 @@
 
 
         /* =========================================================
-           UPCOMING EVENTS
+           UPCOMING HACKATHONS
+           NEW HIERARCHY
         ========================================================= */
 
         .upcoming {
+            padding: 140px 6vw 150px;
+
             background: var(--black);
         }
 
-        .upcoming-header {
+        .upcoming-top {
             display: flex;
-
             justify-content: space-between;
             align-items: flex-end;
 
-            gap: 40px;
+            gap: 50px;
 
             margin-bottom: 70px;
         }
 
-        .upcoming-note {
-            max-width: 350px;
+        .upcoming-intro {
+            max-width: 430px;
 
             color: rgba(255,255,255,.5);
 
-            line-height: 1.6;
-
-            font-size: 14px;
+            font-size: 15px;
+            line-height: 1.65;
         }
 
-        .events-grid {
+        .upcoming-count {
+            color: var(--yellow);
+
+            font-family: "Bungee", sans-serif;
+            font-size: 11px;
+
+            letter-spacing: .1em;
+        }
+
+
+        /* FEATURED EVENT */
+
+        .featured-event {
+            position: relative;
+
             display: grid;
 
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: 1.3fr .7fr;
+
+            min-height: 560px;
+
+            margin-bottom: 18px;
+
+            overflow: hidden;
+
+            background: var(--yellow);
+            color: var(--black);
+
+            border: 2px solid var(--yellow);
+
+            transition:
+                transform .3s ease,
+                box-shadow .3s ease;
+        }
+
+        .featured-event:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                12px 12px 0 var(--red);
+        }
+
+        .featured-main {
+            display: flex;
+            flex-direction: column;
+
+            justify-content: space-between;
+
+            padding: 42px;
+        }
+
+        .featured-topline {
+            display: flex;
+
+            justify-content: space-between;
+            align-items: flex-start;
+
+            gap: 20px;
+        }
+
+        .event-index {
+            font-family: "Bungee", sans-serif;
+            font-size: 11px;
+
+            opacity: .55;
+        }
+
+        .open-badge {
+            display: inline-flex;
+
+            padding: 8px 11px;
+
+            background: var(--black);
+            color: var(--yellow);
+
+            font-family: "Bungee", sans-serif;
+            font-size: 9px;
+
+            letter-spacing: .06em;
+        }
+
+        .featured-title {
+            margin-top: auto;
+            margin-bottom: 35px;
+
+            font-family: "Climate Crisis", sans-serif;
+
+            font-size: clamp(4.5rem, 9vw, 10rem);
+
+            line-height: .78;
+
+            letter-spacing: -.025em;
+
+            text-transform: uppercase;
+        }
+
+        .featured-title span {
+            color: var(--red);
+        }
+
+        .featured-description {
+            max-width: 600px;
+
+            margin-bottom: 35px;
+
+            font-size: 17px;
+
+            line-height: 1.55;
+
+            opacity: .7;
+        }
+
+        .featured-side {
+            display: flex;
+            flex-direction: column;
+
+            justify-content: space-between;
+
+            padding: 42px;
+
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .featured-date-label {
+            color: var(--yellow);
+
+            font-family: "Bungee", sans-serif;
+            font-size: 10px;
+
+            letter-spacing: .1em;
+        }
+
+        .featured-date {
+            margin-top: 10px;
+
+            font-family: "Climate Crisis", sans-serif;
+
+            font-size: clamp(3rem, 5vw, 5.5rem);
+
+            line-height: .8;
+        }
+
+        .featured-details {
+            display: grid;
+
+            gap: 0;
+
+            border-top: 1px solid rgba(255,255,255,.2);
+        }
+
+        .featured-detail {
+            display: flex;
+            justify-content: space-between;
+
+            gap: 20px;
+
+            padding: 18px 0;
+
+            border-bottom: 1px solid rgba(255,255,255,.2);
+
+            font-size: 12px;
+        }
+
+        .featured-detail span {
+            color: rgba(255,255,255,.4);
+
+            font-family: "Bungee", sans-serif;
+            font-size: 9px;
+        }
+
+        .featured-detail strong {
+            text-align: right;
+        }
+
+        .featured-cta {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+
+            min-height: 52px;
+
+            padding: 0 22px;
+
+            background: var(--red);
+            color: white;
+
+            text-decoration: none;
+
+            font-family: "Bungee", sans-serif;
+            font-size: 10px;
+
+            transition: .2s ease;
+        }
+
+        .featured-cta:hover {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+
+        /* SECONDARY EVENTS */
+
+        .secondary-events {
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
 
             gap: 18px;
         }
 
-        .event-card {
-            min-height: 460px;
+        .secondary-event {
+            min-height: 420px;
+
+            padding: 30px;
 
             display: flex;
             flex-direction: column;
 
-            padding: 28px;
-
-            position: relative;
-
-            overflow: hidden;
+            justify-content: space-between;
 
             background: #151515;
 
-            border: 1px solid rgba(255,255,255,.12);
+            border: 1px solid rgba(255,255,255,.14);
 
             transition:
                 transform .25s ease,
                 border-color .25s ease;
         }
 
-        .event-card:hover {
-            transform: translateY(-8px);
+        .secondary-event:hover {
+            transform: translateY(-5px);
 
             border-color: var(--yellow);
         }
 
-        .event-card:nth-child(2) {
+        .secondary-event:nth-child(1) {
             background: var(--red);
-
-            color: var(--white);
         }
 
-        .event-card:nth-child(3) {
-            background: var(--yellow);
-
-            color: var(--black);
+        .secondary-event:nth-child(2) {
+            background: #171717;
         }
 
-        .event-number {
+        .secondary-header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: flex-start;
+
+            gap: 20px;
+        }
+
+        .secondary-number {
             font-family: "Bungee", sans-serif;
+            font-size: 10px;
 
-            font-size: 11px;
-
-            opacity: .6;
-
-            margin-bottom: auto;
+            opacity: .55;
         }
 
-        .event-status {
-            position: absolute;
-
-            top: 25px;
-            right: 25px;
-
-            padding: 7px 10px;
-
+        .secondary-month {
             font-family: "Bungee", sans-serif;
+            font-size: 10px;
 
-            font-size: 9px;
-
-            background: var(--yellow);
-
-            color: var(--black);
+            opacity: .7;
         }
 
-        .event-card:nth-child(2) .event-status {
-            background: var(--white);
-        }
+        .secondary-title {
+            margin-top: 40px;
 
-        .event-card:nth-child(3) .event-status {
-            background: var(--black);
-
-            color: var(--yellow);
-        }
-
-        .event-card h3 {
             font-family: "Climate Crisis", sans-serif;
 
-            font-size: clamp(2.5rem, 4vw, 4.8rem);
+            font-size: clamp(3rem, 6vw, 6rem);
 
-            line-height: .82;
+            line-height: .8;
 
             letter-spacing: -.02em;
 
             text-transform: uppercase;
-
-            margin-bottom: 25px;
         }
 
-        .event-card p {
+        .secondary-event:nth-child(2) .secondary-title {
+            color: var(--yellow);
+        }
+
+        .secondary-description {
+            max-width: 500px;
+
+            margin-top: 25px;
+
             font-size: 14px;
 
             line-height: 1.55;
 
             opacity: .7;
-
-            margin-bottom: 25px;
         }
 
-        .event-details {
-            border-top: 1px solid currentColor;
+        .secondary-bottom {
+            margin-top: 35px;
 
-            padding-top: 18px;
-
-            display: grid;
-
-            gap: 8px;
-
-            font-size: 12px;
-        }
-
-        .event-detail {
             display: flex;
 
             justify-content: space-between;
+            align-items: flex-end;
 
-            gap: 15px;
+            gap: 20px;
+
+            border-top: 1px solid currentColor;
+
+            padding-top: 20px;
         }
 
-        .event-detail span:first-child {
-            opacity: .55;
-        }
+        .secondary-track span,
+        .secondary-capacity span {
+            display: block;
 
-        .card-link {
-            display: inline-block;
-
-            margin-top: 28px;
+            margin-bottom: 7px;
 
             font-family: "Bungee", sans-serif;
+            font-size: 8px;
 
-            font-size: 10px;
+            opacity: .5;
+        }
+
+        .secondary-track strong,
+        .secondary-capacity strong {
+            font-size: 12px;
+        }
+
+        .secondary-link {
+            display: inline-flex;
+
+            padding: 12px 15px;
+
+            background: var(--yellow);
+            color: var(--black);
 
             text-decoration: none;
+
+            font-family: "Bungee", sans-serif;
+            font-size: 9px;
+
+            white-space: nowrap;
+
+            transition: .2s ease;
+        }
+
+        .secondary-link:hover {
+            background: white;
         }
 
 
@@ -980,19 +1143,16 @@
         ========================================================= */
 
         .stats {
-            background: var(--red);
-
-            color: var(--white);
-
             padding: 90px 6vw;
+
+            background: var(--red);
+            color: var(--white);
         }
 
         .stats-grid {
             display: grid;
 
             grid-template-columns: repeat(4, 1fr);
-
-            gap: 0;
 
             border-top: 1px solid rgba(255,255,255,.4);
             border-bottom: 1px solid rgba(255,255,255,.4);
@@ -1032,55 +1192,15 @@
 
 
         /* =========================================================
-           PARTNERS
-        ========================================================= */
-
-        .partners {
-            background: var(--off-white);
-
-            color: var(--black);
-        }
-
-        .partners-grid {
-            margin-top: 70px;
-
-            display: grid;
-
-            grid-template-columns: repeat(4, 1fr);
-
-            border-top: 2px solid var(--black);
-            border-left: 2px solid var(--black);
-        }
-
-        .partner {
-            min-height: 140px;
-
-            display: grid;
-            place-items: center;
-
-            padding: 20px;
-
-            border-right: 2px solid var(--black);
-            border-bottom: 2px solid var(--black);
-
-            font-family: "Bungee", sans-serif;
-
-            font-size: 13px;
-
-            text-align: center;
-        }
-
-        .partner:nth-child(even) {
-            background: var(--yellow);
-        }
-
-
-        /* =========================================================
-           PARTNER CTA
+           CONTACT / PARTNER CTA
         ========================================================= */
 
         .partner-cta {
+            position: relative;
+
             padding: 120px 6vw;
+
+            overflow: hidden;
 
             background:
                 linear-gradient(
@@ -1088,23 +1208,19 @@
                     var(--black) 0%,
                     #151515 100%
                 );
-
-            position: relative;
-
-            overflow: hidden;
         }
 
         .partner-cta::before {
-            content: "PARTNER";
+            content: "OCd";
 
             position: absolute;
 
-            right: -40px;
-            bottom: -90px;
+            right: -20px;
+            bottom: -80px;
 
             font-family: "Climate Crisis", sans-serif;
 
-            font-size: 22vw;
+            font-size: 24vw;
 
             color: transparent;
 
@@ -1121,6 +1237,8 @@
         }
 
         .partner-cta h2 {
+            margin-bottom: 35px;
+
             font-family: "Climate Crisis", sans-serif;
 
             font-size: clamp(4rem, 9vw, 9rem);
@@ -1128,8 +1246,6 @@
             line-height: .85;
 
             letter-spacing: -.025em;
-
-            margin-bottom: 35px;
         }
 
         .partner-cta h2 span {
@@ -1139,13 +1255,12 @@
         .partner-cta p {
             max-width: 600px;
 
+            margin-bottom: 35px;
+
             color: rgba(255,255,255,.6);
 
             font-size: 17px;
-
             line-height: 1.6;
-
-            margin-bottom: 35px;
         }
 
 
@@ -1156,22 +1271,18 @@
         footer {
             padding: 45px 6vw;
 
-            background: var(--yellow);
-
-            color: var(--black);
-
             display: flex;
-
             justify-content: space-between;
-
             align-items: center;
 
             gap: 30px;
+
+            background: var(--yellow);
+            color: var(--black);
         }
 
         .footer-logo {
             font-family: "Climate Crisis", sans-serif;
-
             font-size: 35px;
 
             letter-spacing: -.02em;
@@ -1179,17 +1290,14 @@
 
         .footer-text {
             font-size: 12px;
-
             opacity: .65;
         }
 
         .footer-links {
             display: flex;
-
             gap: 20px;
 
             font-family: "Bungee", sans-serif;
-
             font-size: 10px;
         }
 
@@ -1199,16 +1307,28 @@
 
 
         /* =========================================================
-           RESPONSIVE
+           TABLET
         ========================================================= */
 
         @media (max-width: 1000px) {
 
-            .events-grid {
+            .manifesto {
                 grid-template-columns: 1fr;
             }
 
-            .event-card {
+            .manifesto-side {
+                justify-content: flex-start;
+            }
+
+            .featured-event {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-main {
+                min-height: 500px;
+            }
+
+            .featured-side {
                 min-height: 400px;
             }
 
@@ -1223,20 +1343,12 @@
             .stat:nth-child(-n+2) {
                 border-bottom: 1px solid rgba(255,255,255,.35);
             }
-
-            .partners-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .manifesto {
-                grid-template-columns: 1fr;
-            }
-
-            .manifesto-side {
-                justify-content: flex-start;
-            }
         }
 
+
+        /* =========================================================
+           MOBILE
+        ========================================================= */
 
         @media (max-width: 850px) {
 
@@ -1260,7 +1372,6 @@
                 line-height: .95;
 
                 letter-spacing: -.015em;
-
                 word-spacing: .04em;
             }
 
@@ -1279,12 +1390,6 @@
 
             .section {
                 padding: 80px 5vw;
-            }
-
-            .upcoming-header {
-                flex-direction: column;
-
-                align-items: flex-start;
             }
 
             .event-feature {
@@ -1308,9 +1413,44 @@
                 font-size: 18vw;
             }
 
-            footer {
+            .upcoming {
+                padding:
+                    90px 5vw
+                    100px;
+            }
+
+            .upcoming-top {
                 flex-direction: column;
 
+                align-items: flex-start;
+
+                margin-bottom: 50px;
+            }
+
+            .featured-main {
+                padding: 28px;
+
+                min-height: 480px;
+            }
+
+            .featured-side {
+                padding: 28px;
+            }
+
+            .featured-title {
+                font-size: 18vw;
+            }
+
+            .secondary-events {
+                grid-template-columns: 1fr;
+            }
+
+            .secondary-event {
+                min-height: 380px;
+            }
+
+            footer {
+                flex-direction: column;
                 align-items: flex-start;
             }
         }
@@ -1334,10 +1474,6 @@
                 border-bottom: none;
             }
 
-            .partners-grid {
-                grid-template-columns: 1fr;
-            }
-
             .hero-buttons {
                 flex-direction: column;
             }
@@ -1348,6 +1484,24 @@
 
             .event-meta {
                 grid-template-columns: 1fr;
+            }
+
+            .featured-topline {
+                flex-direction: column;
+            }
+
+            .featured-date {
+                font-size: 18vw;
+            }
+
+            .secondary-bottom {
+                flex-wrap: wrap;
+            }
+
+            .secondary-link {
+                width: 100%;
+
+                justify-content: center;
             }
 
             .event-feature {
@@ -1371,10 +1525,7 @@
                 letter-spacing: 0;
             }
 
-            .hero-title .red {
-                letter-spacing: 0;
-            }
-
+            .hero-title .red,
             .hero-title .outline {
                 letter-spacing: 0;
             }
@@ -1389,10 +1540,6 @@
 
                 font-size: 15px;
             }
-
-            .event-card {
-                padding: 22px;
-            }
         }
 
     </style>
@@ -1403,21 +1550,36 @@
 
 
     <!-- =========================================================
-         NAV
+         NAVIGATION
     ========================================================= -->
 
     <nav>
 
         <a href="#" class="nav-logo">
-            <span class="nav-logo-mark">OCd</span>
+
+            <span class="nav-logo-mark">
+                OCd
+            </span>
+
             OVERCLOCKEDDEVS
+
         </a>
 
+
         <div class="nav-links">
-            <a href="#about">ABOUT</a>
-            <a href="#events">EVENTS</a>
-            <a href="#partners">PARTNERS</a>
-            <a href="#contact" class="nav-cta">WORK WITH US ↗</a>
+
+            <a href="#about">
+                ABOUT
+            </a>
+
+            <a href="#events">
+                EVENTS
+            </a>
+
+            <a href="#contact" class="nav-cta">
+                WORK WITH US ↗
+            </a>
+
         </div>
 
     </nav>
@@ -1435,25 +1597,36 @@
             OCd
         </div>
 
+
         <div class="hero-content">
 
             <div class="hero-eyebrow">
                 DELHI NCR // EST. 2026
             </div>
 
+
             <h1 class="hero-title">
+
                 BUILD
-                <span class="red">DIFFERENT.</span><br>
+                <span class="red">
+                    DIFFERENT.
+                </span>
+
+                <br>
 
                 <span class="outline">
                     SHIP IT.
                 </span>
+
             </h1>
 
+
             <p class="hero-subtitle">
-                OverclockedDevs is a student-focused hackathon organization
-                creating high-energy spaces to build, experiment and ship.
+                OverclockedDevs is a student-focused hackathon
+                organization creating high-energy spaces to
+                build, experiment and ship.
             </p>
+
 
             <div class="hero-buttons">
 
@@ -1483,8 +1656,11 @@
             </div>
 
             <div class="scroll-indicator">
+
                 SCROLL
+
                 <span class="scroll-line"></span>
+
             </div>
 
         </div>
@@ -1500,53 +1676,19 @@
 
         <div class="ticker-track">
 
-            <div class="ticker-item">
-                HACK
-            </div>
+            <div class="ticker-item">HACK</div>
+            <div class="ticker-item">BUILD</div>
+            <div class="ticker-item">BREAK</div>
+            <div class="ticker-item">LEARN</div>
+            <div class="ticker-item">SHIP</div>
+            <div class="ticker-item">REPEAT</div>
 
-            <div class="ticker-item">
-                BUILD
-            </div>
-
-            <div class="ticker-item">
-                BREAK
-            </div>
-
-            <div class="ticker-item">
-                LEARN
-            </div>
-
-            <div class="ticker-item">
-                SHIP
-            </div>
-
-            <div class="ticker-item">
-                REPEAT
-            </div>
-
-            <div class="ticker-item">
-                HACK
-            </div>
-
-            <div class="ticker-item">
-                BUILD
-            </div>
-
-            <div class="ticker-item">
-                BREAK
-            </div>
-
-            <div class="ticker-item">
-                LEARN
-            </div>
-
-            <div class="ticker-item">
-                SHIP
-            </div>
-
-            <div class="ticker-item">
-                REPEAT
-            </div>
+            <div class="ticker-item">HACK</div>
+            <div class="ticker-item">BUILD</div>
+            <div class="ticker-item">BREAK</div>
+            <div class="ticker-item">LEARN</div>
+            <div class="ticker-item">SHIP</div>
+            <div class="ticker-item">REPEAT</div>
 
         </div>
 
@@ -1554,7 +1696,7 @@
 
 
     <!-- =========================================================
-         ABOUT / MANIFESTO
+         MANIFESTO
     ========================================================= -->
 
     <section
@@ -1568,7 +1710,9 @@
                 // THE OCd MANIFESTO
             </div>
 
+
             <p class="manifesto-text">
+
                 We don't want another event where people sit,
                 listen and leave.
 
@@ -1587,6 +1731,7 @@
 
                 Things that
                 <strong>actually ship.</strong>
+
             </p>
 
         </div>
@@ -1595,9 +1740,11 @@
         <div class="manifesto-side">
 
             <div class="manifesto-stamp">
+
                 NO<br>
                 BORING<br>
                 HACKATHONS.
+
             </div>
 
         </div>
@@ -1606,7 +1753,7 @@
 
 
     <!-- =========================================================
-         SPRINT & SPAWN
+         SPRINT & SPAWN ARCHIVE
     ========================================================= -->
 
     <section
@@ -1639,45 +1786,68 @@
                 PAST EVENT // 06.09.2026
             </div>
 
+
             <h2>
+
                 SPRINT<br>
-                <span>&</span> SPAWN
+
+                <span>&</span>
+                SPAWN
+
             </h2>
 
+
             <p class="event-description">
+
                 A 12-hour high-octane hackathon built for students
                 who wanted to stop planning and start shipping.
+
             </p>
 
 
             <div class="event-meta">
 
                 <div>
+
                     <span>VENUE</span>
+
                     <strong>
                         PW NSP Pitampura
                     </strong>
+
                 </div>
 
+
                 <div>
+
                     <span>TRACKS</span>
+
                     <strong>
                         WEB DEV + GAME DEV
                     </strong>
+
                 </div>
 
+
                 <div>
+
                     <span>BUILDERS</span>
+
                     <strong>
                         150 SELECTED
                     </strong>
+
                 </div>
 
+
                 <div>
+
                     <span>APPLICATIONS</span>
+
                     <strong>
                         270+
                     </strong>
+
                 </div>
 
             </div>
@@ -1698,149 +1868,245 @@
 
 
     <!-- =========================================================
-         UPCOMING EVENTS
+         UPCOMING HACKATHONS
     ========================================================= -->
 
     <section
-        class="section upcoming"
+        class="upcoming"
         id="events"
     >
 
-        <div class="upcoming-header">
+        <div class="upcoming-top">
 
             <div>
 
                 <div class="section-label">
-                    // NEXT UP
+                    // WHAT'S NEXT
                 </div>
 
                 <h2 class="section-title">
                     UPCOMING<br>
-                    BUILDS
+                    HACKATHONS
                 </h2>
 
             </div>
 
-            <p class="upcoming-note">
-                Three new OCd hackathons are landing across
-                October and November 2026.
-                Applications are open online, with venue
-                attendance selected according to capacity.
-            </p>
+
+            <div>
+
+                <p class="upcoming-intro">
+                    Three different ways to build.
+                    Applications are open online;
+                    in-person attendance is selected
+                    according to venue capacity.
+                </p>
+
+                <div class="upcoming-count" style="margin-top:20px;">
+                    03 EVENTS // OCT — NOV 2026
+                </div>
+
+            </div>
 
         </div>
 
 
-        <div class="events-grid">
+        <!-- =====================================================
+             FEATURED: FALLING SUN
+        ===================================================== -->
 
+        <article class="featured-event">
 
-            <!-- FALLING SUN -->
+            <div class="featured-main">
 
-            <article class="event-card">
+                <div class="featured-topline">
 
-                <div class="event-number">
-                    OCd // 001
+                    <div class="event-index">
+                        OCd // 001
+                    </div>
+
+                    <div class="open-badge">
+                        APPLICATIONS OPEN
+                    </div>
+
                 </div>
 
-                <div class="event-status">
-                    APPLICATIONS OPEN
-                </div>
 
                 <div>
 
-                    <h3>
+                    <h3 class="featured-title">
+
                         FALLING<br>
-                        SUN
+
+                        <span>SUN</span>
+
                     </h3>
 
-                    <p>
+
+                    <p class="featured-description">
+
                         Build across software and hardware.
-                        Bring an idea, turn it into something
-                        real and put it in front of other builders.
+                        From web experiences to games and
+                        physical prototypes — bring the idea
+                        and make something real.
+
                     </p>
-
-                    <div class="event-details">
-
-                        <div class="event-detail">
-                            <span>WHEN</span>
-                            <strong>OCTOBER 2026</strong>
-                        </div>
-
-                        <div class="event-detail">
-                            <span>TRACKS</span>
-                            <strong>
-                                WEB / GAME / HARDWARE
-                            </strong>
-                        </div>
-
-                        <div class="event-detail">
-                            <span>VENUE CAPACITY</span>
-                            <strong>200</strong>
-                        </div>
-
-                    </div>
-
-                    <a
-                        href="#"
-                        class="card-link"
-                    >
-                        APPLY / REGISTER ↗
-                    </a>
 
                 </div>
 
-            </article>
+            </div>
+
+
+            <div class="featured-side">
+
+                <div>
+
+                    <div class="featured-date-label">
+                        NEXT EVENT
+                    </div>
+
+                    <div class="featured-date">
+                        OCT<br>
+                        2026
+                    </div>
+
+                </div>
+
+
+                <div class="featured-details">
+
+                    <div class="featured-detail">
+
+                        <span>
+                            TRACKS
+                        </span>
+
+                        <strong>
+                            WEB DEV<br>
+                            GAME DEV<br>
+                            HARDWARE
+                        </strong>
+
+                    </div>
+
+
+                    <div class="featured-detail">
+
+                        <span>
+                            CAPACITY
+                        </span>
+
+                        <strong>
+                            200 BUILDERS
+                        </strong>
+
+                    </div>
+
+
+                    <div class="featured-detail">
+
+                        <span>
+                            REGISTRATION
+                        </span>
+
+                        <strong>
+                            ONLINE
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Replace # with actual registration URL -->
+
+                <a
+                    href="#"
+                    class="featured-cta"
+                >
+                    APPLY FOR FALLING SUN ↗
+                </a>
+
+            </div>
+
+        </article>
+
+
+        <!-- =====================================================
+             SECONDARY EVENTS
+        ===================================================== -->
+
+        <div class="secondary-events">
 
 
             <!-- COMPILE DELHI -->
 
-            <article class="event-card">
-
-                <div class="event-number">
-                    OCd // 002
-                </div>
-
-                <div class="event-status">
-                    APPLICATIONS OPEN
-                </div>
+            <article class="secondary-event">
 
                 <div>
 
-                    <h3>
-                        COMPILE<br>
-                        DELHI
-                    </h3>
+                    <div class="secondary-header">
 
-                    <p>
-                        A focused build sprint around
-                        agentic AI — turning ideas into
-                        working systems.
-                    </p>
-
-                    <div class="event-details">
-
-                        <div class="event-detail">
-                            <span>WHEN</span>
-                            <strong>NOVEMBER 2026</strong>
+                        <div class="secondary-number">
+                            OCd // 002
                         </div>
 
-                        <div class="event-detail">
-                            <span>TRACK</span>
-                            <strong>AGENTIC AI</strong>
-                        </div>
-
-                        <div class="event-detail">
-                            <span>VENUE CAPACITY</span>
-                            <strong>100</strong>
+                        <div class="secondary-month">
+                            NOVEMBER 2026
                         </div>
 
                     </div>
 
+
+                    <h3 class="secondary-title">
+                        COMPILE<br>
+                        DELHI
+                    </h3>
+
+
+                    <p class="secondary-description">
+
+                        A focused build sprint around
+                        agentic AI — turning ideas into
+                        working systems.
+
+                    </p>
+
+                </div>
+
+
+                <div class="secondary-bottom">
+
+                    <div class="secondary-track">
+
+                        <span>
+                            TRACK
+                        </span>
+
+                        <strong>
+                            AGENTIC AI
+                        </strong>
+
+                    </div>
+
+
+                    <div class="secondary-capacity">
+
+                        <span>
+                            CAPACITY
+                        </span>
+
+                        <strong>
+                            100
+                        </strong>
+
+                    </div>
+
+
                     <a
                         href="#"
-                        class="card-link"
+                        class="secondary-link"
                     >
-                        APPLY / REGISTER ↗
+                        APPLY ↗
                     </a>
 
                 </div>
@@ -1850,53 +2116,73 @@
 
             <!-- BLUEPRINT DELHI -->
 
-            <article class="event-card">
-
-                <div class="event-number">
-                    OCd // 003
-                </div>
-
-                <div class="event-status">
-                    APPLICATIONS OPEN
-                </div>
+            <article class="secondary-event">
 
                 <div>
 
-                    <h3>
-                        BLUEPRINT<br>
-                        DELHI
-                    </h3>
+                    <div class="secondary-header">
 
-                    <p>
-                        A creative-web focused hackathon
-                        for people who care about making
-                        the web look as good as it works.
-                    </p>
-
-                    <div class="event-details">
-
-                        <div class="event-detail">
-                            <span>WHEN</span>
-                            <strong>NOVEMBER 2026</strong>
+                        <div class="secondary-number">
+                            OCd // 003
                         </div>
 
-                        <div class="event-detail">
-                            <span>TRACK</span>
-                            <strong>CREATIVE WEB</strong>
-                        </div>
-
-                        <div class="event-detail">
-                            <span>VENUE CAPACITY</span>
-                            <strong>150</strong>
+                        <div class="secondary-month">
+                            NOVEMBER 2026
                         </div>
 
                     </div>
 
+
+                    <h3 class="secondary-title">
+                        BLUEPRINT<br>
+                        DELHI
+                    </h3>
+
+
+                    <p class="secondary-description">
+
+                        A creative-web hackathon for people
+                        who care about making the web look
+                        as good as it works.
+
+                    </p>
+
+                </div>
+
+
+                <div class="secondary-bottom">
+
+                    <div class="secondary-track">
+
+                        <span>
+                            TRACK
+                        </span>
+
+                        <strong>
+                            CREATIVE WEB
+                        </strong>
+
+                    </div>
+
+
+                    <div class="secondary-capacity">
+
+                        <span>
+                            CAPACITY
+                        </span>
+
+                        <strong>
+                            150
+                        </strong>
+
+                    </div>
+
+
                     <a
                         href="#"
-                        class="card-link"
+                        class="secondary-link"
                     >
-                        APPLY / REGISTER ↗
+                        APPLY ↗
                     </a>
 
                 </div>
@@ -1915,6 +2201,7 @@
     <section class="stats">
 
         <div class="stats-grid">
+
 
             <div class="stat">
 
@@ -1973,65 +2260,7 @@
 
 
     <!-- =========================================================
-         PARTNERS
-    ========================================================= -->
-
-    <section
-        class="section partners"
-        id="partners"
-    >
-
-        <div class="section-label">
-            // PEOPLE WHO HELP US BUILD
-        </div>
-
-        <h2 class="section-title">
-            PARTNERS<br>
-            & ALLIES
-        </h2>
-
-
-        <div class="partners-grid">
-
-            <div class="partner">
-                FUELER
-            </div>
-
-            <div class="partner">
-                CODING MAFIA
-            </div>
-
-            <div class="partner">
-                GEN.XYZ
-            </div>
-
-            <div class="partner">
-                CODECRAFTERS
-            </div>
-
-            <div class="partner">
-                PARTNER
-            </div>
-
-            <div class="partner">
-                PARTNER
-            </div>
-
-            <div class="partner">
-                YOUR LOGO
-            </div>
-
-            <div class="partner">
-                YOUR LOGO
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================================================
-         PARTNER CTA
+         CONTACT
     ========================================================= -->
 
     <section
@@ -2045,18 +2274,26 @@
                 // BUILD WITH OCd
             </div>
 
+
             <h2>
+
                 GOT A<br>
+
                 <span>GOOD IDEA?</span>
+
             </h2>
 
+
             <p>
+
                 We work with brands, colleges, communities and
                 technology partners to create better experiences
                 for student builders.
+
             </p>
 
-            <!-- Replace this email with your actual contact email -->
+
+            <!-- Replace with your real email -->
 
             <a
                 href="mailto:hello@overclockeddevs.com"
@@ -2080,12 +2317,18 @@
             OCd
         </div>
 
+
         <div class="footer-text">
+
             © 2026 OVERCLOCKEDDEVS.
             DELHI NCR, INDIA.
+
         </div>
 
+
         <div class="footer-links">
+
+            <!-- Replace # with actual links -->
 
             <a href="#">
                 INSTAGRAM
@@ -2095,7 +2338,7 @@
                 LINKEDIN
             </a>
 
-            <a href="#">
+            <a href="mailto:hello@overclockeddevs.com">
                 EMAIL
             </a>
 
