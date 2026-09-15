@@ -1,4643 +1,4632 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>OverclockedDevs — Build Different.</title>
+  <title>OCd — OverclockedDevs</title>
 
-    <meta
-        name="description"
-        content="OverclockedDevs — a Delhi NCR based student hackathon organization building spaces where students create, experiment and ship."
-    >
+  <meta
+    name="description"
+    content="OverclockedDevs — BUILD. BREAK. FORK. FIX."
+  />
 
-    <meta name="theme-color" content="#0D0D0D">
+  <!-- =========================================================
+       FONTS
+       ========================================================= -->
 
-    <!-- =========================================================
-         FONTS
-    ========================================================== -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bungee&family=Climate+Crisis&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Bungee&family=Climate+Crisis&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet"
-    >
+    /* =========================================================
+       OCd DESIGN SYSTEM
+       BUILD. BREAK. FORK. FIX.
+       ========================================================= */
 
-    <!-- =========================================================
-         STYLES
-    ========================================================== -->
+    :root {
 
-    <style>
+      --red: #F02A24;
+      --red-dark: #B80000;
 
-        /* =====================================================
-           ROOT
-        ====================================================== */
+      --yellow: #FFD400;
+      --yellow-bright: #FFE500;
 
-        :root {
-            --red: #F02A24;
-            --red-dark: #B80000;
+      --white: #FFFFFF;
+      --off-white: #FFF7E6;
 
-            --yellow: #FFD400;
-            --yellow-bright: #FFE500;
+      --black: #0D0D0D;
+      --black-soft: #151515;
+      --black-light: #1D1D1D;
 
-            --white: #FFFFFF;
-            --off-white: #FFF7E6;
+      --gray: #858585;
+      --gray-dark: #303030;
 
-            --black: #0D0D0D;
-            --black-soft: #151515;
-            --gray: #858585;
-            --gray-dark: #272727;
+      --border: rgba(255,255,255,.15);
+      --border-dark: rgba(0,0,0,.16);
 
-            --border: rgba(255,255,255,.16);
+      --font-display: "Climate Crisis", sans-serif;
+      --font-heading: "Bungee", sans-serif;
+      --font-body: "Space Grotesk", sans-serif;
 
-            --font-display: "Climate Crisis", sans-serif;
-            --font-heading: "Bungee", sans-serif;
-            --font-body: "Space Grotesk", sans-serif;
+      --max-width: 1500px;
 
-            --max-width: 1500px;
-
-            --ease: cubic-bezier(.2,.8,.2,1);
-        }
-
-
-        /* =====================================================
-           RESET
-        ====================================================== */
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            background: var(--black);
-        }
-
-        body {
-            background: var(--black);
-            color: var(--white);
-            font-family: var(--font-body);
-            overflow-x: hidden;
-        }
-
-        img {
-            display: block;
-            max-width: 100%;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        button,
-        a {
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        ::selection {
-            background: var(--yellow);
-            color: var(--black);
-        }
-
-
-        /* =====================================================
-           CUSTOM SCROLLBAR
-        ====================================================== */
-
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--black);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--red);
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--yellow);
-        }
-
-
-        /* =====================================================
-           CRT / GRAIN
-        ====================================================== */
-
-        .noise {
-            position: fixed;
-            inset: 0;
-            z-index: 9998;
-            pointer-events: none;
-            opacity: .055;
-
-            background-image:
-                url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
-
-            animation: noiseMove .25s steps(2) infinite;
-        }
-
-        .scanlines {
-            position: fixed;
-            inset: 0;
-            z-index: 9997;
-            pointer-events: none;
-
-            background:
-                repeating-linear-gradient(
-                    to bottom,
-                    rgba(255,255,255,.025) 0px,
-                    rgba(255,255,255,.025) 1px,
-                    transparent 1px,
-                    transparent 4px
-                );
-
-            opacity: .18;
-        }
-
-        @keyframes noiseMove {
-            0% {
-                transform: translate(0,0);
-            }
-
-            25% {
-                transform: translate(2%, -1%);
-            }
-
-            50% {
-                transform: translate(-1%, 2%);
-            }
-
-            75% {
-                transform: translate(1%, 1%);
-            }
-
-            100% {
-                transform: translate(0,0);
-            }
-        }
-
-
-        /* =====================================================
-           GLOBAL GRID
-        ====================================================== */
-
-        .page-grid {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
-
-            background-image:
-                linear-gradient(
-                    rgba(255,255,255,.025) 1px,
-                    transparent 1px
-                ),
-                linear-gradient(
-                    90deg,
-                    rgba(255,255,255,.025) 1px,
-                    transparent 1px
-                );
-
-            background-size: 70px 70px;
-
-            mask-image: linear-gradient(
-                to bottom,
-                black,
-                transparent 85%
-            );
-        }
-
-
-        /* =====================================================
-           CONTAINER
-        ====================================================== */
-
-        .container {
-            width: min(
-                calc(100% - 48px),
-                var(--max-width)
-            );
-
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-
-
-        /* =====================================================
-           NAVIGATION
-        ====================================================== */
-
-        .nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-
-            z-index: 100;
-
-            padding: 18px 0;
-
-            transition:
-                background .35s ease,
-                backdrop-filter .35s ease,
-                padding .35s ease;
-        }
-
-        .nav.scrolled {
-            background: rgba(13,13,13,.78);
-            backdrop-filter: blur(18px);
-            padding: 12px 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .nav-inner {
-            width: min(
-                calc(100% - 48px),
-                var(--max-width)
-            );
-
-            margin: auto;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 30px;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-family: var(--font-heading);
-            font-size: 18px;
-            letter-spacing: .02em;
-        }
-
-        .brand img {
-            width: 44px;
-            height: 44px;
-            object-fit: contain;
-        }
-
-        .brand-text {
-            display: flex;
-            flex-direction: column;
-            line-height: .9;
-        }
-
-        .brand-text span:last-child {
-            color: var(--red);
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 34px;
-            font-size: 13px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: .08em;
-        }
-
-        .nav-links a {
-            position: relative;
-            transition: color .25s ease;
-        }
-
-        .nav-links a::after {
-            content: "";
-
-            position: absolute;
-            left: 0;
-            bottom: -7px;
-
-            width: 0;
-            height: 2px;
-
-            background: var(--yellow);
-
-            transition: width .25s var(--ease);
-        }
-
-        .nav-links a:hover {
-            color: var(--yellow);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .nav-cta {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-
-            padding: 12px 18px;
-
-            background: var(--red);
-            color: white;
-
-            font-family: var(--font-heading);
-            font-size: 11px;
-
-            border: 1px solid var(--red);
-
-            transition:
-                transform .25s var(--ease),
-                background .25s ease;
-        }
-
-        .nav-cta:hover {
-            background: var(--yellow);
-            color: var(--black);
-            transform: translateY(-2px);
-        }
-
-        .menu-button {
-            display: none;
-            border: 0;
-            background: transparent;
-            color: white;
-            font-size: 26px;
-            cursor: pointer;
-        }
-
-
-        /* =====================================================
-           HERO
-        ====================================================== */
-
-        .hero {
-            min-height: 100svh;
-
-            position: relative;
-
-            display: flex;
-            align-items: center;
-
-            padding:
-                150px 0
-                90px;
-
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: "";
-
-            position: absolute;
-
-            width: 650px;
-            height: 650px;
-
-            right: -220px;
-            top: 5%;
-
-            border-radius: 50%;
-
-            background:
-                radial-gradient(
-                    circle,
-                    rgba(240,42,36,.24),
-                    transparent 68%
-                );
-
-            filter: blur(30px);
-
-            pointer-events: none;
-        }
-
-        .hero-bg-word {
-            position: absolute;
-
-            right: -20px;
-            bottom: -100px;
-
-            font-family: var(--font-display);
-            font-size: clamp(15rem, 30vw, 32rem);
-
-            line-height: .7;
-
-            color: transparent;
-
-            -webkit-text-stroke: 1px rgba(255,255,255,.055);
-
-            pointer-events: none;
-
-            user-select: none;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 3;
-
-            width: 100%;
-        }
-
-        .eyebrow {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-
-            margin-bottom: 28px;
-
-            color: var(--yellow);
-
-            font-family: var(--font-heading);
-            font-size: 12px;
-
-            letter-spacing: .06em;
-        }
-
-        .eyebrow::before {
-            content: "";
-
-            width: 38px;
-            height: 3px;
-
-            background: var(--red);
-        }
-
-        .hero-title {
-            font-family: var(--font-display);
-
-            font-size: clamp(
-                4rem,
-                10vw,
-                9.5rem
-            );
-
-            line-height: .92;
-
-            letter-spacing: -.02em;
-            word-spacing: .06em;
-
-            max-width: 1150px;
-
-            text-transform: uppercase;
-        }
-
-        .hero-title .red {
-            color: var(--red);
-            letter-spacing: -.018em;
-        }
-
-        .hero-title .outline {
-            color: transparent;
-
-            -webkit-text-stroke:
-                2px rgba(255,255,255,.95);
-
-            letter-spacing: -.01em;
-        }
-
-        .hero-bottom {
-            margin-top: 50px;
-
-            display: grid;
-
-            grid-template-columns:
-                minmax(250px, 480px)
-                1fr;
-
-            gap: 80px;
-
-            align-items: end;
-        }
-
-        .hero-description {
-            color: rgba(255,255,255,.68);
-
-            font-size: 17px;
-            line-height: 1.6;
-
-            max-width: 470px;
-        }
-
-        .hero-actions {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-
-            min-height: 52px;
-
-            padding: 0 23px;
-
-            font-family: var(--font-heading);
-            font-size: 11px;
-
-            border: 1px solid white;
-
-            transition:
-                transform .25s var(--ease),
-                background .25s ease,
-                color .25s ease,
-                border-color .25s ease;
-        }
-
-        .button.primary {
-            background: var(--red);
-            border-color: var(--red);
-        }
-
-        .button.primary:hover {
-            background: var(--yellow);
-            color: var(--black);
-            border-color: var(--yellow);
-            transform: translateY(-3px);
-        }
-
-        .button.secondary:hover {
-            background: white;
-            color: var(--black);
-            transform: translateY(-3px);
-        }
-
-        .hero-scroll {
-            position: absolute;
-
-            right: 0;
-            bottom: 50px;
-
-            display: flex;
-            align-items: center;
-            gap: 10px;
-
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: .12em;
-
-            writing-mode: vertical-rl;
-
-            color: rgba(255,255,255,.45);
-        }
-
-        .hero-scroll::after {
-            content: "";
-
-            width: 1px;
-            height: 50px;
-
-            background: var(--red);
-        }
-
-
-        /* =====================================================
-           MARQUEE
-        ====================================================== */
-
-        .marquee {
-            position: relative;
-
-            overflow: hidden;
-
-            background: var(--yellow);
-            color: var(--black);
-
-            border-top: 2px solid var(--black);
-            border-bottom: 2px solid var(--black);
-
-            transform: rotate(-1deg) scale(1.02);
-
-            z-index: 5;
-        }
-
-        .marquee-track {
-            display: flex;
-            width: max-content;
-
-            animation:
-                marquee 24s linear infinite;
-        }
-
-        .marquee-item {
-            display: flex;
-            align-items: center;
-            gap: 28px;
-
-            padding: 14px 28px;
-
-            font-family: var(--font-heading);
-            font-size: 15px;
-
-            white-space: nowrap;
-        }
-
-        .marquee-item span {
-            color: var(--red);
-        }
-
-        @keyframes marquee {
-            to {
-                transform: translateX(-50%);
-            }
-        }
-
-
-        /* =====================================================
-           SECTION BASICS
-        ====================================================== */
-
-        section {
-            position: relative;
-            padding: 150px 0;
-        }
-
-        .section-number {
-            font-family: var(--font-heading);
-            color: var(--red);
-
-            font-size: 13px;
-
-            letter-spacing: .05em;
-        }
-
-        .section-header {
-            display: grid;
-
-            grid-template-columns:
-                100px
-                1fr;
-
-            gap: 30px;
-
-            margin-bottom: 80px;
-        }
-
-        .section-kicker {
-            color: var(--gray);
-
-            font-size: 11px;
-            font-weight: 600;
-
-            text-transform: uppercase;
-            letter-spacing: .12em;
-
-            margin-bottom: 20px;
-        }
-
-        .section-title {
-            font-family: var(--font-display);
-
-            font-size: clamp(
-                3rem,
-                7vw,
-                7rem
-            );
-
-            line-height: .95;
-
-            letter-spacing: -.025em;
-
-            text-transform: uppercase;
-        }
-
-        .section-title .yellow {
-            color: var(--yellow);
-        }
-
-        .section-title .red {
-            color: var(--red);
-        }
-
-
-        /* =====================================================
-           MANIFESTO
-        ====================================================== */
-
-        .manifesto {
-            padding-top: 170px;
-        }
-
-        .manifesto-grid {
-            display: grid;
-
-            grid-template-columns:
-                1.4fr
-                .6fr;
-
-            gap: 100px;
-        }
-
-        .manifesto-big {
-            font-size: clamp(
-                2rem,
-                4vw,
-                4.6rem
-            );
-
-            line-height: 1.06;
-
-            font-weight: 600;
-
-            max-width: 950px;
-        }
-
-        .manifesto-big strong {
-            color: var(--red);
-        }
-
-        .manifesto-side {
-            align-self: end;
-
-            border-left: 2px solid var(--red);
-
-            padding-left: 25px;
-
-            color: rgba(255,255,255,.58);
-
-            line-height: 1.7;
-        }
-
-        .manifesto-side strong {
-            display: block;
-
-            color: var(--yellow);
-
-            font-family: var(--font-heading);
-            font-size: 12px;
-
-            margin-bottom: 15px;
-        }
-
-
-        /* =====================================================
-           UPCOMING EVENTS
-        ====================================================== */
-
-        .events {
-            background:
-                linear-gradient(
-                    180deg,
-                    transparent,
-                    rgba(240,42,36,.025)
-                );
-        }
-
-        .events-header {
-            align-items: end;
-        }
-
-        .events-intro {
-            max-width: 600px;
-
-            margin-top: 25px;
-
-            color: rgba(255,255,255,.58);
-
-            line-height: 1.6;
-            font-size: 16px;
-        }
-
-
-        /* =====================================================
-           FEATURED EVENT
-        ====================================================== */
-
-        .featured-event {
-            position: relative;
-
-            display: grid;
-
-            grid-template-columns:
-                1.1fr
-                .9fr;
-
-            min-height: 560px;
-
-            border: 1px solid rgba(255,255,255,.16);
-
-            overflow: hidden;
-
-            background: var(--black-soft);
-
-            transition:
-                transform .4s var(--ease),
-                border-color .4s ease;
-        }
-
-        .featured-event:hover {
-            transform: translateY(-8px);
-            border-color: var(--red);
-        }
-
-        .featured-event::before {
-            content: "01";
-
-            position: absolute;
-
-            top: 30px;
-            right: 35px;
-
-            font-family: var(--font-display);
-            font-size: 90px;
-
-            color: rgba(255,255,255,.025);
-
-            pointer-events: none;
-        }
-
-        .featured-copy {
-            padding: 65px;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-
-            border-right: 1px solid var(--border);
-        }
-
-        .event-meta {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-
-            color: var(--yellow);
-
-            font-family: var(--font-heading);
-            font-size: 11px;
-
-            letter-spacing: .05em;
-        }
-
-        .event-status {
-            display: inline-flex;
-
-            padding: 7px 10px;
-
-            background: var(--red);
-            color: white;
-
-            font-family: var(--font-heading);
-            font-size: 9px;
-
-            letter-spacing: .04em;
-        }
-
-        .featured-title {
-            font-family: var(--font-display);
-
-            font-size: clamp(
-                4rem,
-                7vw,
-                8rem
-            );
-
-            line-height: .82;
-
-            letter-spacing: -.025em;
-
-            margin: 40px 0 30px;
-
-            text-transform: uppercase;
-        }
-
-        .featured-title span {
-            color: var(--red);
-        }
-
-        .event-description {
-            max-width: 540px;
-
-            color: rgba(255,255,255,.65);
-
-            line-height: 1.65;
-            font-size: 16px;
-        }
-
-        .featured-footer {
-            display: flex;
-
-            align-items: center;
-            justify-content: space-between;
-
-            gap: 20px;
-
-            padding-top: 35px;
-
-            border-top: 1px solid var(--border);
-        }
-
-        .event-details {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-        }
-
-        .detail {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .detail-label {
-            color: var(--gray);
-
-            font-size: 9px;
-            text-transform: uppercase;
-            letter-spacing: .12em;
-        }
-
-        .detail-value {
-            font-family: var(--font-heading);
-            font-size: 12px;
-        }
-
-        .featured-visual {
-            position: relative;
-
-            overflow: hidden;
-
-            min-height: 100%;
-        }
-
-        .featured-visual::before {
-            content: "";
-
-            position: absolute;
-            inset: 0;
-
-            background:
-                radial-gradient(
-                    circle at 50% 45%,
-                    rgba(240,42,36,.28),
-                    transparent 38%
-                ),
-                linear-gradient(
-                    135deg,
-                    rgba(255,212,0,.06),
-                    transparent 50%
-                );
-        }
-
-        .sun {
-            position: absolute;
-
-            width: 330px;
-            height: 330px;
-
-            border-radius: 50%;
-
-            left: 50%;
-            top: 50%;
-
-            transform:
-                translate(-50%, -50%);
-
-            background:
-                repeating-linear-gradient(
-                    to bottom,
-                    var(--yellow) 0px,
-                    var(--yellow) 8px,
-                    var(--red) 8px,
-                    var(--red) 16px
-                );
-
-            box-shadow:
-                0 0 100px rgba(240,42,36,.25);
-
-            animation:
-                sunFloat 5s ease-in-out infinite;
-        }
-
-        .sun::after {
-            content: "";
-
-            position: absolute;
-            inset: -30px;
-
-            border: 1px solid rgba(255,212,0,.25);
-            border-radius: 50%;
-        }
-
-        @keyframes sunFloat {
-            0%,100% {
-                transform:
-                    translate(-50%, -50%)
-                    scale(1);
-            }
-
-            50% {
-                transform:
-                    translate(-50%, -53%)
-                    scale(1.03);
-            }
-        }
-
-        .featured-label {
-            position: absolute;
-
-            left: 35px;
-            bottom: 30px;
-
-            font-family: var(--font-heading);
-            font-size: 11px;
-
-            color: var(--yellow);
-
-            letter-spacing: .05em;
-        }
-
-
-        /* =====================================================
-           SECONDARY EVENTS
-        ====================================================== */
-
-        .secondary-events {
-            display: grid;
-
-            grid-template-columns:
-                1fr
-                1fr;
-
-            gap: 20px;
-
-            margin-top: 20px;
-        }
-
-        .event-card {
-            position: relative;
-
-            padding: 40px;
-
-            min-height: 390px;
-
-            border: 1px solid var(--border);
-
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(255,255,255,.025),
-                    transparent
-                );
-
-            overflow: hidden;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-
-            transition:
-                transform .35s var(--ease),
-                border-color .35s ease,
-                background .35s ease;
-        }
-
-        .event-card:hover {
-            transform: translateY(-7px);
-
-            border-color: var(--yellow);
-
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(255,212,0,.05),
-                    transparent
-                );
-        }
-
-        .event-card-number {
-            position: absolute;
-
-            right: 25px;
-            top: 15px;
-
-            font-family: var(--font-display);
-
-            font-size: 100px;
-
-            color: rgba(255,255,255,.035);
-        }
-
-        .card-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: start;
-        }
-
-        .month {
-            color: var(--yellow);
-
-            font-family: var(--font-heading);
-            font-size: 12px;
-        }
-
-        .card-title {
-            position: relative;
-            z-index: 2;
-
-            font-family: var(--font-display);
-
-            font-size: clamp(
-                2.7rem,
-                5vw,
-                5rem
-            );
-
-            line-height: .9;
-
-            margin-top: 35px;
-        }
-
-        .card-title span {
-            color: var(--red);
-        }
-
-        .card-description {
-            color: rgba(255,255,255,.55);
-
-            font-size: 14px;
-            line-height: 1.55;
-
-            max-width: 470px;
-
-            margin-top: 22px;
-        }
-
-        .card-bottom {
-            padding-top: 25px;
-
-            border-top: 1px solid var(--border);
-
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .tracks {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 7px;
-        }
-
-        .track {
-            padding: 7px 9px;
-
-            border: 1px solid rgba(255,255,255,.15);
-
-            color: rgba(255,255,255,.65);
-
-            font-size: 9px;
-
-            text-transform: uppercase;
-            letter-spacing: .06em;
-        }
-
-        .arrow {
-            width: 40px;
-            height: 40px;
-
-            display: grid;
-            place-items: center;
-
-            border: 1px solid white;
-
-            font-size: 18px;
-
-            transition:
-                background .25s ease,
-                color .25s ease;
-        }
-
-        .event-card:hover .arrow {
-            background: var(--yellow);
-            color: var(--black);
-            border-color: var(--yellow);
-        }
-
-
-        /* =====================================================
-           ARCHIVE
-        ====================================================== */
-
-        .archive {
-            padding-top: 100px;
-        }
-
-        .archive-grid {
-            display: grid;
-
-            grid-template-columns:
-                .65fr
-                1.35fr;
-
-            gap: 60px;
-
-            align-items: center;
-        }
-
-        .archive-image {
-            position: relative;
-
-            background: #181818;
-
-            border: 1px solid var(--border);
-
-            padding: 45px;
-
-            min-height: 450px;
-
-            display: grid;
-            place-items: center;
-
-            overflow: hidden;
-
-            transition:
-                transform .35s var(--ease),
-                border-color .35s ease;
-        }
-
-        .archive-image:hover {
-            transform: rotate(-1deg) scale(1.01);
-            border-color: var(--red);
-        }
-
-        .archive-image::before {
-            content: "ARCHIVE";
-
-            position: absolute;
-
-            top: 15px;
-            left: 15px;
-
-            font-family: var(--font-heading);
-            font-size: 10px;
-
-            color: var(--red);
-        }
-
-        .archive-image img {
-            max-height: 280px;
-
-            object-fit: contain;
-
-            filter:
-                drop-shadow(
-                    0 20px 30px rgba(0,0,0,.5)
-                );
-
-            transition:
-                transform .5s var(--ease);
-        }
-
-        .archive-image:hover img {
-            transform: scale(1.04);
-        }
-
-        .archive-copy .archive-date {
-            color: var(--yellow);
-
-            font-family: var(--font-heading);
-            font-size: 12px;
-        }
-
-        .archive-title {
-            font-family: var(--font-display);
-
-            font-size: clamp(
-                3.3rem,
-                6vw,
-                6.5rem
-            );
-
-            line-height: .88;
-
-            margin: 25px 0;
-        }
-
-        .archive-title span {
-            color: var(--red);
-        }
-
-        .archive-copy p {
-            color: rgba(255,255,255,.6);
-
-            line-height: 1.7;
-
-            max-width: 650px;
-        }
-
-        .archive-stats {
-            display: grid;
-
-            grid-template-columns:
-                repeat(3,1fr);
-
-            gap: 1px;
-
-            background: var(--border);
-
-            margin-top: 40px;
-
-            border: 1px solid var(--border);
-        }
-
-        .archive-stat {
-            background: var(--black);
-
-            padding: 25px;
-        }
-
-        .archive-stat strong {
-            display: block;
-
-            font-family: var(--font-display);
-
-            font-size: 35px;
-
-            color: var(--yellow);
-
-            margin-bottom: 8px;
-        }
-
-        .archive-stat span {
-            color: var(--gray);
-
-            font-size: 10px;
-
-            text-transform: uppercase;
-            letter-spacing: .08em;
-        }
-
-
-        /* =====================================================
-           IMPACT
-        ====================================================== */
-
-        .impact {
-            background: var(--red);
-
-            color: var(--black);
-
-            overflow: hidden;
-        }
-
-        .impact::before {
-            content: "OCd";
-
-            position: absolute;
-
-            right: -20px;
-            bottom: -130px;
-
-            font-family: var(--font-display);
-
-            font-size: 28vw;
-
-            line-height: .7;
-
-            color: rgba(0,0,0,.07);
-        }
-
-        .impact .section-number {
-            color: var(--yellow);
-        }
-
-        .impact-title {
-            font-family: var(--font-display);
-
-            font-size: clamp(
-                3.5rem,
-                8vw,
-                9rem
-            );
-
-            line-height: .88;
-
-            max-width: 1050px;
-
-            margin-bottom: 70px;
-        }
-
-        .impact-grid {
-            display: grid;
-
-            grid-template-columns:
-                repeat(3,1fr);
-
-            gap: 1px;
-
-            background: rgba(0,0,0,.2);
-
-            border: 1px solid rgba(0,0,0,.25);
-        }
-
-        .impact-stat {
-            padding: 45px 35px;
-
-            background: var(--red);
-        }
-
-        .impact-stat strong {
-            display: block;
-
-            font-family: var(--font-display);
-
-            font-size: clamp(
-                3rem,
-                6vw,
-                6rem
-            );
-
-            line-height: .9;
-
-            margin-bottom: 15px;
-        }
-
-        .impact-stat span {
-            font-weight: 700;
-
-            font-size: 12px;
-
-            text-transform: uppercase;
-            letter-spacing: .08em;
-        }
-
-
-        /* =====================================================
-           COLLABORATE
-        ====================================================== */
-
-        .collaborate {
-            min-height: 650px;
-
-            display: flex;
-            align-items: center;
-
-            overflow: hidden;
-        }
-
-        .collaborate-content {
-            position: relative;
-            z-index: 3;
-
-            max-width: 1100px;
-        }
-
-        .collaborate-title {
-            font-family: var(--font-display);
-
-            font-size: clamp(
-                4rem,
-                9vw,
-                10rem
-            );
-
-            line-height: .85;
-
-            letter-spacing: -.025em;
-
-            margin: 25px 0 45px;
-        }
-
-        .collaborate-title span {
-            color: var(--yellow);
-        }
-
-        .collaborate-description {
-            max-width: 600px;
-
-            color: rgba(255,255,255,.6);
-
-            line-height: 1.65;
-
-            margin-bottom: 35px;
-        }
-
-        .collaborate-orbit {
-            position: absolute;
-
-            width: 700px;
-            height: 700px;
-
-            right: -180px;
-            top: 50%;
-
-            transform: translateY(-50%);
-
-            border:
-                1px solid rgba(255,255,255,.08);
-
-            border-radius: 50%;
-        }
-
-        .collaborate-orbit::before,
-        .collaborate-orbit::after {
-            content: "";
-
-            position: absolute;
-
-            border-radius: 50%;
-
-            border:
-                1px solid rgba(255,255,255,.05);
-        }
-
-        .collaborate-orbit::before {
-            inset: 100px;
-        }
-
-        .collaborate-orbit::after {
-            inset: 210px;
-        }
-
-        .orbit-dot {
-            position: absolute;
-
-            top: 50%;
-            left: -7px;
-
-            width: 14px;
-            height: 14px;
-
-            border-radius: 50%;
-
-            background: var(--yellow);
-
-            box-shadow:
-                0 0 30px var(--yellow);
-
-            animation:
-                orbit 10s linear infinite;
-        }
-
-        @keyframes orbit {
-            from {
-                transform:
-                    rotate(0deg)
-                    translateX(350px)
-                    rotate(0deg);
-            }
-
-            to {
-                transform:
-                    rotate(360deg)
-                    translateX(350px)
-                    rotate(-360deg);
-            }
-        }
-
-
-        /* =====================================================
-           FOOTER
-        ====================================================== */
-
-        footer {
-            position: relative;
-
-            border-top: 1px solid var(--border);
-
-            padding: 70px 0 35px;
-
-            background: #090909;
-        }
-
-        .footer-top {
-            display: flex;
-
-            justify-content: space-between;
-
-            gap: 50px;
-
-            padding-bottom: 70px;
-        }
-
-        .footer-brand {
-            max-width: 450px;
-        }
-
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-
-            margin-bottom: 25px;
-
-            font-family: var(--font-heading);
-            font-size: 22px;
-        }
-
-        .footer-logo img {
-            width: 50px;
-        }
-
-        .footer-brand p {
-            color: rgba(255,255,255,.45);
-
-            line-height: 1.6;
-        }
-
-        .footer-links {
-            display: grid;
-
-            grid-template-columns:
-                repeat(2, 150px);
-
-            gap: 20px;
-        }
-
-        .footer-column {
-            display: flex;
-            flex-direction: column;
-
-            gap: 13px;
-        }
-
-        .footer-column strong {
-            color: var(--yellow);
-
-            font-family: var(--font-heading);
-            font-size: 10px;
-
-            margin-bottom: 8px;
-        }
-
-        .footer-column a {
-            color: rgba(255,255,255,.55);
-
-            font-size: 13px;
-
-            transition: color .2s ease;
-        }
-
-        .footer-column a:hover {
-            color: white;
-        }
-
-        .footer-bottom {
-            display: flex;
-
-            justify-content: space-between;
-
-            gap: 30px;
-
-            padding-top: 25px;
-
-            border-top: 1px solid var(--border);
-
-            color: rgba(255,255,255,.3);
-
-            font-size: 10px;
-
-            text-transform: uppercase;
-            letter-spacing: .08em;
-        }
-
-        .footer-bottom span:first-child {
-            color: var(--red);
-        }
-
-
-        /* =====================================================
-           REVEAL ANIMATION
-        ====================================================== */
-
-        .reveal {
-            opacity: 0;
-
-            transform:
-                translateY(35px);
-
-            transition:
-                opacity .8s var(--ease),
-                transform .8s var(--ease);
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-
-        /* =====================================================
-           MOBILE NAV
-        ====================================================== */
-
-        .mobile-menu {
-            position: fixed;
-
-            inset: 0;
-
-            z-index: 90;
-
-            background: var(--black);
-
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            opacity: 0;
-            visibility: hidden;
-
-            transition:
-                opacity .3s ease,
-                visibility .3s ease;
-        }
-
-        .mobile-menu.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .mobile-menu-links {
-            display: flex;
-            flex-direction: column;
-
-            align-items: center;
-
-            gap: 25px;
-        }
-
-        .mobile-menu-links a {
-            font-family: var(--font-display);
-
-            font-size: 10vw;
-
-            line-height: .85;
-        }
-
-        .mobile-menu-links a:hover {
-            color: var(--red);
-        }
-
-
-        /* =====================================================
-           RESPONSIVE — 1100
-        ====================================================== */
-
-        @media (max-width: 1100px) {
-
-            .hero-bottom {
-                grid-template-columns: 1fr;
-                gap: 35px;
-            }
-
-            .featured-event {
-                grid-template-columns: 1fr;
-            }
-
-            .featured-copy {
-                border-right: 0;
-                border-bottom: 1px solid var(--border);
-            }
-
-            .featured-visual {
-                min-height: 420px;
-            }
-
-            .archive-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .archive-image {
-                min-height: 380px;
-            }
-
-            .manifesto-grid {
-                grid-template-columns: 1fr;
-                gap: 45px;
-            }
-
-            .collaborate-orbit {
-                opacity: .35;
-            }
-        }
-
-
-        /* =====================================================
-           RESPONSIVE — 850
-        ====================================================== */
-
-        @media (max-width: 850px) {
-
-            .container {
-                width: min(
-                    calc(100% - 32px),
-                    var(--max-width)
-                );
-            }
-
-            .nav-inner {
-                width: calc(100% - 32px);
-            }
-
-            .nav-links,
-            .nav-cta {
-                display: none;
-            }
-
-            .menu-button {
-                display: block;
-                position: relative;
-                z-index: 110;
-            }
-
-            .hero {
-                min-height: 900px;
-
-                padding-top: 150px;
-            }
-
-            .hero-title {
-                font-size: 17vw;
-
-                line-height: .95;
-
-                letter-spacing: -.015em;
-
-                word-spacing: .04em;
-            }
-
-            .hero-title .outline {
-                -webkit-text-stroke: 1.5px white;
-            }
-
-            .hero-scroll {
-                display: none;
-            }
-
-            section {
-                padding: 105px 0;
-            }
-
-            .section-header {
-                grid-template-columns: 60px 1fr;
-
-                gap: 15px;
-
-                margin-bottom: 55px;
-            }
-
-            .secondary-events {
-                grid-template-columns: 1fr;
-            }
-
-            .featured-copy {
-                padding: 38px 28px;
-            }
-
-            .featured-title {
-                font-size: 15vw;
-            }
-
-            .featured-footer {
-                align-items: flex-start;
-                flex-direction: column;
-            }
-
-            .featured-visual {
-                min-height: 350px;
-            }
-
-            .sun {
-                width: 250px;
-                height: 250px;
-            }
-
-            .impact-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-top {
-                flex-direction: column;
-            }
-        }
-
-
-        /* =====================================================
-           RESPONSIVE — 500
-        ====================================================== */
-
-        @media (max-width: 500px) {
-
-            .brand-text {
-                display: none;
-            }
-
-            .brand img {
-                width: 42px;
-                height: 42px;
-            }
-
-            .hero {
-                min-height: 850px;
-            }
-
-            .hero-title {
-                font-size: 18vw;
-
-                line-height: .98;
-
-                letter-spacing: 0;
-            }
-
-            .hero-title .red {
-                letter-spacing: 0;
-            }
-
-            .hero-title .outline {
-                letter-spacing: 0;
-            }
-
-            .hero-description {
-                font-size: 15px;
-            }
-
-            .hero-actions {
-                flex-direction: column;
-            }
-
-            .button {
-                width: 100%;
-            }
-
-            .section-header {
-                grid-template-columns: 1fr;
-            }
-
-            .section-number {
-                margin-bottom: -8px;
-            }
-
-            .section-title {
-                font-size: 14vw;
-            }
-
-            .event-card {
-                padding: 28px;
-
-                min-height: 350px;
-            }
-
-            .card-bottom {
-                align-items: flex-start;
-                flex-direction: column;
-            }
-
-            .archive-image {
-                min-height: 300px;
-                padding: 25px;
-            }
-
-            .archive-stats {
-                grid-template-columns: 1fr;
-            }
-
-            .archive-stat {
-                border-bottom: 1px solid var(--border);
-            }
-
-            .collaborate {
-                min-height: 600px;
-            }
-
-            .collaborate-title {
-                font-size: 17vw;
-            }
-
-            .collaborate-orbit {
-                width: 500px;
-                height: 500px;
-
-                right: -280px;
-            }
-
-            .footer-links {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-            }
-        }
-
-        /* =========================================================
-   OCd — AWWWARDS LEVEL POLISH
-   IDENTITY LOCK:
-   OCd / Climate Crisis / Bungee / Space Grotesk
-========================================================= */
-
-
-/* =========================================================
-   PREMIUM GLOBAL MOTION
-========================================================= */
-
-:root {
-    --ease-ocd: cubic-bezier(.16, 1, .3, 1);
-    --ease-snap: cubic-bezier(.77, 0, .175, 1);
-}
-
-body {
-    cursor: default;
-}
-
-::selection {
-    background: var(--red);
-    color: var(--yellow);
-}
-
-
-/* =========================================================
-   PREMIUM PAGE GRID
-========================================================= */
-
-.page-grid {
-    background-size: 90px 90px;
-
-    opacity: .55;
-
-    mask-image:
-        radial-gradient(
-            ellipse at center,
-            black 0%,
-            rgba(0,0,0,.75) 45%,
-            transparent 85%
-        );
-}
-
-
-/* =========================================================
-   NAV — MORE EDITORIAL
-========================================================= */
-
-.nav {
-    padding: 22px 0;
-
-    mix-blend-mode: normal;
-}
-
-.nav.scrolled {
-    background: rgba(13,13,13,.72);
-
-    backdrop-filter: blur(22px)
-        saturate(140%);
-
-    -webkit-backdrop-filter: blur(22px)
-        saturate(140%);
-
-    box-shadow:
-        0 10px 40px rgba(0,0,0,.18);
-}
-
-.brand {
-    transition:
-        transform .5s var(--ease-ocd);
-}
-
-.brand:hover {
-    transform: translateX(4px);
-}
-
-.brand img {
-    transition:
-        transform .6s var(--ease-ocd),
-        filter .6s ease;
-}
-
-.brand:hover img {
-    transform:
-        rotate(-8deg)
-        scale(1.08);
-
-    filter:
-        drop-shadow(
-            0 0 18px
-            rgba(240,42,36,.35)
-        );
-}
-
-.nav-links a {
-    transition:
-        color .3s ease,
-        transform .3s var(--ease-ocd);
-}
-
-.nav-links a:hover {
-    transform: translateY(-2px);
-}
-
-
-/* =========================================================
-   HERO — CINEMATIC
-========================================================= */
-
-.hero {
-    min-height: 100svh;
-
-    isolation: isolate;
-}
-
-.hero::after {
-    content: "";
-
-    position: absolute;
-    inset: 0;
-
-    pointer-events: none;
-
-    background:
-        radial-gradient(
-            circle at 72% 40%,
-            rgba(255,212,0,.055),
-            transparent 22%
-        ),
-        radial-gradient(
-            circle at 30% 65%,
-            rgba(240,42,36,.045),
-            transparent 28%
-        );
-
-    z-index: 1;
-}
-
-.hero-bg-word {
-    right: -4vw;
-    bottom: -7vw;
-
-    font-size: clamp(
-        16rem,
-        34vw,
-        40rem
-    );
-
-    opacity: .9;
-
-    -webkit-text-stroke:
-        1px rgba(255,255,255,.075);
-
-    transition:
-        transform 1.2s var(--ease-ocd);
-}
-
-
-/* Hero eyebrow */
-
-.eyebrow {
-    overflow: hidden;
-
-    animation:
-        heroEyebrow
-        1s
-        .15s
-        var(--ease-ocd)
-        both;
-}
-
-.eyebrow::before {
-    transition:
-        width .8s var(--ease-ocd);
-}
-
-
-/* =========================================================
-   HERO TITLE
-========================================================= */
-
-.hero-title {
-    position: relative;
-
-    max-width: 1250px;
-
-    font-size:
-        clamp(
-            4.2rem,
-            10.5vw,
-            10.5rem
-        );
-
-    line-height: .86;
-
-    letter-spacing: -.035em;
-
-    animation:
-        heroTitle
-        1.2s
-        .25s
-        var(--ease-ocd)
-        both;
-}
-
-.hero-title .red {
-    display: inline-block;
-
-    transition:
-        transform .7s var(--ease-ocd),
-        color .3s ease;
-}
-
-.hero-title .red:hover {
-    transform:
-        translateX(12px)
-        skewX(-3deg);
-}
-
-.hero-title .outline {
-    display: inline-block;
-
-    transition:
-        color .35s ease,
-        -webkit-text-stroke .35s ease,
-        transform .7s var(--ease-ocd);
-}
-
-.hero-title .outline:hover {
-    color: var(--yellow);
-
-    -webkit-text-stroke:
-        2px var(--yellow);
-
-    transform:
-        translateX(10px);
-}
-
-
-/* =========================================================
-   HERO BOTTOM
-========================================================= */
-
-.hero-bottom {
-    animation:
-        heroBottom
-        1s
-        .6s
-        var(--ease-ocd)
-        both;
-}
-
-.hero-description {
-    font-size: 16px;
-
-    color:
-        rgba(255,255,255,.62);
-
-    border-left:
-        2px solid var(--red);
-
-    padding-left: 20px;
-}
-
-
-/* =========================================================
-   HERO BUTTONS
-========================================================= */
-
-.button {
-    position: relative;
-
-    overflow: hidden;
-
-    isolation: isolate;
-
-    transition:
-        transform .5s var(--ease-ocd),
-        color .3s ease,
-        border-color .3s ease;
-}
-
-.button::before {
-    content: "";
-
-    position: absolute;
-    inset: 0;
-
-    background: var(--yellow);
-
-    transform:
-        translateY(105%);
-
-    transition:
-        transform .55s var(--ease-ocd);
-
-    z-index: -1;
-}
-
-.button:hover::before {
-    transform:
-        translateY(0);
-}
-
-.button.primary::before {
-    background: var(--yellow);
-}
-
-.button.primary:hover {
-    color: var(--black);
-}
-
-.button.secondary::before {
-    background: var(--white);
-}
-
-.button.secondary:hover {
-    color: var(--black);
-}
-
-.button:hover {
-    transform:
-        translateY(-5px);
-}
-
-
-/* =========================================================
-   HERO SCROLL INDICATOR
-========================================================= */
-
-.hero-scroll {
-    opacity: .55;
-
-    animation:
-        scrollIndicator
-        2.5s
-        ease-in-out
-        infinite;
-}
-
-@keyframes scrollIndicator {
-    0%,100% {
-        transform:
-            translateY(0);
+      --ease: cubic-bezier(.2,.8,.2,1);
+      --ease-fast: cubic-bezier(.16,1,.3,1);
     }
 
-    50% {
-        transform:
-            translateY(8px);
-    }
-}
 
-
-/* =========================================================
-   MARQUEE — BIGGER / MORE GRAPHIC
-========================================================= */
-
-.marquee {
-    margin-top: -2px;
-
-    box-shadow:
-        0 15px 50px
-        rgba(0,0,0,.2);
-}
-
-.marquee-track {
-    animation-duration: 20s;
-}
-
-.marquee-item {
-    padding:
-        17px 32px;
-
-    font-size: 16px;
-}
-
-.marquee:hover .marquee-track {
-    animation-play-state: paused;
-}
-
-
-/* =========================================================
-   SECTION NUMBERS
-========================================================= */
-
-.section-number {
-    position: relative;
-
-    transition:
-        color .3s ease;
-}
-
-.section-number::before {
-    content: "";
-
-    display: inline-block;
-
-    width: 8px;
-    height: 8px;
-
-    margin-right: 9px;
-
-    background: var(--red);
-
-    box-shadow:
-        0 0 12px
-        rgba(240,42,36,.65);
-
-    animation:
-        sectionPulse
-        2s
-        ease-in-out
-        infinite;
-}
-
-@keyframes sectionPulse {
-    0%,100% {
-        opacity: .5;
-        transform: scale(.8);
-    }
-
-    50% {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-
-/* =========================================================
-   SECTION TITLES
-========================================================= */
-
-.section-title {
-    transition:
-        transform .8s var(--ease-ocd);
-}
-
-.section-header:hover .section-title {
-    transform:
-        translateX(5px);
-}
-
-
-/* =========================================================
-   MANIFESTO
-========================================================= */
-
-.manifesto-big {
-    font-size:
-        clamp(
-            2.1rem,
-            4.3vw,
-            4.8rem
-        );
-
-    letter-spacing:
-        -.025em;
-}
-
-.manifesto-big strong {
-    display: inline;
-
-    position: relative;
-
-    color: var(--red);
-}
-
-.manifesto-big strong::after {
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-    bottom: -.08em;
-
-    width: 100%;
-    height: 3px;
-
-    background:
-        var(--yellow);
-
-    transform:
-        scaleX(0);
-
-    transform-origin:
-        left;
-
-    transition:
-        transform .8s var(--ease-ocd);
-}
-
-.manifesto-grid:hover
-.manifesto-big strong::after {
-    transform:
-        scaleX(1);
-}
-
-
-/* =========================================================
-   FEATURED EVENT
-========================================================= */
-
-.featured-event {
-    border:
-        1px solid
-        rgba(255,255,255,.12);
-
-    box-shadow:
-        0 30px 100px
-        rgba(0,0,0,.22);
-
-    transition:
-        transform .8s var(--ease-ocd),
-        border-color .4s ease,
-        box-shadow .8s ease;
-}
-
-.featured-event:hover {
-    transform:
-        translateY(-12px);
-
-    border-color:
-        rgba(240,42,36,.6);
-
-    box-shadow:
-        0 45px 120px
-        rgba(0,0,0,.4);
-}
-
-.featured-copy {
-    position: relative;
-}
-
-.featured-copy::before {
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-    top: 15%;
-
-    width: 3px;
-    height: 70%;
-
-    background:
-        linear-gradient(
-            to bottom,
-            transparent,
-            var(--red),
-            transparent
-        );
-
-    opacity: .5;
-}
-
-.featured-title {
-    font-size:
-        clamp(
-            4.2rem,
-            7.5vw,
-            8.5rem
-        );
-
-    transition:
-        transform .7s var(--ease-ocd);
-}
-
-.featured-event:hover
-.featured-title {
-    transform:
-        translateX(8px);
-}
-
-.featured-title span {
-    transition:
-        color .3s ease;
-}
-
-
-/* =========================================================
-   FALLING SUN — MORE PREMIUM
-========================================================= */
-
-.featured-visual {
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(240,42,36,.08),
-            transparent 60%
-        );
-
-    isolation: isolate;
-}
-
-.featured-visual::after {
-    content: "";
-
-    position: absolute;
-    inset: 0;
-
-    background:
-        repeating-linear-gradient(
-            90deg,
-            transparent 0,
-            transparent 49px,
-            rgba(255,255,255,.025) 50px
-        );
-
-    opacity: .35;
-
-    pointer-events: none;
-}
-
-.sun {
-    width:
-        clamp(
-            240px,
-            24vw,
-            360px
-        );
-
-    height:
-        clamp(
-            240px,
-            24vw,
-            360px
-        );
-
-    background:
-        repeating-linear-gradient(
-            to bottom,
-            var(--yellow) 0px,
-            var(--yellow) 9px,
-            var(--red) 9px,
-            var(--red) 18px
-        );
-
-    box-shadow:
-        0 0 40px
-        rgba(240,42,36,.25),
-
-        0 0 120px
-        rgba(240,42,36,.15);
-
-    transition:
-        transform 1s var(--ease-ocd);
-}
-
-.featured-event:hover .sun {
-    transform:
-        translate(-50%, -50%)
-        scale(1.08)
-        rotate(3deg);
-}
-
-.sun::before {
-    content: "";
-
-    position: absolute;
-    inset: -55px;
-
-    border:
-        1px solid
-        rgba(255,212,0,.12);
-
-    border-radius: 50%;
-
-    animation:
-        sunRing
-        8s
-        linear
-        infinite;
-}
-
-@keyframes sunRing {
-    from {
-        transform:
-            rotate(0deg)
-            scale(1);
-    }
-
-    to {
-        transform:
-            rotate(360deg)
-            scale(1.04);
-    }
-}
-
-
-/* =========================================================
-   EVENT CARDS
-========================================================= */
-
-.event-card {
-    min-height: 410px;
-
-    transition:
-        transform .7s var(--ease-ocd),
-        border-color .4s ease,
-        background .5s ease,
-        box-shadow .7s ease;
-}
-
-.event-card:hover {
-    transform:
-        translateY(-12px);
-
-    box-shadow:
-        0 30px 80px
-        rgba(0,0,0,.3);
-}
-
-.event-card::after {
-    content: "";
-
-    position: absolute;
-
-    width: 180px;
-    height: 180px;
-
-    right: -90px;
-    bottom: -90px;
-
-    border-radius: 50%;
-
-    background:
-        var(--yellow);
-
-    opacity: 0;
-
-    filter: blur(70px);
-
-    transition:
-        opacity .6s ease;
-}
-
-.event-card:hover::after {
-    opacity: .12;
-}
-
-.event-card-number {
-    transition:
-        transform .8s var(--ease-ocd),
-        color .4s ease;
-}
-
-.event-card:hover
-.event-card-number {
-    transform:
-        translate(-10px, -8px)
-        rotate(-4deg);
-
-    color:
-        rgba(255,255,255,.07);
-}
-
-.card-title {
-    transition:
-        transform .6s var(--ease-ocd);
-}
-
-.event-card:hover .card-title {
-    transform:
-        translateX(5px);
-}
-
-.arrow {
-    transition:
-        transform .5s var(--ease-ocd),
-        background .3s ease,
-        color .3s ease;
-}
-
-.event-card:hover .arrow {
-    transform:
-        rotate(8deg)
-        scale(1.1);
-}
-
-
-/* =========================================================
-   ARCHIVE
-========================================================= */
-
-.archive-image {
-    box-shadow:
-        0 25px 80px
-        rgba(0,0,0,.25);
-
-    transition:
-        transform .8s var(--ease-ocd),
-        border-color .4s ease,
-        box-shadow .8s ease;
-}
-
-.archive-image:hover {
-    transform:
-        rotate(-1.5deg)
-        scale(1.025);
-
-    box-shadow:
-        0 35px 100px
-        rgba(0,0,0,.4);
-}
-
-.archive-image::after {
-    content:
-        "CLICK TO VISIT";
-
-    position: absolute;
-
-    right: 18px;
-    bottom: 18px;
-
-    padding:
-        8px 10px;
-
-    background:
-        var(--red);
-
-    color:
-        white;
-
-    font-family:
-        var(--font-heading);
-
-    font-size:
-        8px;
-
-    letter-spacing:
-        .06em;
-
-    transform:
-        translateY(10px);
-
-    opacity: 0;
-
-    transition:
-        opacity .4s ease,
-        transform .5s var(--ease-ocd);
-}
-
-.archive-image:hover::after {
-    opacity: 1;
-
-    transform:
-        translateY(0);
-}
-
-.archive-title {
-    transition:
-        transform .7s var(--ease-ocd);
-}
-
-.archive-grid:hover
-.archive-title {
-    transform:
-        translateX(5px);
-}
-
-
-/* =========================================================
-   ARCHIVE STATS
-========================================================= */
-
-.archive-stat {
-    transition:
-        background .4s ease,
-        transform .5s var(--ease-ocd);
-}
-
-.archive-stat:hover {
-    background:
-        var(--black-soft);
-
-    transform:
-        translateY(-3px);
-}
-
-.archive-stat strong {
-    transition:
-        transform .5s var(--ease-ocd);
-}
-
-.archive-stat:hover strong {
-    transform:
-        scale(1.08);
-}
-
-
-/* =========================================================
-   IMPACT — MORE POSTER-LIKE
-========================================================= */
-
-.impact {
-    position: relative;
-
-    background:
-        var(--red);
-
-    box-shadow:
-        inset 0 1px rgba(255,255,255,.12);
-}
-
-.impact::after {
-    content: "";
-
-    position: absolute;
-    inset: 0;
-
-    background:
-        linear-gradient(
-            135deg,
-            transparent 0%,
-            rgba(255,255,255,.05) 50%,
-            transparent 100%
-        );
-
-    pointer-events: none;
-}
-
-.impact-title {
-    letter-spacing:
-        -.04em;
-
-    transition:
-        transform .8s var(--ease-ocd);
-}
-
-.impact:hover .impact-title {
-    transform:
-        translateX(7px);
-}
-
-.impact-stat {
-    transition:
-        transform .6s var(--ease-ocd),
-        background .4s ease;
-}
-
-.impact-stat:hover {
-    background:
-        rgba(255,255,255,.06);
-
-    transform:
-        translateY(-5px);
-}
-
-.impact-stat strong {
-    transition:
-        transform .6s var(--ease-ocd);
-}
-
-.impact-stat:hover strong {
-    transform:
-        scale(1.06);
-}
-
-
-/* =========================================================
-   COLLABORATE — CINEMATIC ENDING
-========================================================= */
-
-.collaborate {
-    min-height: 720px;
-
-    background:
-        radial-gradient(
-            circle at 75% 50%,
-            rgba(240,42,36,.08),
-            transparent 30%
-        );
-}
-
-.collaborate-title {
-    font-size:
-        clamp(
-            4.2rem,
-            9.5vw,
-            11rem
-        );
-
-    letter-spacing:
-        -.045em;
-}
-
-.collaborate-title span {
-    position: relative;
-}
-
-.collaborate-title span::after {
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-    bottom: -.02em;
-
-    width: 100%;
-    height: 5px;
-
-    background:
-        var(--red);
-
-    transform:
-        scaleX(0);
-
-    transform-origin:
-        right;
-
-    transition:
-        transform 1s var(--ease-ocd);
-}
-
-.collaborate:hover
-.collaborate-title span::after {
-    transform:
-        scaleX(1);
-
-    transform-origin:
-        left;
-}
-
-.collaborate-orbit {
-    border-color:
-        rgba(255,255,255,.07);
-
-    animation:
-        orbitBreath
-        8s
-        ease-in-out
-        infinite;
-}
-
-@keyframes orbitBreath {
-    0%,100% {
-        transform:
-            translateY(-50%)
-            scale(1);
-    }
-
-    50% {
-        transform:
-            translateY(-50%)
-            scale(1.035);
-    }
-}
-
-.orbit-dot {
-    animation:
-        orbit
-        12s
-        linear
-        infinite;
-
-    box-shadow:
-        0 0 15px var(--yellow),
-        0 0 50px rgba(255,212,0,.35);
-}
-
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-footer {
-    background:
-        #080808;
-}
-
-.footer-logo {
-    transition:
-        transform .5s var(--ease-ocd);
-}
-
-.footer-logo:hover {
-    transform:
-        translateX(5px);
-}
-
-.footer-logo img {
-    transition:
-        transform .5s var(--ease-ocd);
-}
-
-.footer-logo:hover img {
-    transform:
-        rotate(-6deg);
-}
-
-.footer-column a {
-    position: relative;
-
-    width: max-content;
-}
-
-.footer-column a::after {
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-    bottom: -4px;
-
-    width: 0;
-    height: 1px;
-
-    background:
-        var(--yellow);
-
-    transition:
-        width .4s var(--ease-ocd);
-}
-
-.footer-column a:hover::after {
-    width: 100%;
-}
-
-
-/* =========================================================
-   REVEAL — MORE PREMIUM
-========================================================= */
-
-.reveal {
-    opacity: 0;
-
-    transform:
-        translateY(60px)
-        scale(.985);
-
-    filter:
-        blur(5px);
-
-    transition:
-        opacity 1s var(--ease-ocd),
-        transform 1s var(--ease-ocd),
-        filter 1s var(--ease-ocd);
-}
-
-.reveal.visible {
-    opacity: 1;
-
-    transform:
-        translateY(0)
-        scale(1);
-
-    filter:
-        blur(0);
-}
-
-
-/* =========================================================
-   STAGGER
-========================================================= */
-
-.secondary-events
-.event-card:nth-child(2) {
-    transition-delay:
-        .1s;
-}
-
-.impact-stat:nth-child(2) {
-    transition-delay:
-        .1s;
-}
-
-.impact-stat:nth-child(3) {
-    transition-delay:
-        .2s;
-}
-
-
-/* =========================================================
-   HERO KEYFRAMES
-========================================================= */
-
-@keyframes heroEyebrow {
-    from {
-        opacity: 0;
-        transform:
-            translateY(25px);
-    }
-
-    to {
-        opacity: 1;
-        transform:
-            translateY(0);
-    }
-}
-
-@keyframes heroTitle {
-    from {
-        opacity: 0;
-
-        transform:
-            translateY(70px)
-            skewY(3deg);
-
-        filter:
-            blur(10px);
-    }
-
-    to {
-        opacity: 1;
-
-        transform:
-            translateY(0)
-            skewY(0);
-
-        filter:
-            blur(0);
-    }
-}
-
-@keyframes heroBottom {
-    from {
-        opacity: 0;
-
-        transform:
-            translateY(35px);
-    }
-
-    to {
-        opacity: 1;
-
-        transform:
-            translateY(0);
-    }
-}
-
-
-/* =========================================================
-   MOBILE POLISH
-========================================================= */
-
-@media (max-width: 850px) {
-
-    .hero {
-        min-height: 100svh;
-    }
-
-    .hero-title {
-        font-size:
-            clamp(
-                4rem,
-                16.5vw,
-                8rem
-            );
-
-        letter-spacing:
-            -.025em;
-    }
-
-    .hero-description {
-        border-left:
-            2px solid var(--red);
-
-        padding-left:
-            15px;
-    }
-
-    .featured-event:hover {
-        transform:
-            translateY(-5px);
-    }
-
-    .event-card:hover {
-        transform:
-            translateY(-5px);
-    }
-
-    .collaborate {
-        min-height:
-            650px;
-    }
-
-    .collaborate-orbit {
-        opacity:
-            .22;
-    }
-}
-
-
-/* =========================================================
-   SMALL MOBILE
-========================================================= */
-
-@media (max-width: 500px) {
-
-    .hero-title {
-        font-size:
-            18vw;
-
-        line-height:
-            .94;
-
-        letter-spacing:
-            -.01em;
-    }
-
-    .featured-title {
-        font-size:
-            17vw;
-    }
-
-    .archive-title {
-        font-size:
-            15vw;
-    }
-
-    .impact-title {
-        font-size:
-            16vw;
-    }
-
-    .collaborate-title {
-        font-size:
-            17vw;
-    }
-
-    .sun {
-        width:
-            230px;
-
-        height:
-            230px;
-    }
-}
-
-
-/* =========================================================
-   REDUCED MOTION
-========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
+    /* =========================================================
+       RESET
+       ========================================================= */
 
     *,
     *::before,
     *::after {
-        animation-duration:
-            .01ms !important;
-
-        animation-iteration-count:
-            1 !important;
-
-        scroll-behavior:
-            auto !important;
-
-        transition-duration:
-            .01ms !important;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--black);
+    }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+
+      font-family: var(--font-body);
+
+      overflow-x: hidden;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    ::selection {
+      background: var(--yellow);
+      color: var(--black);
+    }
+
+
+    /* =========================================================
+       GLOBAL EFFECTS
+       ========================================================= */
+
+    .page-grid {
+      position: fixed;
+      inset: 0;
+
+      z-index: -10;
+      pointer-events: none;
+
+      background-image:
+        linear-gradient(
+          rgba(255,255,255,.022) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255,255,255,.022) 1px,
+          transparent 1px
+        );
+
+      background-size: 70px 70px;
+    }
+
+
+    .noise {
+      position: fixed;
+      inset: -50%;
+
+      width: 200%;
+      height: 200%;
+
+      z-index: 9998;
+      pointer-events: none;
+
+      opacity: .045;
+
+      background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+
+      animation: noiseMove .18s steps(2) infinite;
+    }
+
+
+    .scanlines {
+      position: fixed;
+      inset: 0;
+
+      z-index: 9997;
+      pointer-events: none;
+
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          transparent 0,
+          transparent 3px,
+          rgba(255,255,255,.018) 4px
+        );
+    }
+
+
+    @keyframes noiseMove {
+
+      0% {
+        transform: translate(0,0);
+      }
+
+      25% {
+        transform: translate(2%,-1%);
+      }
+
+      50% {
+        transform: translate(-1%,2%);
+      }
+
+      75% {
+        transform: translate(1%,1%);
+      }
+
+      100% {
+        transform: translate(-2%,-2%);
+      }
+
+    }
+
+
+    /* =========================================================
+       GLOBAL
+       ========================================================= */
+
+    .container {
+      width: min(
+        calc(100% - 48px),
+        var(--max-width)
+      );
+
+      margin-inline: auto;
+    }
+
+
+    .section {
+      position: relative;
+
+      padding: 150px 0;
+
+      overflow: hidden;
+    }
+
+
+    .section-label {
+      display: flex;
+      align-items: center;
+
+      gap: 13px;
+
+      color: var(--gray);
+
+      font-size: 10px;
+      font-weight: 700;
+
+      letter-spacing: .17em;
+      text-transform: uppercase;
+    }
+
+
+    .section-label::before {
+      content: "";
+
+      width: 28px;
+      height: 1px;
+
+      background: var(--red);
+    }
+
+
+    /* =========================================================
+       TYPOGRAPHY
+       
+       IMPORTANT:
+       Climate Crisis is naturally very bulky.
+       Therefore we intentionally use POSITIVE tracking.
+       ========================================================= */
+
+    .display {
+      font-family: var(--font-display);
+
+      letter-spacing: .025em;
+
+      text-transform: uppercase;
+    }
+
+
+    .heading {
+      font-family: var(--font-heading);
+
+      letter-spacing: .045em;
+
+      text-transform: uppercase;
+    }
+
+
+    .body-copy {
+      font-family: var(--font-body);
+    }
+
+
+    .red {
+      color: var(--red);
+    }
+
+
+    .yellow {
+      color: var(--yellow);
+    }
+
+
+    /* =========================================================
+       NAVIGATION
+       ========================================================= */
+
+    .nav {
+      position: fixed;
+
+      top: 0;
+      left: 0;
+      right: 0;
+
+      height: 82px;
+
+      z-index: 500;
+
+      border-bottom: 1px solid transparent;
+
+      transition:
+        background .4s var(--ease),
+        border-color .4s var(--ease),
+        backdrop-filter .4s var(--ease);
+    }
+
+
+    .nav.scrolled {
+      background: rgba(13,13,13,.78);
+
+      backdrop-filter: blur(18px);
+
+      border-color: var(--border);
+    }
+
+
+    .nav-inner {
+      width: min(
+        calc(100% - 48px),
+        var(--max-width)
+      );
+
+      height: 100%;
+
+      margin-inline: auto;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+
+      gap: 12px;
+    }
+
+
+    .nav-logo {
+      width: 42px;
+      height: 42px;
+
+      object-fit: contain;
+    }
+
+
+    .nav-wordmark {
+      display: flex;
+      flex-direction: column;
+
+      font-family: var(--font-heading);
+
+      font-size: 10px;
+      line-height: .9;
+
+      letter-spacing: .045em;
+    }
+
+
+    .nav-wordmark span:last-child {
+      color: var(--red);
+    }
+
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+
+      gap: 30px;
+    }
+
+
+    .nav-links a {
+      position: relative;
+
+      color: rgba(255,255,255,.7);
+
+      font-size: 10px;
+      font-weight: 700;
+
+      letter-spacing: .13em;
+
+      text-transform: uppercase;
+
+      transition: color .3s ease;
+    }
+
+
+    .nav-links a:not(.nav-cta)::after {
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+      bottom: -8px;
+
+      width: 0;
+      height: 2px;
+
+      background: var(--yellow);
+
+      transition: width .3s var(--ease);
+    }
+
+
+    .nav-links a:hover {
+      color: var(--white);
+    }
+
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+
+    .nav-cta {
+      padding: 13px 17px;
+
+      color: var(--black) !important;
+
+      background: var(--red);
+
+      border: 1px solid var(--red);
+
+      transition:
+        background .3s ease,
+        border-color .3s ease,
+        transform .3s var(--ease);
+    }
+
+
+    .nav-cta:hover {
+      background: var(--yellow);
+      border-color: var(--yellow);
+
+      transform: translateY(-2px);
+    }
+
+
+    .menu-button {
+      display: none;
+
+      width: 44px;
+      height: 44px;
+
+      border: 1px solid var(--border);
+
+      background: transparent;
+
+      color: var(--white);
+
+      cursor: pointer;
+    }
+
+
+    /* =========================================================
+       MOBILE MENU
+       ========================================================= */
+
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+
+      z-index: 400;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      padding: 30px;
+
+      background: var(--black);
+
+      transform: translateY(-100%);
+
+      transition:
+        transform .7s var(--ease-fast);
+    }
+
+
+    .mobile-menu.open {
+      transform: translateY(0);
+    }
+
+
+    .mobile-menu a {
+      padding: 13px 0;
+
+      border-bottom: 1px solid var(--border);
+
+      font-family: var(--font-display);
+
+      font-size: clamp(2.7rem, 12vw, 6rem);
+
+      line-height: .95;
+
+      letter-spacing: .02em;
+
+      text-transform: uppercase;
+    }
+
+
+    .mobile-menu a:hover {
+      color: var(--red);
+    }
+
+
+    /* =========================================================
+       HERO
+       ========================================================= */
+
+    .hero {
+      position: relative;
+
+      min-height: 100svh;
+
+      display: flex;
+      align-items: center;
+
+      padding-top: 100px;
+
+      overflow: hidden;
+    }
+
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+    }
+
+
+    .hero-meta {
+      display: flex;
+      align-items: center;
+
+      gap: 13px;
+
+      margin-bottom: 32px;
+
+      color: var(--gray);
+
+      font-size: 10px;
+      font-weight: 700;
+
+      letter-spacing: .16em;
+
+      text-transform: uppercase;
+    }
+
+
+    .hero-meta-dot {
+      width: 7px;
+      height: 7px;
+
+      background: var(--yellow);
+
+      border-radius: 50%;
+
+      box-shadow:
+        0 0 18px rgba(255,212,0,.65);
+    }
+
+
+    .hero-title {
+      max-width: 1350px;
+
+      font-family: var(--font-display);
+
+      /*
+        Positive tracking is deliberate.
+        Climate Crisis needs breathing room.
+      */
+
+      font-size: clamp(
+        4.2rem,
+        10.7vw,
+        11rem
+      );
+
+      line-height: .9;
+
+      letter-spacing: .025em;
+
+      text-transform: uppercase;
+    }
+
+
+    .hero-line {
+      display: block;
+      position: relative;
+    }
+
+
+    .hero-line:nth-child(1) {
+      color: var(--white);
+    }
+
+
+    .hero-line:nth-child(2) {
+      margin-left: 6vw;
+      color: var(--red);
+    }
+
+
+    .hero-line:nth-child(3) {
+      margin-left: 12vw;
+      color: var(--yellow);
+    }
+
+
+    .hero-line:nth-child(4) {
+      margin-left: 18vw;
+
+      color: transparent;
+
+      -webkit-text-stroke: 2px var(--white);
+    }
+
+
+    .hero-bottom {
+      margin-top: 58px;
+
+      display: grid;
+
+      grid-template-columns: 1fr auto;
+
+      align-items: end;
+
+      gap: 50px;
+    }
+
+
+    .hero-description {
+      max-width: 520px;
+
+      color: rgba(255,255,255,.63);
+
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+
+    .hero-description strong {
+      color: var(--white);
+
+      font-weight: 600;
+    }
+
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 9px;
+    }
+
+
+    /* =========================================================
+       BUTTON
+       ========================================================= */
+
+    .button {
+      position: relative;
+
+      display: inline-flex;
+
+      align-items: center;
+      justify-content: center;
+
+      min-height: 51px;
+
+      padding: 0 21px;
+
+      overflow: hidden;
+
+      border: 1px solid var(--white);
+
+      font-size: 10px;
+      font-weight: 700;
+
+      letter-spacing: .1em;
+
+      text-transform: uppercase;
+
+      transition:
+        color .35s ease,
+        border-color .35s ease,
+        transform .35s var(--ease);
+    }
+
+
+    .button::before {
+      content: "";
+
+      position: absolute;
+      inset: 0;
+
+      background: var(--yellow);
+
+      transform: translateY(105%);
+
+      transition:
+        transform .4s var(--ease);
+    }
+
+
+    .button span {
+      position: relative;
+      z-index: 2;
+    }
+
+
+    .button:hover {
+      color: var(--black);
+
+      border-color: var(--yellow);
+
+      transform: translateY(-3px);
+    }
+
+
+    .button:hover::before {
+      transform: translateY(0);
+    }
+
+
+    .button.primary {
+      color: var(--black);
+
+      background: var(--red);
+
+      border-color: var(--red);
+    }
+
+
+    .button.primary:hover {
+      border-color: var(--yellow);
+    }
+
+
+    /* =========================================================
+       HERO BACKGROUND
+       ========================================================= */
+
+    .hero-bg-word {
+      position: absolute;
+
+      right: -10vw;
+      top: 50%;
+
+      z-index: 1;
+
+      transform:
+        translateY(-50%)
+        rotate(-90deg);
+
+      font-family: var(--font-display);
+
+      font-size: 25vw;
+
+      line-height: .8;
+
+      letter-spacing: .045em;
+
+      color: transparent;
+
+      -webkit-text-stroke: 1px rgba(255,255,255,.05);
+
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+
+    .hero-cross {
+      position: absolute;
+
+      top: 22%;
+      right: 9%;
+
+      width: 70px;
+      height: 70px;
+
+      opacity: .45;
+    }
+
+
+    .hero-cross::before,
+    .hero-cross::after {
+      content: "";
+
+      position: absolute;
+
+      left: 50%;
+      top: 50%;
+
+      background: var(--red);
+    }
+
+
+    .hero-cross::before {
+      width: 100%;
+      height: 1px;
+
+      transform: translate(-50%,-50%);
+    }
+
+
+    .hero-cross::after {
+      width: 1px;
+      height: 100%;
+
+      transform: translate(-50%,-50%);
+    }
+
+
+    .scroll-label {
+      position: absolute;
+
+      left: 25px;
+      bottom: 30px;
+
+      display: flex;
+      flex-direction: column;
+
+      align-items: center;
+
+      gap: 12px;
+
+      color: var(--gray);
+
+      font-size: 8px;
+      font-weight: 700;
+
+      letter-spacing: .15em;
+
+      writing-mode: vertical-rl;
+    }
+
+
+    .scroll-line {
+      position: relative;
+
+      width: 1px;
+      height: 60px;
+
+      background: var(--gray-dark);
+
+      overflow: hidden;
+    }
+
+
+    .scroll-line::after {
+      content: "";
+
+      position: absolute;
+
+      top: -100%;
+      left: 0;
+
+      width: 100%;
+      height: 50%;
+
+      background: var(--yellow);
+
+      animation:
+        scrollLine 2s ease-in-out infinite;
+    }
+
+
+    @keyframes scrollLine {
+
+      0% {
+        transform: translateY(0);
+      }
+
+      100% {
+        transform: translateY(300%);
+      }
+
+    }
+
+
+    /* =========================================================
+       TICKER
+       ========================================================= */
+
+    .ticker {
+      position: relative;
+
+      z-index: 10;
+
+      overflow: hidden;
+
+      background: var(--red);
+
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+
+      transform:
+        rotate(-1deg)
+        scale(1.03);
+    }
+
+
+    .ticker-track {
+      display: flex;
+
+      width: max-content;
+
+      animation:
+        tickerMove 22s linear infinite;
+    }
+
+
+    .ticker-item {
+      display: flex;
+      align-items: center;
+
+      gap: 28px;
+
+      padding: 20px 28px;
+
+      font-family: var(--font-display);
+
+      font-size: clamp(
+        1.7rem,
+        4vw,
+        4.5rem
+      );
+
+      line-height: 1;
+
+      letter-spacing: .03em;
+
+      white-space: nowrap;
+    }
+
+
+    .ticker-item span {
+      color: var(--yellow);
+    }
+
+
+    @keyframes tickerMove {
+
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+
+    }
+
+
+    /* =========================================================
+       INTRO
+       ========================================================= */
+
+    .intro {
+      padding-top: 220px;
+      padding-bottom: 190px;
+    }
+
+
+    .intro-layout {
+      display: grid;
+
+      grid-template-columns: 1fr 2fr;
+
+      gap: 70px;
+    }
+
+
+    .intro-number {
+      font-family: var(--font-display);
+
+      font-size: clamp(
+        4rem,
+        8vw,
+        9rem
+      );
+
+      line-height: .8;
+
+      letter-spacing: .035em;
+
+      color: var(--red);
+    }
+
+
+    .intro-kicker {
+      margin-bottom: 28px;
+
+      font-family: var(--font-heading);
+
+      font-size: 13px;
+
+      letter-spacing: .05em;
+
+      color: var(--yellow);
+    }
+
+
+    .intro-title {
+      font-family: var(--font-display);
+
+      font-size: clamp(
+        3.3rem,
+        7vw,
+        8rem
+      );
+
+      line-height: .92;
+
+      letter-spacing: .025em;
+
+      text-transform: uppercase;
+    }
+
+
+    .intro-title .outline {
+      color: transparent;
+
+      -webkit-text-stroke: 1.5px rgba(255,255,255,.82);
+    }
+
+
+    .intro-text {
+      max-width: 620px;
+
+      margin-top: 48px;
+      margin-left: auto;
+
+      color: rgba(255,255,255,.62);
+
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+
+    /* =========================================================
+       SYSTEM
+       ========================================================= */
+
+    .system {
+      padding-top: 40px;
+      padding-bottom: 180px;
+    }
+
+
+    .system-header {
+      display: flex;
+
+      align-items: end;
+      justify-content: space-between;
+
+      gap: 30px;
+
+      margin-bottom: 60px;
+    }
+
+
+    .system-title {
+      margin-top: 15px;
+
+      font-family: var(--font-heading);
+
+      font-size: clamp(
+        1.7rem,
+        3vw,
+        3rem
+      );
+
+      letter-spacing: .055em;
+    }
+
+
+    .system-note {
+      max-width: 330px;
+
+      color: var(--gray);
+
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+
+    .system-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(4,1fr);
+
+      border-top: 1px solid var(--border);
+      border-left: 1px solid var(--border);
+    }
+
+
+    .system-card {
+      position: relative;
+
+      min-height: 450px;
+
+      padding: 28px;
+
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+
+      overflow: hidden;
+
+      transition:
+        background .5s ease,
+        color .5s ease;
+    }
+
+
+    .system-card::before {
+      content: "";
+
+      position: absolute;
+
+      width: 240px;
+      height: 240px;
+
+      right: -100px;
+      bottom: -100px;
+
+      border: 1px solid rgba(255,255,255,.1);
+
+      border-radius: 50%;
+
+      transition:
+        transform .8s var(--ease),
+        background .5s ease;
+    }
+
+
+    .system-card:hover {
+      background: var(--off-white);
+
+      color: var(--black);
+    }
+
+
+    .system-card:hover::before {
+      transform: scale(2.2);
+
+      background: var(--yellow);
+    }
+
+
+    .system-number {
+      color: var(--gray);
+
+      font-size: 9px;
+      font-weight: 700;
+
+      letter-spacing: .16em;
+    }
+
+
+    .system-description {
+      position: absolute;
+
+      top: 75px;
+      left: 28px;
+      right: 28px;
+
+      max-width: 220px;
+
+      color: var(--gray);
+
+      font-size: 13px;
+      line-height: 1.6;
+
+      z-index: 2;
+    }
+
+
+    .system-card:hover .system-description {
+      color: rgba(0,0,0,.6);
+    }
+
+
+    .system-word {
+      position: absolute;
+
+      left: 28px;
+      bottom: 34px;
+
+      z-index: 3;
+
+      font-family: var(--font-display);
+
+      font-size: clamp(
+        3rem,
+        5vw,
+        6rem
+      );
+
+      line-height: .9;
+
+      letter-spacing: .03em;
+
+      text-transform: uppercase;
+    }
+
+
+    .system-card:nth-child(1)
+    .system-word {
+      color: var(--red);
+    }
+
+
+    .system-card:nth-child(2)
+    .system-word {
+      color: var(--yellow);
+    }
+
+
+    .system-card:nth-child(3)
+    .system-word {
+      color: var(--white);
+    }
+
+
+    .system-card:nth-child(4)
+    .system-word {
+      color: transparent;
+
+      -webkit-text-stroke: 1px var(--white);
+    }
+
+
+    /* =========================================================
+       EVENTS
+       ========================================================= */
+
+    .events {
+      padding: 170px 0;
+
+      background: var(--off-white);
+
+      color: var(--black);
+    }
+
+
+    .events .section-label {
+      color: #666;
+    }
+
+
+    .events-header {
+      display: flex;
+
+      align-items: end;
+      justify-content: space-between;
+
+      gap: 50px;
+
+      margin-top: 38px;
+      margin-bottom: 85px;
+    }
+
+
+    .events-title {
+      font-family: var(--font-display);
+
+      font-size: clamp(
+        4rem,
+        9vw,
+        10rem
+      );
+
+      line-height: .88;
+
+      letter-spacing: .025em;
+
+      text-transform: uppercase;
+    }
+
+
+    .events-intro {
+      max-width: 370px;
+
+      color: #555;
+
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+
+    .events-intro strong {
+      color: var(--black);
+    }
+
+
+    /* =========================================================
+       FEATURED EVENT
+       ========================================================= */
+
+    .featured-event {
+      display: grid;
+
+      grid-template-columns:
+        1.15fr .85fr;
+
+      min-height: 670px;
+
+      background: var(--black);
+
+      color: var(--white);
+
+      overflow: hidden;
+    }
+
+
+    .featured-copy {
+      position: relative;
+      z-index: 3;
+
+      padding:
+        clamp(30px,5vw,75px);
+
+      display: flex;
+      flex-direction: column;
+
+      justify-content: space-between;
+    }
+
+
+    .event-topline {
+      display: flex;
+
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+
+      color: var(--gray);
+
+      font-size: 9px;
+      font-weight: 700;
+
+      letter-spacing: .14em;
+
+      text-transform: uppercase;
+    }
+
+
+    .event-status {
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 8px;
+
+      color: var(--yellow);
+    }
+
+
+    .event-status::before {
+      content: "";
+
+      width: 6px;
+      height: 6px;
+
+      border-radius: 50%;
+
+      background: var(--yellow);
+
+      box-shadow:
+        0 0 12px rgba(255,212,0,.6);
+    }
+
+
+    .featured-name {
+      font-family: var(--font-display);
+
+      font-size: clamp(
+        4rem,
+        8vw,
+        9rem
+      );
+
+      line-height: .88;
+
+      letter-spacing: .025em;
+
+      text-transform: uppercase;
+    }
+
+
+    .featured-name span {
+      color: var(--red);
+    }
+
+
+    .featured-info {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3,1fr);
+
+      border-top:
+        1px solid rgba(255,255,255,.15);
+
+      border-bottom:
+        1px solid rgba(255,255,255,.15);
+    }
+
+
+    .info-block {
+      padding: 18px 0;
+
+      border-right:
+        1px solid rgba(255,255,255,.15);
+    }
+
+
+    .info-block:last-child {
+      border-right: 0;
+    }
+
+
+    .info-label {
+      display: block;
+
+      margin-bottom: 7px;
+
+      color: var(--gray);
+
+      font-size: 8px;
+      font-weight: 700;
+
+      letter-spacing: .14em;
+
+      text-transform: uppercase;
+    }
+
+
+    .info-value {
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+
+    .featured-visual {
+      position: relative;
+
+      min-height: 670px;
+
+      overflow: hidden;
+
+      background:
+        radial-gradient(
+          circle at 50% 50%,
+          rgba(240,42,36,.18),
+          transparent 38%
+        ),
+        #111;
+    }
+
+
+    /* =========================================================
+       FALLING SUN
+       ========================================================= */
+
+    .sun {
+      position: absolute;
+
+      left: 50%;
+      top: 50%;
+
+      width: min(
+        38vw,
+        510px
+      );
+
+      aspect-ratio: 1;
+
+      transform:
+        translate(-50%,-50%);
+
+      border-radius: 50%;
+
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          var(--red) 0,
+          var(--red) 9px,
+          var(--yellow) 9px,
+          var(--yellow) 18px
+        );
+
+      box-shadow:
+        0 0 0 25px rgba(255,212,0,.04),
+        0 0 100px rgba(240,42,36,.23);
+
+      animation:
+        sunFloat 8s ease-in-out infinite;
+    }
+
+
+    .sun::before {
+      content: "";
+
+      position: absolute;
+
+      inset: -45px;
+
+      border:
+        1px solid rgba(255,212,0,.4);
+
+      border-radius: 50%;
+
+      animation:
+        spin 25s linear infinite;
+    }
+
+
+    .sun::after {
+      content: "";
+
+      position: absolute;
+
+      inset: -90px;
+
+      border:
+        1px dashed rgba(255,255,255,.13);
+
+      border-radius: 50%;
+
+      animation:
+        spinReverse 35s linear infinite;
+    }
+
+
+    @keyframes sunFloat {
+
+      0%,100% {
+        transform:
+          translate(-50%,-50%)
+          scale(1);
+      }
+
+      50% {
+        transform:
+          translate(-50%,-53%)
+          scale(1.035);
+      }
+
+    }
+
+
+    @keyframes spin {
+
+      to {
+        transform: rotate(360deg);
+      }
+
+    }
+
+
+    @keyframes spinReverse {
+
+      to {
+        transform: rotate(-360deg);
+      }
+
+    }
+
+
+    .sun-label {
+      position: absolute;
+
+      right: 30px;
+      bottom: 28px;
+
+      font-family: var(--font-heading);
+
+      font-size: 10px;
+
+      letter-spacing: .07em;
+
+      color: var(--yellow);
+    }
+
+
+    /* =========================================================
+       SECONDARY EVENTS
+       ========================================================= */
+
+    .secondary-events {
+      display: grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      gap: 16px;
+
+      margin-top: 16px;
+    }
+
+
+    .event-card {
+      position: relative;
+
+      min-height: 420px;
+
+      padding: 32px;
+
+      display: flex;
+      flex-direction: column;
+
+      justify-content: space-between;
+
+      overflow: hidden;
+
+      transition:
+        transform .5s var(--ease);
+    }
+
+
+    .event-card:hover {
+      transform: translateY(-8px);
+    }
+
+
+    .event-card.compile {
+      background: var(--yellow);
+
+      color: var(--black);
+    }
+
+
+    .event-card.blueprint {
+      background: var(--red);
+
+      color: var(--white);
+    }
+
+
+    .event-card-number {
+      font-family: var(--font-heading);
+
+      font-size: 10px;
+
+      letter-spacing: .05em;
+    }
+
+
+    .event-card-name {
+      font-family: var(--font-display);
+
+      font-size: clamp(
+        3rem,
+        5vw,
+        6rem
+      );
+
+      line-height: .9;
+
+      letter-spacing: .025em;
+
+      text-transform: uppercase;
+    }
+
+
+    .event-card-meta {
+      display: flex;
+
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 15px;
+
+      padding-top: 18px;
+
+      border-top:
+        1px solid rgba(0,0,0,.2);
+
+      font-size: 9px;
+      font-weight: 700;
+
+      letter-spacing: .08em;
+
+      text-transform: uppercase;
+    }
+
+
+    .blueprint .event-card-meta {
+      border-color:
+        rgba(255,255,255,.22);
+    }
+
+
+    .event-arrow {
+      font-size: 17px;
+    }
+
+
+    /* =========================================================
+       BIG STATEMENT
+       ========================================================= */
+
+    .statement {
+      position: relative;
+
+      min-height: 85vh;
+
+      display: flex;
+      align-items: center;
+
+      padding: 150px 0;
+
+      background: var(--red);
+
+      overflow: hidden;
+    }
+
+
+    .statement-small {
+      margin-bottom: 38px;
+
+      font-size: 10px;
+      font-weight: 700;
+
+      letter-spacing: .16em;
+
+      text-transform: uppercase;
+    }
+
+
+    .statement-title {
+      font-family: var(--font-display);
+
+      font-size: clamp(
+        4rem,
+        10vw,
+        12rem
+      );
+
+      line-height: .88;
+
+      letter-spacing: .025em;
+
+      text-transform: uppercase;
+    }
+
+
+    .statement-title .outline {
+      color: transparent;
+
+      -webkit-text-stroke:
+        2px var(--white);
+    }
+
+
+    .statement-decoration {
+      position: absolute;
+
+      right: -3vw;
+      bottom: -6vw;
+
+      font-family: var(--font-display);
+
+      font-size: 20vw;
+
+      line-height: .7;
+
+      letter-spacing: .04em;
+
+      color: rgba(0,0,0,.08);
+
+      pointer-events: none;
+    }
+
+
+    /* =========================================================
+       ARCHIVE
+       ========================================================= */
+
+    .archive {
+      padding: 180px 0;
+    }
+
+
+    .archive-header {
+      display: flex;
+
+      align-items: end;
+      justify-content: space-between;
+
+      gap: 40px;
+
+      margin-top: 38px;
+      margin-bottom: 70px;
+    }
+
+
+    .archive-title {
+      font-family: var(--font-display);
+
+      font-size: clamp(
+        3.5rem,
+        8vw,
+        8rem
+      );
+
+      line-height: .88;
+
+      letter-spacing: .025em;
+
+      text-transform: uppercase;
+    }
+
+
+    .archive-note {
+      max-width: 350px;
+
+      color: var(--gray);
+
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+
+    .archive-card {
+      display: grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      min-height: 620px;
+
+      border:
+        1px solid var(--border);
+
+      background: var(--black-soft);
+
+      overflow: hidden;
+    }
+
+
+    .archive-visual {
+      position: relative;
+
+      min-height: 620px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 50px;
+
+      overflow: hidden;
+
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(240,42,36,.13),
+          transparent 58%
+        );
+
+      border-right:
+        1px solid var(--border);
+    }
+
+
+    .archive-visual::before {
+      content: "12H";
+
+      position: absolute;
+
+      font-family: var(--font-display);
+
+      font-size: 25vw;
+
+      line-height: .7;
+
+      letter-spacing: .04em;
+
+      color: rgba(255,255,255,.025);
+    }
+
+
+    .sps-logo {
+      position: relative;
+      z-index: 2;
+
+      width: min(80%, 510px);
+
+      transition:
+        transform .7s var(--ease),
+        filter .7s ease;
+    }
+
+
+    .archive-card:hover .sps-logo {
+      transform:
+        scale(1.045)
+        rotate(-1deg);
+
+      filter:
+        drop-shadow(
+          0 25px 45px rgba(0,0,0,.4)
+        );
+    }
+
+
+    .archive-copy {
+      padding:
+        clamp(35px,5vw,70px);
+
+      display: flex;
+      flex-direction: column;
+
+      justify-content: space-between;
+    }
+
+
+    .archive-label {
+      color: var(--yellow);
+
+      font-family: var(--font-heading);
+
+      font-size: 10px;
+
+      letter-spacing: .05em;
+    }
+
+
+    .archive-event-title {
+      margin-top: 30px;
+
+      font-family: var(--font-display);
+
+      font-size: clamp(
+        3.5rem,
+        6vw,
+        7rem
+      );
+
+      line-height: .88;
+
+      letter-spacing: .025em;
+
+      text-transform: uppercase;
+    }
+
+
+    .archive-description {
+      max-width: 480px;
+
+      margin-top: 35px;
+
+      color: var(--gray);
+
+      font-size: 15px;
+
+      line-height: 1.7;
+    }
+
+
+    .archive-stats {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3,1fr);
+
+      margin-top: 50px;
+
+      border-top:
+        1px solid var(--border);
+
+      border-bottom:
+        1px solid var(--border);
+    }
+
+
+    .archive-stat {
+      padding: 20px 0;
+
+      border-right:
+        1px solid var(--border);
+    }
+
+
+    .archive-stat:last-child {
+      border-right: 0;
+    }
+
+
+    .archive-stat-number {
+      font-family: var(--font-display);
+
+      font-size: clamp(
+        1.8rem,
+        3vw,
+        3.5rem
+      );
+
+      line-height: .9;
+
+      letter-spacing: .025em;
+    }
+
+
+    .archive-stat-label {
+      display: block;
+
+      margin-top: 9px;
+
+      color: var(--gray);
+
+      font-size: 8px;
+      font-weight: 700;
+
+      letter-spacing: .13em;
+
+      text-transform: uppercase;
+    }
+
+
+    /* =========================================================
+       IMPACT
+       ========================================================= */
+
+    .impact {
+      background: var(--yellow);
+
+      color: var(--black);
+    }
+
+
+    .impact-top {
+      padding:
+        100px 0 45px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: space-between;
+
+      border-bottom:
+        1px solid var(--border-dark);
+    }
+
+
+    .impact-label {
+      font-size: 10px;
+      font-weight: 700;
+
+      letter-spacing: .16em;
+
+      text-transform: uppercase;
+    }
+
+
+    .impact-title {
+      font-family: var(--font-heading);
+
+      font-size: 12px;
+
+      letter-spacing: .05em;
+    }
+
+
+    .impact-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3,1fr);
+    }
+
+
+    .impact-item {
+      min-height: 440px;
+
+      padding: 50px 35px;
+
+      display: flex;
+      flex-direction: column;
+
+      justify-content: space-between;
+
+      border-right:
+        1px solid var(--border-dark);
+    }
+
+
+    .impact-item:last-child {
+      border-right: 0;
+    }
+
+
+    .impact-number {
+      font-family: var(--font-display);
+
+      font-size: clamp(
+        5rem,
+        12vw,
+        13rem
+      );
+
+      line-height: .72;
+
+      letter-spacing: .025em;
+    }
+
+
+    .impact-name {
+      font-family: var(--font-heading);
+
+      font-size: 11px;
+
+      letter-spacing: .045em;
+    }
+
+
+    .impact-copy {
+      max-width: 240px;
+
+      margin-top: 12px;
+
+      color: rgba(0,0,0,.58);
+
+      font-size: 12px;
+
+      line-height: 1.55;
+    }
+
+
+    /* =========================================================
+       COLLABORATE
+       ========================================================= */
+
+    .collab {
+      position: relative;
+
+      padding: 190px 0;
+
+      overflow: hidden;
+    }
+
+
+    .collab-inner {
+      position: relative;
+
+      z-index: 3;
+    }
+
+
+    .collab-label {
+      margin-bottom: 35px;
+
+      color: var(--yellow);
+
+      font-family: var(--font-heading);
+
+      font-size: 11px;
+
+      letter-spacing: .05em;
+    }
+
+
+    .collab-title {
+      max-width: 1200px;
+
+      font-family: var(--font-display);
+
+      font-size: clamp(
+        4rem,
+        9vw,
+        10rem
+      );
+
+      line-height: .88;
+
+      letter-spacing: .025em;
+
+      text-transform: uppercase;
+    }
+
+
+    .collab-title span {
+      color: var(--red);
+    }
+
+
+    .collab-bottom {
+      display: flex;
+
+      align-items: end;
+      justify-content: space-between;
+
+      gap: 50px;
+
+      margin-top: 65px;
+    }
+
+
+    .collab-copy {
+      max-width: 450px;
+
+      color: var(--gray);
+
+      font-size: 15px;
+
+      line-height: 1.7;
+    }
+
+
+    .collab-orbit {
+      position: absolute;
+
+      right: -130px;
+      bottom: -220px;
+
+      width: 650px;
+      height: 650px;
+
+      border:
+        1px solid rgba(255,255,255,.07);
+
+      border-radius: 50%;
+    }
+
+
+    .collab-orbit::before,
+    .collab-orbit::after {
+      content: "";
+
+      position: absolute;
+
+      border:
+        1px solid rgba(255,255,255,.06);
+
+      border-radius: 50%;
+    }
+
+
+    .collab-orbit::before {
+      inset: 60px;
+    }
+
+
+    .collab-orbit::after {
+      inset: 130px;
+
+      border-style: dashed;
+    }
+
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+
+    footer {
+      padding: 75px 0 35px;
+
+      background: var(--black-soft);
+
+      border-top:
+        1px solid var(--border);
+    }
+
+
+    .footer-top {
+      display: grid;
+
+      grid-template-columns:
+        1.5fr 1fr 1fr;
+
+      gap: 60px;
+
+      padding-bottom: 80px;
+    }
+
+
+    .footer-brand {
+      display: flex;
+
+      align-items: flex-start;
+
+      gap: 18px;
+    }
+
+
+    .footer-logo {
+      width: 58px;
+      height: 58px;
+
+      object-fit: contain;
+    }
+
+
+    .footer-name {
+      font-family: var(--font-heading);
+
+      font-size: 14px;
+
+      line-height: .95;
+
+      letter-spacing: .045em;
+    }
+
+
+    .footer-name .red {
+      color: var(--red);
+    }
+
+
+    .footer-description {
+      max-width: 400px;
+
+      margin-top: 25px;
+
+      color: var(--gray);
+
+      font-size: 13px;
+
+      line-height: 1.7;
+    }
+
+
+    .footer-column-title {
+      margin-bottom: 20px;
+
+      color: var(--gray);
+
+      font-size: 8px;
+      font-weight: 700;
+
+      letter-spacing: .16em;
+
+      text-transform: uppercase;
+    }
+
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+
+      gap: 11px;
+    }
+
+
+    .footer-links a {
+      width: fit-content;
+
+      color: rgba(255,255,255,.7);
+
+      font-size: 13px;
+
+      transition:
+        color .3s ease,
+        transform .3s var(--ease);
+    }
+
+
+    .footer-links a:hover {
+      color: var(--yellow);
+
+      transform:
+        translateX(5px);
+    }
+
+
+    .footer-bottom {
+      padding-top: 25px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+
+      border-top:
+        1px solid var(--border);
+
+      color: var(--gray);
+
+      font-size: 8px;
+      font-weight: 700;
+
+      letter-spacing: .14em;
+
+      text-transform: uppercase;
+    }
+
+
+    .footer-tagline {
+      color: var(--white);
+    }
+
+
+    /* =========================================================
+       REVEAL
+       ========================================================= */
 
     .reveal {
-        opacity: 1;
-        transform: none;
-        filter: none;
+      opacity: 0;
+
+      transform:
+        translateY(35px);
+
+      transition:
+        opacity .9s var(--ease),
+        transform .9s var(--ease);
     }
-}
-    </style>
+
+
+    .reveal.visible {
+      opacity: 1;
+
+      transform:
+        translateY(0);
+    }
+
+
+    .delay-1 {
+      transition-delay: .1s;
+    }
+
+
+    .delay-2 {
+      transition-delay: .2s;
+    }
+
+
+    .delay-3 {
+      transition-delay: .3s;
+    }
+
+
+    .delay-4 {
+      transition-delay: .4s;
+    }
+
+
+    /* =========================================================
+       RESPONSIVE — TABLET
+       ========================================================= */
+
+    @media (max-width: 1050px) {
+
+      .nav-links {
+        display: none;
+      }
+
+
+      .menu-button {
+        display: block;
+      }
+
+
+      .hero-title {
+        font-size: clamp(
+          4rem,
+          13vw,
+          8rem
+        );
+      }
+
+
+      .intro-layout {
+        grid-template-columns: 1fr;
+      }
+
+
+      .intro-number {
+        font-size: 4rem;
+      }
+
+
+      .system-grid {
+        grid-template-columns:
+          repeat(2,1fr);
+      }
+
+
+      .featured-event {
+        grid-template-columns: 1fr;
+      }
+
+
+      .featured-visual {
+        min-height: 520px;
+      }
+
+
+      .sun {
+        width: min(
+          60vw,
+          450px
+        );
+      }
+
+
+      .archive-card {
+        grid-template-columns: 1fr;
+      }
+
+
+      .archive-visual {
+        border-right: 0;
+
+        border-bottom:
+          1px solid var(--border);
+      }
+
+
+      .footer-top {
+        grid-template-columns:
+          1fr 1fr;
+      }
+
+    }
+
+
+    /* =========================================================
+       RESPONSIVE — MOBILE
+       ========================================================= */
+
+    @media (max-width: 700px) {
+
+      .container,
+      .nav-inner {
+        width: min(
+          calc(100% - 30px),
+          var(--max-width)
+        );
+      }
+
+
+      .section {
+        padding: 105px 0;
+      }
+
+
+      /* HERO */
+
+      .hero {
+        min-height: 100svh;
+
+        padding-top: 90px;
+      }
+
+
+      .hero-meta {
+        margin-bottom: 25px;
+
+        font-size: 8px;
+      }
+
+
+      .hero-title {
+        font-size: 18vw;
+
+        line-height: .93;
+
+        letter-spacing: .018em;
+      }
+
+
+      .hero-line:nth-child(2) {
+        margin-left: 4vw;
+      }
+
+
+      .hero-line:nth-child(3) {
+        margin-left: 8vw;
+      }
+
+
+      .hero-line:nth-child(4) {
+        margin-left: 12vw;
+
+        -webkit-text-stroke:
+          1px var(--white);
+      }
+
+
+      .hero-bottom {
+        grid-template-columns: 1fr;
+
+        margin-top: 45px;
+
+        gap: 30px;
+      }
+
+
+      .hero-description {
+        font-size: 14px;
+      }
+
+
+      .hero-bg-word {
+        right: -27vw;
+
+        font-size: 55vw;
+
+        letter-spacing: .05em;
+      }
+
+
+      .hero-cross {
+        right: 3%;
+        top: 16%;
+
+        transform: scale(.6);
+      }
+
+
+      .scroll-label {
+        display: none;
+      }
+
+
+      /* TICKER */
+
+      .ticker-item {
+        padding: 17px 20px;
+
+        font-size: 1.7rem;
+
+        letter-spacing: .025em;
+      }
+
+
+      /* INTRO */
+
+      .intro {
+        padding-top: 145px;
+      }
+
+
+      .intro-title {
+        font-size: 13vw;
+
+        line-height: .94;
+
+        letter-spacing: .018em;
+      }
+
+
+      .intro-text {
+        margin-left: 0;
+
+        font-size: 15px;
+      }
+
+
+      /* SYSTEM */
+
+      .system {
+        padding-top: 0;
+      }
+
+
+      .system-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+      }
+
+
+      .system-grid {
+        grid-template-columns: 1fr;
+      }
+
+
+      .system-card {
+        min-height: 330px;
+      }
+
+
+      .system-word {
+        font-size: 18vw;
+
+        letter-spacing: .02em;
+      }
+
+
+      /* EVENTS */
+
+      .events {
+        padding: 105px 0;
+      }
+
+
+      .events-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        margin-bottom: 55px;
+      }
+
+
+      .events-title {
+        font-size: 16vw;
+
+        letter-spacing: .02em;
+      }
+
+
+      .featured-copy {
+        min-height: 590px;
+
+        padding: 28px;
+      }
+
+
+      .featured-name {
+        font-size: 18vw;
+
+        letter-spacing: .018em;
+      }
+
+
+      .featured-info {
+        grid-template-columns: 1fr;
+      }
+
+
+      .info-block {
+        border-right: 0;
+
+        border-bottom:
+          1px solid rgba(255,255,255,.12);
+      }
+
+
+      .info-block:last-child {
+        border-bottom: 0;
+      }
+
+
+      .featured-visual {
+        min-height: 430px;
+      }
+
+
+      .sun {
+        width: 70vw;
+      }
+
+
+      .secondary-events {
+        grid-template-columns: 1fr;
+      }
+
+
+      .event-card {
+        min-height: 340px;
+      }
+
+
+      .event-card-name {
+        font-size: 17vw;
+
+        letter-spacing: .018em;
+      }
+
+
+      /* STATEMENT */
+
+      .statement {
+        min-height: 65vh;
+
+        padding: 110px 0;
+      }
+
+
+      .statement-title {
+        font-size: 17vw;
+
+        letter-spacing: .018em;
+      }
+
+
+      .statement-title .outline {
+        -webkit-text-stroke:
+          1px var(--white);
+      }
+
+
+      /* ARCHIVE */
+
+      .archive {
+        padding: 115px 0;
+      }
+
+
+      .archive-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+      }
+
+
+      .archive-title {
+        font-size: 15vw;
+
+        letter-spacing: .018em;
+      }
+
+
+      .archive-visual {
+        min-height: 400px;
+
+        padding: 30px;
+      }
+
+
+      .archive-event-title {
+        font-size: 17vw;
+
+        letter-spacing: .018em;
+      }
+
+
+      .archive-copy {
+        padding: 30px;
+      }
+
+
+      .archive-stats {
+        grid-template-columns: 1fr;
+      }
+
+
+      .archive-stat {
+        border-right: 0;
+
+        border-bottom:
+          1px solid var(--border);
+      }
+
+
+      .archive-stat:last-child {
+        border-bottom: 0;
+      }
+
+
+      /* IMPACT */
+
+      .impact-top {
+        padding-top: 70px;
+      }
+
+
+      .impact-grid {
+        grid-template-columns: 1fr;
+      }
+
+
+      .impact-item {
+        min-height: 300px;
+
+        border-right: 0;
+
+        border-bottom:
+          1px solid var(--border-dark);
+      }
+
+
+      .impact-item:last-child {
+        border-bottom: 0;
+      }
+
+
+      .impact-number {
+        font-size: 30vw;
+
+        letter-spacing: .02em;
+      }
+
+
+      /* COLLAB */
+
+      .collab {
+        padding: 120px 0;
+      }
+
+
+      .collab-title {
+        font-size: 16vw;
+
+        letter-spacing: .018em;
+      }
+
+
+      .collab-bottom {
+        flex-direction: column;
+
+        align-items: flex-start;
+      }
+
+
+      .collab-orbit {
+        width: 350px;
+        height: 350px;
+
+        right: -180px;
+        bottom: -70px;
+      }
+
+
+      /* FOOTER */
+
+      .footer-top {
+        grid-template-columns: 1fr;
+
+        gap: 45px;
+      }
+
+
+      .footer-bottom {
+        flex-direction: column;
+
+        align-items: flex-start;
+      }
+
+    }
+
+
+    /* =========================================================
+       REDUCED MOTION
+       ========================================================= */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      html {
+        scroll-behavior: auto;
+      }
+
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+
+
+      .reveal {
+        opacity: 1;
+
+        transform: none;
+      }
+
+    }
+
+  </style>
 </head>
 
 
 <body>
 
-    <!-- =========================================================
-         EFFECTS
-    ========================================================== -->
+  <!-- =======================================================
+       GLOBAL EFFECTS
+       ======================================================= -->
 
-    <div class="noise"></div>
-    <div class="scanlines"></div>
-    <div class="page-grid"></div>
+  <div class="page-grid"></div>
+  <div class="noise"></div>
+  <div class="scanlines"></div>
 
 
-    <!-- =========================================================
-         MOBILE MENU
-    ========================================================== -->
+  <!-- =======================================================
+       NAVIGATION
+       ======================================================= -->
 
-    <div class="mobile-menu" id="mobileMenu">
+  <header class="nav" id="nav">
 
-        <div class="mobile-menu-links">
+    <div class="nav-inner">
 
-            <a href="#about" onclick="closeMenu()">
-                ABOUT
-            </a>
+      <a
+        href="#top"
+        class="nav-brand"
+        aria-label="OCd home"
+      >
 
-            <a href="#events" onclick="closeMenu()">
-                EVENTS
-            </a>
+        <img
+          src="OCd-logo.png"
+          alt="OCd"
+          class="nav-logo"
+        />
 
-            <a href="#archive" onclick="closeMenu()">
-                ARCHIVE
-            </a>
+        <div class="nav-wordmark">
+          <span>OVER</span>
+          <span>CLOCKED</span>
+        </div>
 
-            <a href="#contact" onclick="closeMenu()">
-                COLLAB
-            </a>
+      </a>
+
+
+      <nav class="nav-links">
+
+        <a href="#system">
+          SYSTEM
+        </a>
+
+        <a href="#events">
+          EVENTS
+        </a>
+
+        <a href="#archive">
+          ARCHIVE
+        </a>
+
+        <a href="#impact">
+          IMPACT
+        </a>
+
+        <a
+          href="#collaborate"
+          class="nav-cta"
+        >
+          WORK WITH OCd →
+        </a>
+
+      </nav>
+
+
+      <button
+        class="menu-button"
+        id="menuButton"
+        aria-label="Open navigation"
+        aria-expanded="false"
+      >
+        ☰
+      </button>
+
+    </div>
+
+  </header>
+
+
+  <!-- =======================================================
+       MOBILE NAV
+       ======================================================= -->
+
+  <div
+    class="mobile-menu"
+    id="mobileMenu"
+  >
+
+    <a href="#system">
+      SYSTEM
+    </a>
+
+    <a href="#events">
+      EVENTS
+    </a>
+
+    <a href="#archive">
+      ARCHIVE
+    </a>
+
+    <a href="#impact">
+      IMPACT
+    </a>
+
+    <a href="#collaborate">
+      COLLAB
+    </a>
+
+  </div>
+
+
+  <!-- =======================================================
+       MAIN
+       ======================================================= -->
+
+  <main id="top">
+
+
+    <!-- =====================================================
+         HERO
+         ===================================================== -->
+
+    <section class="hero">
+
+      <div class="container hero-content">
+
+        <div class="hero-meta reveal">
+
+          <span class="hero-meta-dot"></span>
+
+          DELHI NCR · EST. 2026
 
         </div>
+
+
+        <h1 class="hero-title">
+
+          <span class="hero-line reveal">
+            BUILD.
+          </span>
+
+          <span class="hero-line reveal delay-1">
+            BREAK.
+          </span>
+
+          <span class="hero-line reveal delay-2">
+            FORK.
+          </span>
+
+          <span class="hero-line reveal delay-3">
+            FIX.
+          </span>
+
+        </h1>
+
+
+        <div class="hero-bottom">
+
+          <p class="hero-description reveal delay-2">
+
+            <strong>OverclockedDevs</strong>
+            creates high-energy spaces for
+            students to experiment, collaborate
+            and actually make things.
+
+            Hackathons, games, websites,
+            hardware, AI and whatever comes next.
+
+          </p>
+
+
+          <div class="hero-actions reveal delay-3">
+
+            <a
+              href="#events"
+              class="button primary"
+            >
+              <span>
+                EXPLORE EVENTS →
+              </span>
+            </a>
+
+
+            <a
+              href="#system"
+              class="button"
+            >
+              <span>
+                ENTER OCd
+              </span>
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div
+        class="hero-bg-word"
+        aria-hidden="true"
+      >
+        OCd
+      </div>
+
+
+      <div
+        class="hero-cross"
+        aria-hidden="true"
+      ></div>
+
+
+      <div class="scroll-label">
+
+        SCROLL
+
+        <span class="scroll-line"></span>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         TAGLINE TICKER
+         ===================================================== -->
+
+    <div class="ticker">
+
+      <div class="ticker-track">
+
+        <div class="ticker-item">
+
+          BUILD
+          <span>✦</span>
+
+          BREAK
+          <span>✦</span>
+
+          FORK
+          <span>✦</span>
+
+          FIX
+          <span>✦</span>
+
+        </div>
+
+
+        <div class="ticker-item">
+
+          BUILD
+          <span>✦</span>
+
+          BREAK
+          <span>✦</span>
+
+          FORK
+          <span>✦</span>
+
+          FIX
+          <span>✦</span>
+
+        </div>
+
+
+        <div class="ticker-item">
+
+          BUILD
+          <span>✦</span>
+
+          BREAK
+          <span>✦</span>
+
+          FORK
+          <span>✦</span>
+
+          FIX
+          <span>✦</span>
+
+        </div>
+
+      </div>
 
     </div>
 
 
-    <!-- =========================================================
-         NAVIGATION
-    ========================================================== -->
+    <!-- =====================================================
+         INTRO
+         ===================================================== -->
 
-    <header class="nav" id="nav">
+    <section class="section intro">
 
-        <div class="nav-inner">
+      <div class="container">
 
-            <a href="#" class="brand">
+        <div class="intro-layout">
 
-                <img
-                    src="OCd-logo.png"
-                    alt="OverclockedDevs logo"
-                >
+          <div
+            class="intro-number reveal"
+            aria-hidden="true"
+          >
+            00
+          </div>
 
-                <div class="brand-text">
-                    <span>OVER</span>
-                    <span>CLOCKED</span>
+
+          <div>
+
+            <div class="intro-kicker reveal">
+              THE OCd IDEA
+            </div>
+
+
+            <h2 class="intro-title reveal delay-1">
+
+              NOT JUST
+              <span class="outline">
+                EVENTS.
+              </span>
+
+              <br />
+
+              A REASON
+              TO BUILD.
+
+            </h2>
+
+
+            <p class="intro-text reveal delay-2">
+
+              OCd is a student-focused hackathon
+              organization built around one simple
+              idea: give builders a reason to build.
+
+              We create spaces where ideas can get
+              weird, projects can fail, people can
+              experiment and everyone can learn
+              by actually making things.
+
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         OCd SYSTEM
+         ===================================================== -->
+
+    <section
+      class="section system"
+      id="system"
+    >
+
+      <div class="container">
+
+        <div class="system-header">
+
+          <div>
+
+            <div class="section-label reveal">
+              01 / THE SYSTEM
+            </div>
+
+
+            <h2 class="system-title reveal delay-1">
+              BUILD. BREAK. FORK. FIX.
+            </h2>
+
+          </div>
+
+
+          <p class="system-note reveal delay-2">
+
+            Four states.
+            One mindset.
+
+            Start messy.
+            Learn fast.
+            Ship something real.
+
+          </p>
+
+        </div>
+
+
+        <div class="system-grid">
+
+
+          <!-- BUILD -->
+
+          <article class="system-card reveal">
+
+            <span class="system-number">
+              01
+            </span>
+
+
+            <p class="system-description">
+
+              Start with an idea.
+              Turn it into something
+              people can actually use.
+
+            </p>
+
+
+            <div class="system-word">
+              BUILD.
+            </div>
+
+          </article>
+
+
+          <!-- BREAK -->
+
+          <article class="system-card reveal delay-1">
+
+            <span class="system-number">
+              02
+            </span>
+
+
+            <p class="system-description">
+
+              Question the obvious.
+              Test the limits.
+              Find what doesn't work.
+
+            </p>
+
+
+            <div class="system-word">
+              BREAK.
+            </div>
+
+          </article>
+
+
+          <!-- FORK -->
+
+          <article class="system-card reveal delay-2">
+
+            <span class="system-number">
+              03
+            </span>
+
+
+            <p class="system-description">
+
+              Take an existing idea
+              somewhere unexpected.
+              Remix. Rebuild. Rethink.
+
+            </p>
+
+
+            <div class="system-word">
+              FORK.
+            </div>
+
+          </article>
+
+
+          <!-- FIX -->
+
+          <article class="system-card reveal delay-3">
+
+            <span class="system-number">
+              04
+            </span>
+
+
+            <p class="system-description">
+
+              Learn from the mess.
+              Iterate.
+              Make it better.
+
+            </p>
+
+
+            <div class="system-word">
+              FIX.
+            </div>
+
+          </article>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         EVENTS
+         ===================================================== -->
+
+    <section
+      class="events"
+      id="events"
+    >
+
+      <div class="container">
+
+        <div class="section-label reveal">
+          02 / EVENTS
+        </div>
+
+
+        <div class="events-header">
+
+          <h2 class="events-title reveal">
+
+            WHAT'S
+            <br />
+            NEXT.
+
+          </h2>
+
+
+          <p class="events-intro reveal delay-1">
+
+            Three different formats.
+            Three different challenges.
+
+            One mission:
+
+            <strong>
+              get people building.
+            </strong>
+
+          </p>
+
+        </div>
+
+
+        <!-- =================================================
+             FALLING SUN
+             ================================================= -->
+
+        <article class="featured-event reveal">
+
+          <div class="featured-copy">
+
+            <div class="event-topline">
+
+              <span>
+                OCd / 001
+              </span>
+
+
+              <span class="event-status">
+                APPLICATIONS OPEN
+              </span>
+
+            </div>
+
+
+            <div>
+
+              <div class="featured-name">
+
+                FALLING
+
+                <br />
+
+                <span>
+                  SUN.
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <div>
+
+              <div class="featured-info">
+
+
+                <div class="info-block">
+
+                  <span class="info-label">
+                    WHEN
+                  </span>
+
+                  <span class="info-value">
+                    OCTOBER 2026
+                  </span>
+
                 </div>
 
-            </a>
+
+                <div class="info-block">
+
+                  <span class="info-label">
+                    TRACKS
+                  </span>
+
+                  <span class="info-value">
+                    WEB · GAME · HARDWARE
+                  </span>
+
+                </div>
 
 
-            <nav class="nav-links">
+                <div class="info-block">
 
-                <a href="#about">
-                    About
-                </a>
+                  <span class="info-label">
+                    CAPACITY
+                  </span>
 
-                <a href="#events">
-                    Events
-                </a>
+                  <span class="info-value">
+                    200 BUILDERS
+                  </span>
 
-                <a href="#archive">
-                    Archive
-                </a>
+                </div>
 
-                <a href="#impact">
-                    Impact
-                </a>
 
-            </nav>
+              </div>
+
+
+              <br />
+
+
+              <!-- Replace # with actual registration URL -->
+
+              <a
+                href="#"
+                class="button primary"
+              >
+
+                <span>
+                  REGISTER / APPLY →
+                </span>
+
+              </a>
+
+            </div>
+
+          </div>
+
+
+          <div class="featured-visual">
+
+            <div
+              class="sun"
+              aria-hidden="true"
+            ></div>
+
+
+            <div class="sun-label">
+              DELHI NCR · 2026
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <!-- =================================================
+             COMPILE + BLUEPRINT
+             ================================================= -->
+
+        <div class="secondary-events">
+
+
+          <!-- COMPILE -->
+
+          <article
+            class="event-card compile reveal"
+          >
+
+            <div class="event-card-number">
+              OCd / 002
+            </div>
+
+
+            <div>
+
+              <div class="event-card-name">
+
+                COMPILE
+
+                <br />
+
+                DELHI.
+
+              </div>
+
+            </div>
+
+
+            <div class="event-card-meta">
+
+              <span>
+                NOVEMBER 2026
+              </span>
+
+              <span>
+                AGENTIC AI
+              </span>
+
+              <span class="event-arrow">
+                ↗
+              </span>
+
+            </div>
+
+          </article>
+
+
+          <!-- BLUEPRINT -->
+
+          <article
+            class="event-card blueprint reveal delay-1"
+          >
+
+            <div class="event-card-number">
+              OCd / 003
+            </div>
+
+
+            <div>
+
+              <div class="event-card-name">
+
+                BLUEPRINT
+
+                <br />
+
+                DELHI.
+
+              </div>
+
+            </div>
+
+
+            <div class="event-card-meta">
+
+              <span>
+                NOVEMBER 2026
+              </span>
+
+              <span>
+                CREATIVE WEB
+              </span>
+
+              <span class="event-arrow">
+                ↗
+              </span>
+
+            </div>
+
+          </article>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         STATEMENT
+         ===================================================== -->
+
+    <section class="statement">
+
+      <div class="container">
+
+        <div class="statement-inner">
+
+          <div class="statement-small reveal">
+            THAT'S THE POINT.
+          </div>
+
+
+          <h2 class="statement-title reveal delay-1">
+
+            GIVE PEOPLE
+
+            <br />
+
+            A REASON
+
+            <br />
+
+            <span class="outline">
+              TO BUILD.
+            </span>
+
+          </h2>
+
+
+          <div
+            class="statement-decoration"
+            aria-hidden="true"
+          >
+            OCd
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ARCHIVE
+         ===================================================== -->
+
+    <section
+      class="section archive"
+      id="archive"
+    >
+
+      <div class="container">
+
+        <div class="section-label reveal">
+          03 / ARCHIVE
+        </div>
+
+
+        <div class="archive-header">
+
+          <h2 class="archive-title reveal">
+
+            RECENTLY
+
+            <br />
+
+            SHIPPED.
+
+          </h2>
+
+
+          <p class="archive-note reveal delay-1">
+
+            Before the next build,
+            there was the last one.
+
+            12 hours.
+            270 applications.
+            150 builders.
+
+          </p>
+
+        </div>
+
+
+        <a
+          href="https://sprintandspawn.xyz/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="archive-card reveal"
+        >
+
+
+          <div class="archive-visual">
+
+            <img
+              src="sps.png"
+              alt="Sprint & Spawn"
+              class="sps-logo"
+            />
+
+          </div>
+
+
+          <div class="archive-copy">
+
+            <div>
+
+              <div class="archive-label">
+                PAST EVENT / 001
+              </div>
+
+
+              <h3 class="archive-event-title">
+
+                SPRINT
+
+                <br />
+
+                &
+
+                <br />
+
+                SPAWN.
+
+              </h3>
+
+
+              <p class="archive-description">
+
+                A 12-hour high-octane hackathon
+                focused on Web Dev and Game Dev.
+
+                Free to participate.
+                Built for people who wanted
+                to stop thinking and start shipping.
+
+              </p>
+
+            </div>
+
+
+            <div>
+
+              <div class="archive-stats">
+
+
+                <div class="archive-stat">
+
+                  <div class="archive-stat-number">
+                    270
+                  </div>
+
+                  <span class="archive-stat-label">
+                    APPLICATIONS
+                  </span>
+
+                </div>
+
+
+                <div class="archive-stat">
+
+                  <div class="archive-stat-number">
+                    150
+                  </div>
+
+                  <span class="archive-stat-label">
+                    BUILDERS
+                  </span>
+
+                </div>
+
+
+                <div class="archive-stat">
+
+                  <div class="archive-stat-number">
+                    12H
+                  </div>
+
+                  <span class="archive-stat-label">
+                    DURATION
+                  </span>
+
+                </div>
+
+
+              </div>
+
+
+              <br />
+
+
+              <span class="button">
+
+                <span>
+                  VISIT EVENT →
+                </span>
+
+              </span>
+
+            </div>
+
+          </div>
+
+
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         IMPACT
+         ===================================================== -->
+
+    <section
+      class="impact"
+      id="impact"
+    >
+
+      <div class="container">
+
+        <div class="impact-top reveal">
+
+          <div class="impact-label">
+            04 / IMPACT
+          </div>
+
+
+          <div class="impact-title">
+            SMALL TEAM.
+            BIGGER BUILDS.
+          </div>
+
+        </div>
+
+
+        <div class="impact-grid">
+
+
+          <article class="impact-item reveal">
+
+            <div class="impact-number">
+              300+
+            </div>
+
+
+            <div>
+
+              <div class="impact-name">
+                STUDENTS REACHED
+              </div>
+
+
+              <p class="impact-copy">
+
+                Through partners,
+                events and collaborations.
+
+              </p>
+
+            </div>
+
+          </article>
+
+
+          <article class="impact-item reveal delay-1">
+
+            <div class="impact-number">
+              3
+            </div>
+
+
+            <div>
+
+              <div class="impact-name">
+                UPCOMING HACKATHONS
+              </div>
+
+
+              <p class="impact-copy">
+
+                Falling Sun,
+                Compile Delhi and
+                Blueprint Delhi.
+
+              </p>
+
+            </div>
+
+          </article>
+
+
+          <article class="impact-item reveal delay-2">
+
+            <div class="impact-number">
+              ∞
+            </div>
+
+
+            <div>
+
+              <div class="impact-name">
+                THINGS LEFT TO BUILD
+              </div>
+
+
+              <p class="impact-copy">
+
+                And we're
+                just getting started.
+
+              </p>
+
+            </div>
+
+          </article>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         COLLABORATE
+         ===================================================== -->
+
+    <section
+      class="section collab"
+      id="collaborate"
+    >
+
+      <div class="container">
+
+        <div class="collab-inner">
+
+          <div class="collab-label reveal">
+            05 / COLLABORATE WITH OCd
+          </div>
+
+
+          <h2 class="collab-title reveal delay-1">
+
+            YOUR IDEA.
+
+            <br />
+
+            OUR
+            <span>
+              BUILDERS.
+            </span>
+
+          </h2>
+
+
+          <div class="collab-bottom">
+
+            <p class="collab-copy reveal delay-2">
+
+              Want to partner with OCd,
+              support an event, bring a
+              challenge to students, or
+              build something completely new?
+
+              Let's make it happen.
+
+            </p>
 
 
             <a
-                href="#contact"
-                class="nav-cta"
+              href="mailto:hello@overclockeddevs.com"
+              class="button primary reveal delay-3"
             >
-                WORK WITH OCd →
+
+              <span>
+                GET IN TOUCH →
+              </span>
+
             </a>
 
-
-            <button
-                class="menu-button"
-                id="menuButton"
-                aria-label="Open menu"
-            >
-                ☰
-            </button>
-
-        </div>
-
-    </header>
-
-
-    <main>
-
-
-        <!-- =====================================================
-             HERO
-        ====================================================== -->
-
-        <section class="hero">
-
-            <div class="hero-bg-word">
-                OCd
-            </div>
-
-            <div class="container">
-
-                <div class="hero-content">
-
-                    <div class="eyebrow">
-                        DELHI NCR · EST. 2026
-                    </div>
-
-
-                    <h1 class="hero-title">
-
-                        BUILD
-                        <span class="red">
-                            DIFFERENT.
-                        </span>
-
-                        <br>
-
-                        SHIP
-                        <span class="outline">
-                            IT.
-                        </span>
-
-                    </h1>
-
-
-                    <div class="hero-bottom">
-
-                        <p class="hero-description">
-
-                            OverclockedDevs builds high-energy
-                            spaces where students stop waiting
-                            for permission and start making things.
-
-                            Hackathons, experiments, games,
-                            websites, hardware and everything
-                            in between.
-
-                        </p>
-
-
-                        <div class="hero-actions">
-
-                            <a
-                                href="#events"
-                                class="button primary"
-                            >
-                                SEE THE EVENTS →
-                            </a>
-
-                            <a
-                                href="#about"
-                                class="button secondary"
-                            >
-                                WHAT IS OCd?
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="hero-scroll">
-                SCROLL TO EXPLORE
-            </div>
-
-        </section>
-
-
-        <!-- =====================================================
-             MARQUEE
-        ====================================================== -->
-
-        <div class="marquee">
-
-            <div class="marquee-track">
-
-                <div class="marquee-item">
-                    BUILD <span>✦</span>
-                    BREAK THINGS
-                    <span>✦</span>
-                    LEARN
-                    <span>✦</span>
-                    SHIP
-                    <span>✦</span>
-                </div>
-
-                <div class="marquee-item">
-                    BUILD <span>✦</span>
-                    BREAK THINGS
-                    <span>✦</span>
-                    LEARN
-                    <span>✦</span>
-                    SHIP
-                    <span>✦</span>
-                </div>
-
-                <div class="marquee-item">
-                    BUILD <span>✦</span>
-                    BREAK THINGS
-                    <span>✦</span>
-                    LEARN
-                    <span>✦</span>
-                    SHIP
-                    <span>✦</span>
-                </div>
-
-                <div class="marquee-item">
-                    BUILD <span>✦</span>
-                    BREAK THINGS
-                    <span>✦</span>
-                    LEARN
-                    <span>✦</span>
-                    SHIP
-                    <span>✦</span>
-                </div>
-
-            </div>
+          </div>
 
         </div>
 
 
-        <!-- =====================================================
-             ABOUT / MANIFESTO
-        ====================================================== -->
+        <div
+          class="collab-orbit"
+          aria-hidden="true"
+        ></div>
 
-        <section
-            class="manifesto"
-            id="about"
-        >
+      </div>
 
-            <div class="container">
-
-                <div class="section-header reveal">
-
-                    <div class="section-number">
-                        00 / ABOUT
-                    </div>
-
-                    <div>
-
-                        <div class="section-kicker">
-                            THE IDEA
-                        </div>
-
-                        <h2 class="section-title">
-                            NOT JUST
-                            <span class="yellow">
-                                EVENTS.
-                            </span>
-                        </h2>
-
-                    </div>
-
-                </div>
+    </section>
 
 
-                <div class="manifesto-grid">
-
-                    <div class="manifesto-big reveal">
-
-                        OCd is a student-focused
-                        hackathon organization built
-                        around one simple idea:
-
-                        <strong>
-                            give builders a reason
-                            to build.
-                        </strong>
-
-                    </div>
+  </main>
 
 
-                    <div class="manifesto-side reveal">
+  <!-- =======================================================
+       FOOTER
+       ======================================================= -->
 
-                        <strong>
-                            OVERCLOCKEDDEVS
-                        </strong>
+  <footer>
 
-                        We create experiences that
-                        make technology feel less like
-                        a classroom assignment and
-                        more like something you can
-                        actually experiment with.
+    <div class="container">
 
-                        <br><br>
+      <div class="footer-top">
 
-                        From web and games to AI,
-                        creative technology and hardware —
-                        we want students making things,
-                        meeting people and shipping ideas.
 
-                    </div>
+        <!-- BRAND -->
 
-                </div>
+        <div>
+
+          <div class="footer-brand">
+
+            <img
+              src="OCd-logo.png"
+              alt="OCd"
+              class="footer-logo"
+            />
+
+
+            <div class="footer-name">
+
+              OVER
+
+              <br />
+
+              CLOCKED
+
+              <br />
+
+              <span class="red">
+                DEVS
+              </span>
 
             </div>
 
-        </section>
+          </div>
 
 
-        <!-- =====================================================
-             EVENTS
-        ====================================================== -->
+          <p class="footer-description">
 
-        <section
-            class="events"
-            id="events"
-        >
+            OverclockedDevs is a Delhi NCR
+            hackathon organization creating
+            high-energy spaces for students
+            to build, experiment and ship.
 
-            <div class="container">
-
-                <div class="section-header events-header reveal">
-
-                    <div class="section-number">
-                        01 / EVENTS
-                    </div>
-
-                    <div>
-
-                        <div class="section-kicker">
-                            WHAT'S NEXT
-                        </div>
-
-                        <h2 class="section-title">
-                            PICK A
-                            <span class="red">
-                                BATTLE.
-                            </span>
-                        </h2>
-
-                        <p class="events-intro">
-
-                            Three different formats.
-                            Three different challenges.
-                            One mission — get people
-                            building.
-
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <!-- =============================================
-                     FALLING SUN
-                ============================================== -->
-
-                <article class="featured-event reveal">
-
-                    <div class="featured-copy">
-
-                        <div>
-
-                            <div class="event-meta">
-
-                                <span class="event-status">
-                                    UPCOMING
-                                </span>
-
-                                OCTOBER 2026
-
-                            </div>
-
-
-                            <h3 class="featured-title">
-
-                                FALLING
-                                <span>
-                                    SUN
-                                </span>
-
-                            </h3>
-
-
-                            <p class="event-description">
-
-                                A high-energy student hackathon
-                                built around experimentation,
-                                creative problem-solving and
-                                shipping something real.
-
-                                <br><br>
-
-                                Choose your direction,
-                                find your team and turn
-                                an idea into a working build.
-
-                            </p>
-
-                        </div>
-
-
-                        <div class="featured-footer">
-
-                            <div class="event-details">
-
-                                <div class="detail">
-
-                                    <span class="detail-label">
-                                        Tracks
-                                    </span>
-
-                                    <span class="detail-value">
-                                        03
-                                    </span>
-
-                                </div>
-
-
-                                <div class="detail">
-
-                                    <span class="detail-label">
-                                        Venue
-                                    </span>
-
-                                    <span class="detail-value">
-                                        DELHI NCR
-                                    </span>
-
-                                </div>
-
-
-                                <div class="detail">
-
-                                    <span class="detail-label">
-                                        Capacity
-                                    </span>
-
-                                    <span class="detail-value">
-                                        200
-                                    </span>
-
-                                </div>
-
-                            </div>
-
-
-                            <!-- CHANGE # TO YOUR REGISTRATION LINK -->
-
-                            <a
-                                href="#"
-                                class="button primary"
-                            >
-                                REGISTER →
-                            </a>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="featured-visual">
-
-                        <div class="sun"></div>
-
-                        <div class="featured-label">
-                            WEB · GAME · HARDWARE
-                        </div>
-
-                    </div>
-
-                </article>
-
-
-                <!-- =============================================
-                     SECONDARY EVENTS
-                ============================================== -->
-
-                <div class="secondary-events">
-
-
-                    <!-- COMPILE DELHI -->
-
-                    <article class="event-card reveal">
-
-                        <span class="event-card-number">
-                            02
-                        </span>
-
-                        <div>
-
-                            <div class="card-top">
-
-                                <span class="month">
-                                    NOVEMBER 2026
-                                </span>
-
-                                <span class="event-status">
-                                    UPCOMING
-                                </span>
-
-                            </div>
-
-
-                            <h3 class="card-title">
-
-                                COMPILE
-                                <span>
-                                    DELHI
-                                </span>
-
-                            </h3>
-
-
-                            <p class="card-description">
-
-                                An agentic AI focused
-                                hackathon for builders
-                                exploring what happens
-                                when software can do
-                                more than simply respond.
-
-                            </p>
-
-                        </div>
-
-
-                        <div class="card-bottom">
-
-                            <div class="tracks">
-
-                                <span class="track">
-                                    AGENTIC AI
-                                </span>
-
-                                <span class="track">
-                                    CAP. 100
-                                </span>
-
-                            </div>
-
-
-                            <a
-                                href="#"
-                                class="arrow"
-                                aria-label="Register for Compile Delhi"
-                            >
-                                ↗
-                            </a>
-
-                        </div>
-
-                    </article>
-
-
-                    <!-- BLUEPRINT DELHI -->
-
-                    <article class="event-card reveal">
-
-                        <span class="event-card-number">
-                            03
-                        </span>
-
-                        <div>
-
-                            <div class="card-top">
-
-                                <span class="month">
-                                    NOVEMBER 2026
-                                </span>
-
-                                <span class="event-status">
-                                    UPCOMING
-                                </span>
-
-                            </div>
-
-
-                            <h3 class="card-title">
-
-                                BLUEPRINT
-                                <span>
-                                    DELHI
-                                </span>
-
-                            </h3>
-
-
-                            <p class="card-description">
-
-                                A creative-web focused
-                                build space for people
-                                who want to push the
-                                boundaries of what a
-                                website can feel like.
-
-                            </p>
-
-                        </div>
-
-
-                        <div class="card-bottom">
-
-                            <div class="tracks">
-
-                                <span class="track">
-                                    CREATIVE WEB
-                                </span>
-
-                                <span class="track">
-                                    CAP. 150
-                                </span>
-
-                            </div>
-
-
-                            <a
-                                href="#"
-                                class="arrow"
-                                aria-label="Register for Blueprint Delhi"
-                            >
-                                ↗
-                            </a>
-
-                        </div>
-
-                    </article>
-
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =====================================================
-             ARCHIVE / SPRINT & SPAWN
-        ====================================================== -->
-
-        <section
-            class="archive"
-            id="archive"
-        >
-
-            <div class="container">
-
-                <div class="section-header reveal">
-
-                    <div class="section-number">
-                        02 / ARCHIVE
-                    </div>
-
-                    <div>
-
-                        <div class="section-kicker">
-                            RECENTLY SHIPPED
-                        </div>
-
-                        <h2 class="section-title">
-                            WE'VE
-                            <span class="yellow">
-                                BEEN BUSY.
-                            </span>
-                        </h2>
-
-                    </div>
-
-                </div>
-
-
-                <div class="archive-grid">
-
-
-                    <!-- SPRINT LOGO -->
-
-                    <a
-                        href="https://sprintandspawn.xyz/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="archive-image reveal"
-                    >
-
-                        <img
-                            src="sps.png"
-                            alt="Sprint & Spawn"
-                        >
-
-                    </a>
-
-
-                    <div class="archive-copy reveal">
-
-                        <div class="archive-date">
-                            06 SEPTEMBER 2026
-                        </div>
-
-
-                        <h3 class="archive-title">
-
-                            SPRINT &
-                            <span>
-                                SPAWN
-                            </span>
-
-                        </h3>
-
-
-                        <p>
-
-                            A 12-hour high-energy hackathon
-                            where students came together
-                            to build across Web Development
-                            and Game Development.
-
-                            <br><br>
-
-                            The first chapter of the OCd
-                            event archive — and definitely
-                            not the last.
-
-                        </p>
-
-
-                        <div class="archive-stats">
-
-                            <div class="archive-stat">
-
-                                <strong>
-                                    270
-                                </strong>
-
-                                <span>
-                                    Applications
-                                </span>
-
-                            </div>
-
-
-                            <div class="archive-stat">
-
-                                <strong>
-                                    150
-                                </strong>
-
-                                <span>
-                                    Builders
-                                </span>
-
-                            </div>
-
-
-                            <div class="archive-stat">
-
-                                <strong>
-                                    12H
-                                </strong>
-
-                                <span>
-                                    Hackathon
-                                </span>
-
-                            </div>
-
-                        </div>
-
-
-                        <br><br>
-
-
-                        <a
-                            href="https://sprintandspawn.xyz/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="button secondary"
-                        >
-                            VIEW SPRINT & SPAWN →
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =====================================================
-             IMPACT
-        ====================================================== -->
-
-        <section
-            class="impact"
-            id="impact"
-        >
-
-            <div class="container">
-
-                <div class="section-number">
-                    03 / IMPACT
-                </div>
-
-
-                <h2 class="impact-title reveal">
-
-                    SMALL TEAM.
-                    <br>
-                    <span>
-                        BIGGER
-                    </span>
-                    BUILDS.
-
-                </h2>
-
-
-                <div class="impact-grid">
-
-
-                    <div class="impact-stat reveal">
-
-                        <strong>
-                            300+
-                        </strong>
-
-                        <span>
-                            Students reached
-                            through partners
-                        </span>
-
-                    </div>
-
-
-                    <div class="impact-stat reveal">
-
-                        <strong>
-                            3
-                        </strong>
-
-                        <span>
-                            Hackathons
-                            coming up
-                        </span>
-
-                    </div>
-
-
-                    <div class="impact-stat reveal">
-
-                        <strong>
-                            ∞
-                        </strong>
-
-                        <span>
-                            Things left
-                            to build
-                        </span>
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =====================================================
-             COLLABORATE
-        ====================================================== -->
-
-        <section
-            class="collaborate"
-            id="contact"
-        >
-
-            <div class="collaborate-orbit">
-
-                <div class="orbit-dot"></div>
-
-            </div>
-
-
-            <div class="container">
-
-                <div class="collaborate-content">
-
-                    <div class="eyebrow">
-                        COLLABORATE WITH OCd
-                    </div>
-
-
-                    <h2 class="collaborate-title">
-
-                        LET'S BUILD
-                        <span>
-                            SOMETHING.
-                        </span>
-
-                    </h2>
-
-
-                    <p class="collaborate-description">
-
-                        Want to support a hackathon,
-                        bring your organization closer
-                        to student builders, collaborate
-                        on an event or simply make
-                        something interesting happen?
-
-                        <br><br>
-
-                        Let's talk.
-
-                    </p>
-
-
-                    <!-- CHANGE THIS EMAIL -->
-
-                    <a
-                        href="mailto:hello@overclockeddevs.com"
-                        class="button primary"
-                    >
-                        START A CONVERSATION →
-                    </a>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-    </main>
-
-
-    <!-- =========================================================
-         FOOTER
-    ========================================================== -->
-
-    <footer>
-
-        <div class="container">
-
-            <div class="footer-top">
-
-
-                <div class="footer-brand">
-
-                    <div class="footer-logo">
-
-                        <img
-                            src="OCd-logo.png"
-                            alt="OCd"
-                        >
-
-                        OCd
-
-                    </div>
-
-
-                    <p>
-
-                        OverclockedDevs is a Delhi NCR
-                        based student hackathon organization
-                        creating spaces for people to
-                        experiment, collaborate and ship.
-
-                    </p>
-
-                </div>
-
-
-                <div class="footer-links">
-
-
-                    <div class="footer-column">
-
-                        <strong>
-                            EXPLORE
-                        </strong>
-
-                        <a href="#about">
-                            About
-                        </a>
-
-                        <a href="#events">
-                            Events
-                        </a>
-
-                        <a href="#archive">
-                            Archive
-                        </a>
-
-                        <a href="#impact">
-                            Impact
-                        </a>
-
-                    </div>
-
-
-                    <div class="footer-column">
-
-                        <strong>
-                            CONNECT
-                        </strong>
-
-                        <!-- REPLACE THESE # LINKS -->
-
-                        <a href="#">
-                            Instagram
-                        </a>
-
-                        <a href="#">
-                            LinkedIn
-                        </a>
-
-                        <a href="#">
-                            Discord
-                        </a>
-
-                        <a href="mailto:hello@overclockeddevs.com">
-                            Email
-                        </a>
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-
-            <div class="footer-bottom">
-
-                <span>
-                    OVERCLOCKEDDEVS · OCd
-                </span>
-
-                <span>
-                    DELHI NCR · 2026
-                </span>
-
-                <span>
-                    BUILD DIFFERENT.
-                </span>
-
-            </div>
+          </p>
 
         </div>
 
-    </footer>
+
+        <!-- EXPLORE -->
+
+        <div>
+
+          <div class="footer-column-title">
+            EXPLORE
+          </div>
 
 
-    <!-- =========================================================
-         JAVASCRIPT
-    ========================================================== -->
+          <div class="footer-links">
 
-    <script>
+            <a href="#system">
+              System
+            </a>
 
-        /* =====================================================
-           NAV SCROLL
-        ====================================================== */
+            <a href="#events">
+              Events
+            </a>
 
-        const nav = document.getElementById("nav");
+            <a href="#archive">
+              Archive
+            </a>
 
-        window.addEventListener("scroll", () => {
+            <a href="#impact">
+              Impact
+            </a>
 
-            if (window.scrollY > 40) {
-                nav.classList.add("scrolled");
-            } else {
-                nav.classList.remove("scrolled");
-            }
+          </div>
 
-        });
-
-
-        /* =====================================================
-           MOBILE MENU
-        ====================================================== */
-
-        const menuButton =
-            document.getElementById("menuButton");
-
-        const mobileMenu =
-            document.getElementById("mobileMenu");
+        </div>
 
 
-        menuButton.addEventListener("click", () => {
+        <!-- CONNECT -->
 
-            mobileMenu.classList.toggle("active");
+        <div>
 
-            menuButton.textContent =
-                mobileMenu.classList.contains("active")
-                    ? "×"
-                    : "☰";
-
-        });
+          <div class="footer-column-title">
+            CONNECT
+          </div>
 
 
-        function closeMenu() {
+          <div class="footer-links">
 
-            mobileMenu.classList.remove("active");
+            <!-- Replace # with real links -->
 
-            menuButton.textContent = "☰";
+            <a href="#">
+              Instagram
+            </a>
 
-        }
+            <a href="#">
+              LinkedIn
+            </a>
 
+            <a href="#">
+              Discord
+            </a>
 
-        /* =====================================================
-           SCROLL REVEAL
-        ====================================================== */
+            <a href="mailto:hello@overclockeddevs.com">
+              Email
+            </a>
 
-        const revealElements =
-            document.querySelectorAll(".reveal");
+          </div>
 
-
-        const observer =
-            new IntersectionObserver(
-
-                (entries) => {
-
-                    entries.forEach((entry) => {
-
-                        if (entry.isIntersecting) {
-
-                            entry.target.classList.add(
-                                "visible"
-                            );
-
-                            observer.unobserve(
-                                entry.target
-                            );
-
-                        }
-
-                    });
-
-                },
-
-                {
-                    threshold: 0.12
-                }
-
-            );
+        </div>
 
 
-        revealElements.forEach((element) => {
-
-            observer.observe(element);
-
-        });
+      </div>
 
 
-        /* =====================================================
-           SMOOTH INTERNAL LINKS
-        ====================================================== */
+      <div class="footer-bottom">
 
-        document.querySelectorAll(
-            'a[href^="#"]'
-        ).forEach((link) => {
-
-            link.addEventListener(
-                "click",
-                function(event) {
-
-                    const target =
-                        document.querySelector(
-                            this.getAttribute("href")
-                        );
-
-                    if (!target) return;
-
-                    event.preventDefault();
-
-                    target.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start"
-                    });
-
-                }
-            );
-
-        });
+        <span>
+          OVERCLOCKEDDEVS · OCd
+        </span>
 
 
-        /* =====================================================
-           SIMPLE POINTER PARALLAX
-        ====================================================== */
-
-        const heroWord =
-            document.querySelector(".hero-bg-word");
+        <span>
+          DELHI NCR · INDIA · 2026
+        </span>
 
 
-        window.addEventListener(
-            "mousemove",
-            (event) => {
+        <span class="footer-tagline">
+          BUILD. BREAK. FORK. FIX.
+        </span>
 
-                if (!heroWord) return;
+      </div>
 
-                const x =
-                    (event.clientX /
-                    window.innerWidth - .5) * 20;
+    </div>
 
-                const y =
-                    (event.clientY /
-                    window.innerHeight - .5) * 20;
+  </footer>
 
-                heroWord.style.transform =
-                    `translate(${x}px, ${y}px)`;
 
-            }
+  <!-- =======================================================
+       JAVASCRIPT
+       ======================================================= -->
+
+  <script>
+
+    /* =======================================================
+       NAVIGATION
+       ======================================================= */
+
+    const nav =
+      document.getElementById("nav");
+
+
+    function updateNav() {
+
+      if (window.scrollY > 40) {
+
+        nav.classList.add("scrolled");
+
+      } else {
+
+        nav.classList.remove("scrolled");
+
+      }
+
+    }
+
+
+    window.addEventListener(
+      "scroll",
+      updateNav,
+      { passive: true }
+    );
+
+
+    updateNav();
+
+
+    /* =======================================================
+       MOBILE MENU
+       ======================================================= */
+
+    const menuButton =
+      document.getElementById("menuButton");
+
+
+    const mobileMenu =
+      document.getElementById("mobileMenu");
+
+
+    menuButton.addEventListener(
+      "click",
+      () => {
+
+        const isOpen =
+          mobileMenu.classList.toggle("open");
+
+
+        document.body.classList.toggle(
+          "menu-open",
+          isOpen
         );
 
 
-        /* =====================================================
-           REDUCE MOTION ACCESSIBILITY
-        ====================================================== */
+        menuButton.textContent =
+          isOpen
+            ? "×"
+            : "☰";
 
-        const reduceMotion =
-            window.matchMedia(
-                "(prefers-reduced-motion: reduce)"
+
+        menuButton.setAttribute(
+          "aria-expanded",
+          isOpen
+        );
+
+      }
+    );
+
+
+    document
+      .querySelectorAll(".mobile-menu a")
+      .forEach(link => {
+
+        link.addEventListener(
+          "click",
+          () => {
+
+            mobileMenu.classList.remove(
+              "open"
             );
 
+            document.body.classList.remove(
+              "menu-open"
+            );
 
-        if (reduceMotion.matches) {
+            menuButton.textContent = "☰";
 
-            document.documentElement.style
-                .scrollBehavior = "auto";
+            menuButton.setAttribute(
+              "aria-expanded",
+              "false"
+            );
 
+          }
+        );
+
+      });
+
+
+    /* =======================================================
+       SCROLL REVEALS
+       ======================================================= */
+
+    const revealObserver =
+      new IntersectionObserver(
+        entries => {
+
+          entries.forEach(entry => {
+
+            if (
+              entry.isIntersecting
+            ) {
+
+              entry.target.classList.add(
+                "visible"
+              );
+
+              revealObserver.unobserve(
+                entry.target
+              );
+
+            }
+
+          });
+
+        },
+        {
+          threshold: .12
         }
+      );
 
-    </script>
+
+    document
+      .querySelectorAll(".reveal")
+      .forEach(element => {
+
+        revealObserver.observe(element);
+
+      });
+
+
+    /* =======================================================
+       HERO / SUN / ORBIT PARALLAX
+       ======================================================= */
+
+    const heroWord =
+      document.querySelector(
+        ".hero-bg-word"
+      );
+
+
+    const sun =
+      document.querySelector(
+        ".sun"
+      );
+
+
+    const orbit =
+      document.querySelector(
+        ".collab-orbit"
+      );
+
+
+    const finePointer =
+      window.matchMedia(
+        "(pointer:fine)"
+      );
+
+
+    if (finePointer.matches) {
+
+      window.addEventListener(
+        "mousemove",
+        event => {
+
+          const x =
+            (event.clientX /
+              window.innerWidth) - .5;
+
+
+          const y =
+            (event.clientY /
+              window.innerHeight) - .5;
+
+
+          /* Hero background */
+
+          if (heroWord) {
+
+            heroWord.style.transform =
+              `translateY(
+                calc(-50% + ${y * 25}px)
+              )
+              translateX(${x * 25}px)
+              rotate(-90deg)`;
+
+          }
+
+
+          /* Falling Sun */
+
+          if (sun) {
+
+            sun.style.marginLeft =
+              `${x * 14}px`;
+
+
+            sun.style.marginTop =
+              `${y * 14}px`;
+
+          }
+
+
+          /* Collaboration orbit */
+
+          if (orbit) {
+
+            orbit.style.transform =
+              `translate(
+                ${x * 20}px,
+                ${y * 20}px
+              )`;
+
+          }
+
+        },
+        {
+          passive: true
+        }
+      );
+
+    }
+
+
+    /* =======================================================
+       INTERNAL LINKS
+       ======================================================= */
+
+    document
+      .querySelectorAll(
+        'a[href^="#"]'
+      )
+      .forEach(link => {
+
+        link.addEventListener(
+          "click",
+          event => {
+
+            const targetID =
+              link.getAttribute("href");
+
+
+            if (
+              targetID === "#" ||
+              targetID.length < 2
+            ) {
+              return;
+            }
+
+
+            const target =
+              document.querySelector(
+                targetID
+              );
+
+
+            if (!target) {
+              return;
+            }
+
+
+            event.preventDefault();
+
+
+            const offset = 78;
+
+
+            const position =
+              target.getBoundingClientRect().top +
+              window.scrollY -
+              offset;
+
+
+            window.scrollTo({
+
+              top: position,
+
+              behavior: "smooth"
+
+            });
+
+          }
+        );
+
+      });
+
+
+    /* =======================================================
+       REDUCED MOTION
+       ======================================================= */
+
+    if (
+      window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches
+    ) {
+
+      document
+        .querySelectorAll(".reveal")
+        .forEach(element => {
+
+          element.classList.add(
+            "visible"
+          );
+
+        });
+
+    }
+
+  </script>
 
 </body>
 </html>
