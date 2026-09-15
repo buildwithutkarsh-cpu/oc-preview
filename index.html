@@ -1,0 +1,2251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>OverclockedDevs — Build Different.</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Climate+Crisis&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================================================
+   OCd — VISUAL SYSTEM
+========================================================= */
+
+:root {
+    --red: #F02A24;
+    --red-dark: #B80000;
+    --yellow: #FFD400;
+    --yellow-bright: #FFE500;
+    --white: #FFFFFF;
+    --cream: #FFF7E6;
+    --black: #0D0D0D;
+
+    --border: rgba(255,255,255,.18);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--black);
+    color: var(--white);
+
+    font-family: "Space Grotesk", sans-serif;
+
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   CRT / GRAIN
+========================================================= */
+
+body::before {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 9999;
+
+    opacity: .045;
+
+    background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+body::after {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 9998;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 3px,
+            rgba(255,255,255,.018) 4px
+        );
+}
+
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+.container {
+    width: min(1250px, 92%);
+    margin: auto;
+}
+
+section {
+    padding: 130px 0;
+}
+
+h1,
+h2,
+h3 {
+    font-family: "Climate Crisis", sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.bungee {
+    font-family: "Bungee";
+}
+
+.eyebrow {
+    font-family: "Bungee";
+    font-size: 10px;
+
+    letter-spacing: .15em;
+
+    color: var(--yellow);
+}
+
+
+/* =========================================================
+   NAV
+========================================================= */
+
+.nav {
+    position: fixed;
+
+    top: 15px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: min(1200px, 92%);
+
+    z-index: 1000;
+
+    border: 1px solid rgba(255,255,255,.2);
+
+    background: rgba(13,13,13,.8);
+
+    backdrop-filter: blur(18px);
+
+    padding: 10px 12px;
+}
+
+.nav-inner {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+.logo {
+    width: 45px;
+    height: 45px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+}
+
+.nav-links {
+    display: flex;
+
+    gap: 30px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+.nav-links a {
+    position: relative;
+}
+
+.nav-links a::after {
+    content: "";
+
+    position: absolute;
+
+    bottom: -6px;
+    left: 0;
+
+    width: 0;
+    height: 2px;
+
+    background: var(--yellow);
+
+    transition: .25s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-button {
+    background: var(--yellow);
+
+    color: var(--black);
+
+    padding: 12px 18px;
+
+    font-family: "Bungee";
+
+    font-size: 9px;
+
+    transition: .2s;
+}
+
+.nav-button:hover {
+    background: var(--red);
+
+    color: white;
+
+    transform: rotate(-2deg);
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    min-height: 100vh;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    overflow: hidden;
+
+    padding-top: 100px;
+}
+
+
+/* GRID */
+
+.grid {
+    position: absolute;
+
+    inset: 0;
+
+    background-image:
+
+        linear-gradient(
+            rgba(255,255,255,.06) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.06) 1px,
+            transparent 1px
+        );
+
+    background-size: 55px 55px;
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            black,
+            transparent
+        );
+}
+
+
+/* giant background OCd */
+
+.hero-bg {
+    position: absolute;
+
+    right: -4vw;
+    bottom: -5vw;
+
+    font-family: "Climate Crisis";
+
+    font-size: 35vw;
+
+    line-height: .7;
+
+    color: transparent;
+
+    -webkit-text-stroke:
+        1px rgba(255,255,255,.08);
+
+    pointer-events: none;
+}
+
+
+/* red circle */
+
+.orbit {
+    position: absolute;
+
+    width: 430px;
+    height: 430px;
+
+    border: 1px solid rgba(255,212,0,.3);
+
+    border-radius: 50%;
+
+    right: 10%;
+    top: 20%;
+
+    animation: spin 20s linear infinite;
+}
+
+.orbit::before {
+    content: "";
+
+    position: absolute;
+
+    width: 13px;
+    height: 13px;
+
+    background: var(--red);
+
+    border-radius: 50%;
+
+    top: 50%;
+    left: -7px;
+
+    box-shadow:
+        0 0 25px var(--red);
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+.hero-content {
+    position: relative;
+
+    z-index: 2;
+}
+
+.hero-title {
+    font-size:
+        clamp(
+            4.5rem,
+            11vw,
+            10rem
+        );
+
+    line-height: .78;
+
+    letter-spacing: -.07em;
+
+    margin-top: 20px;
+}
+
+.hero-title .red {
+    color: var(--red);
+}
+
+.hero-title .outline {
+    color: transparent;
+
+    -webkit-text-stroke:
+        2px white;
+}
+
+
+/* subtitle */
+
+.hero-description {
+    max-width: 580px;
+
+    margin-top: 40px;
+
+    font-size: 17px;
+
+    line-height: 1.7;
+
+    color: #aaa;
+}
+
+
+/* buttons */
+
+.hero-buttons {
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 30px;
+
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 15px 22px;
+
+    border: 2px solid white;
+
+    font-family: "Bungee";
+
+    font-size: 9px;
+
+    transition: .2s;
+}
+
+.btn:hover {
+    transform:
+        translate(-4px,-4px)
+        rotate(-1deg);
+
+    box-shadow:
+        6px 6px 0 var(--yellow);
+}
+
+.btn-red {
+    background: var(--red);
+
+    border-color: var(--red);
+}
+
+.btn-yellow {
+    background: var(--yellow);
+
+    color: var(--black);
+
+    border-color: var(--yellow);
+}
+
+
+/* status */
+
+.hero-status {
+    position: absolute;
+
+    right: 8%;
+    bottom: 12%;
+
+    width: 180px;
+
+    border: 1px solid var(--yellow);
+
+    padding: 15px;
+
+    background: rgba(13,13,13,.8);
+
+    transform: rotate(4deg);
+}
+
+.hero-status .status-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    font-family: "Bungee";
+
+    font-size: 8px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+
+    display: inline-block;
+
+    border-radius: 50%;
+
+    background: #35ff5b;
+
+    box-shadow:
+        0 0 15px #35ff5b;
+}
+
+.hero-status h4 {
+    font-family: "Bungee";
+
+    color: var(--yellow);
+
+    margin-top: 20px;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   TICKER
+========================================================= */
+
+.ticker {
+    background: var(--yellow);
+
+    color: var(--black);
+
+    border-block: 4px solid var(--black);
+
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    padding: 15px 0;
+
+    font-family: "Bungee";
+
+    font-size: 15px;
+}
+
+.ticker-track {
+    display: inline-block;
+
+    animation:
+        ticker 18s linear infinite;
+}
+
+.ticker span {
+    margin-right: 60px;
+}
+
+@keyframes ticker {
+
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+
+}
+
+
+/* =========================================================
+   MANIFESTO
+========================================================= */
+
+.manifesto {
+    position: relative;
+}
+
+.manifesto-grid {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 80px;
+
+    align-items: center;
+}
+
+.manifesto h2 {
+    font-size:
+        clamp(
+            3.5rem,
+            7vw,
+            7rem
+        );
+
+    line-height: .82;
+}
+
+.manifesto h2 span {
+    color: var(--red);
+}
+
+.manifesto-copy {
+    color: #999;
+
+    font-size: 18px;
+
+    line-height: 1.7;
+}
+
+
+/* giant number */
+
+.big-number {
+    margin-top: 50px;
+
+    font-family: "Climate Crisis";
+
+    font-size: 12rem;
+
+    line-height: .7;
+
+    color: var(--yellow);
+
+    opacity: .9;
+}
+
+
+/* =========================================================
+   EVENT FEATURE
+========================================================= */
+
+.feature {
+    background: var(--cream);
+
+    color: var(--black);
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.feature::before {
+    content: "PAST EVENT";
+
+    position: absolute;
+
+    top: 40px;
+    right: -30px;
+
+    font-family: "Bungee";
+
+    font-size: 80px;
+
+    color: rgba(0,0,0,.04);
+
+    transform: rotate(90deg);
+}
+
+.feature-grid {
+    display: grid;
+
+    grid-template-columns:
+        1.1fr .9fr;
+
+    min-height: 650px;
+}
+
+
+/* fake poster */
+
+.poster {
+    background: var(--red);
+
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 50px;
+
+    display: flex;
+
+    align-items: flex-end;
+}
+
+.poster::before {
+    content: "";
+
+    position: absolute;
+
+    width: 600px;
+    height: 600px;
+
+    border: 3px solid var(--yellow);
+
+    border-radius: 50%;
+
+    top: -200px;
+    left: -100px;
+}
+
+.poster::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            transparent 0 10px,
+            rgba(0,0,0,.07) 11px 12px
+        );
+}
+
+.poster-title {
+    position: relative;
+
+    z-index: 2;
+
+    font-family: "Climate Crisis";
+
+    font-size:
+        clamp(
+            4rem,
+            9vw,
+            9rem
+        );
+
+    line-height: .72;
+
+    color: white;
+
+    text-shadow:
+        8px 8px 0 var(--black);
+}
+
+.feature-info {
+    padding: 70px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+.feature-info h2 {
+    font-size: 5rem;
+
+    line-height: .8;
+
+    margin-top: 15px;
+}
+
+.feature-info p {
+    line-height: 1.7;
+
+    margin: 30px 0;
+
+    max-width: 500px;
+}
+
+
+/* stats */
+
+.stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    border: 2px solid var(--black);
+
+    margin-bottom: 25px;
+}
+
+.stat {
+    padding: 20px;
+
+    border: 1px solid var(--black);
+}
+
+.stat-number {
+    display: block;
+
+    font-family: "Climate Crisis";
+
+    font-size: 42px;
+}
+
+.stat-label {
+    font-family: "Bungee";
+
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   EVENTS
+========================================================= */
+
+.events-heading {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: end;
+
+    margin-bottom: 55px;
+}
+
+.events-heading h2 {
+    font-size:
+        clamp(
+            3.5rem,
+            7vw,
+            7rem
+        );
+
+    line-height: .8;
+}
+
+.events-heading p {
+    max-width: 400px;
+
+    color: #888;
+
+    line-height: 1.6;
+}
+
+.event-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 25px;
+}
+
+
+/* EVENT CARD */
+
+.event-card {
+    min-height: 430px;
+
+    padding: 25px;
+
+    border: 2px solid white;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    position: relative;
+
+    overflow: hidden;
+
+    transition: .3s;
+}
+
+.event-card:hover {
+    transform:
+        translateY(-12px)
+        rotate(0deg) !important;
+}
+
+
+/* falling */
+
+.event-card.falling {
+    background: var(--yellow);
+
+    color: var(--black);
+
+    border-color: var(--yellow);
+
+    transform: rotate(-2deg);
+}
+
+
+/* compile */
+
+.event-card.compile {
+    background: var(--red);
+
+    border-color: var(--red);
+
+    transform: rotate(1deg);
+}
+
+
+/* blueprint */
+
+.event-card.blueprint {
+    background: var(--cream);
+
+    color: var(--black);
+
+    border-color: var(--cream);
+
+    transform: rotate(-1deg);
+}
+
+.event-card::after {
+    content: "OCd";
+
+    position: absolute;
+
+    right: -30px;
+    bottom: -70px;
+
+    font-family: "Climate Crisis";
+
+    font-size: 170px;
+
+    opacity: .08;
+}
+
+.event-number {
+    font-family: "Bungee";
+
+    font-size: 9px;
+}
+
+.event-card h3 {
+    font-size: 42px;
+
+    margin-top: 100px;
+
+    line-height: .85;
+}
+
+.event-card p {
+    margin-top: 15px;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+.event-bottom {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: end;
+}
+
+.capacity {
+    font-family: "Bungee";
+
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   NUMBERS
+========================================================= */
+
+.numbers {
+    background: var(--red);
+
+    color: white;
+
+    overflow: hidden;
+}
+
+.number-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    border-top:
+        1px solid rgba(255,255,255,.3);
+
+    border-bottom:
+        1px solid rgba(255,255,255,.3);
+}
+
+.number {
+    padding: 50px 20px;
+
+    border-right:
+        1px solid rgba(255,255,255,.3);
+}
+
+.number:last-child {
+    border-right: none;
+}
+
+.number strong {
+    display: block;
+
+    font-family: "Climate Crisis";
+
+    font-size:
+        clamp(
+            3rem,
+            6vw,
+            6rem
+        );
+
+    line-height: .8;
+}
+
+.number span {
+    display: block;
+
+    margin-top: 20px;
+
+    font-family: "Bungee";
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   PARTNERS
+========================================================= */
+
+.partners {
+    border-block:
+        1px solid var(--border);
+}
+
+.partner-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: end;
+
+    margin-bottom: 40px;
+}
+
+.partner-header h2 {
+    font-size: 5rem;
+
+    line-height: .8;
+}
+
+.partner-list {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+}
+
+.partner {
+    border:
+        1px solid #333;
+
+    background: #111;
+
+    padding: 20px 30px;
+
+    font-family: "Bungee";
+
+    font-size: 10px;
+
+    transition: .2s;
+}
+
+.partner:hover {
+    background: var(--yellow);
+
+    color: var(--black);
+
+    border-color: var(--yellow);
+
+    transform: rotate(-2deg);
+}
+
+
+/* =========================================================
+   BUSINESS CTA
+========================================================= */
+
+.business {
+    background: var(--yellow);
+
+    color: var(--black);
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.business::before {
+    content: "BUILD";
+
+    position: absolute;
+
+    right: -40px;
+    bottom: -100px;
+
+    font-family: "Climate Crisis";
+
+    font-size: 30vw;
+
+    opacity: .07;
+}
+
+.business-content {
+    position: relative;
+
+    z-index: 2;
+}
+
+.business h2 {
+    font-size:
+        clamp(
+            4rem,
+            8vw,
+            8rem
+        );
+
+    line-height: .78;
+}
+
+.business p {
+    max-width: 600px;
+
+    font-size: 19px;
+
+    line-height: 1.6;
+
+    margin: 35px 0;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    padding: 70px 0 30px;
+}
+
+.footer-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 50px;
+}
+
+.footer-logo {
+    width: 75px;
+
+    border-radius: 50%;
+
+    margin-bottom: 20px;
+}
+
+.footer-description {
+    max-width: 350px;
+
+    color: #777;
+
+    line-height: 1.6;
+}
+
+.footer-links {
+    display: flex;
+
+    gap: 80px;
+}
+
+.footer-column {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    font-size: 13px;
+}
+
+.footer-column strong {
+    font-family: "Bungee";
+
+    font-size: 9px;
+
+    color: var(--yellow);
+
+    margin-bottom: 8px;
+}
+
+.footer-column a:hover {
+    color: var(--yellow);
+}
+
+.footer-bottom {
+    margin-top: 80px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #222;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    color: #555;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:850px) {
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero {
+        min-height: 900px;
+    }
+
+    .hero-title {
+        font-size: 18vw;
+    }
+
+    .hero-bg {
+        font-size: 60vw;
+    }
+
+    .orbit {
+        width: 250px;
+        height: 250px;
+
+        right: -100px;
+        top: 20%;
+    }
+
+    .hero-status {
+        position: relative;
+
+        right: auto;
+        bottom: auto;
+
+        margin-top: 60px;
+    }
+
+    .manifesto-grid,
+    .feature-grid,
+    .event-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .manifesto h2 {
+        font-size: 15vw;
+    }
+
+    .big-number {
+        font-size: 35vw;
+    }
+
+    .poster {
+        min-height: 450px;
+    }
+
+    .feature-info {
+        padding: 50px 7%;
+    }
+
+    .feature-info h2 {
+        font-size: 15vw;
+    }
+
+    .events-heading,
+    .partner-header,
+    .footer-top {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 25px;
+    }
+
+    .events-heading h2,
+    .partner-header h2 {
+        font-size: 15vw;
+    }
+
+    .number-grid {
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .number {
+        border-bottom:
+            1px solid rgba(255,255,255,.3);
+    }
+
+    .footer-links {
+        flex-wrap: wrap;
+
+        gap: 35px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+
+        gap: 10px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<nav class="nav">
+
+    <div class="nav-inner">
+
+        <a href="/">
+            <!-- PUT YOUR LOGO HERE -->
+            <img
+                src="OCd-logo.png"
+                class="logo"
+                alt="OverclockedDevs"
+            >
+        </a>
+
+
+        <div class="nav-links">
+
+            <a href="#events">
+                EVENTS
+            </a>
+
+            <a href="#story">
+                OCd
+            </a>
+
+            <a href="#partners">
+                PARTNERS
+            </a>
+
+            <a href="#contact">
+                WORK WITH US
+            </a>
+
+        </div>
+
+
+        <a
+            href="#events"
+            class="nav-button"
+        >
+            EVENTS ↗
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<header class="hero">
+
+    <div class="grid"></div>
+
+    <div class="hero-bg">
+        OCd
+    </div>
+
+    <div class="orbit"></div>
+
+
+    <div class="container hero-content">
+
+        <div class="eyebrow">
+            DELHI-NCR / 2026
+        </div>
+
+
+        <h1 class="hero-title">
+
+            BUILD
+
+            <br>
+
+            <span class="red">
+                DIFFERENT.
+            </span>
+
+            <br>
+
+            <span class="outline">
+                SHIP
+            </span>
+
+            IT.
+
+        </h1>
+
+
+        <p class="hero-description">
+
+            OverclockedDevs creates high-energy
+            hackathons and builder events for
+            developers, creators and people who
+            would rather make something than
+            just talk about it.
+
+        </p>
+
+
+        <div class="hero-buttons">
+
+            <a
+                href="#events"
+                class="btn btn-red"
+            >
+                SEE THE EVENTS →
+            </a>
+
+            <a
+                href="#contact"
+                class="btn"
+            >
+                WORK WITH OCd
+            </a>
+
+        </div>
+
+
+        <div class="hero-status">
+
+            <div class="status-top">
+
+                <span>
+                    SYSTEM STATUS
+                </span>
+
+                <span class="dot"></span>
+
+            </div>
+
+            <h4>
+                3 EVENTS LOADING...
+            </h4>
+
+            <div
+                style="
+                margin-top:12px;
+                height:4px;
+                background:#333;
+                "
+            >
+
+                <div
+                    style="
+                    width:72%;
+                    height:100%;
+                    background:#FFD400;
+                    "
+                ></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     TICKER
+===================================================== -->
+
+<div class="ticker">
+
+    <div class="ticker-track">
+
+        <span>BUILD</span>
+        <span>BREAK THINGS</span>
+        <span>MAKE GAMES</span>
+        <span>WRITE CODE</span>
+        <span>SHIP IT</span>
+        <span>BUILD</span>
+        <span>BREAK THINGS</span>
+        <span>MAKE GAMES</span>
+        <span>WRITE CODE</span>
+        <span>SHIP IT</span>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     STORY
+===================================================== -->
+
+<section
+    class="manifesto"
+    id="story"
+>
+
+    <div class="container manifesto-grid">
+
+
+        <div>
+
+            <div class="eyebrow">
+                THE OCd MANIFESTO
+            </div>
+
+            <h2>
+
+                DON'T JUST
+
+                <br>
+
+                <span>ATTEND.</span>
+
+                <br>
+
+                BUILD.
+
+            </h2>
+
+            <div class="big-number">
+                01
+            </div>
+
+        </div>
+
+
+        <div class="manifesto-copy">
+
+            <p>
+
+                OverclockedDevs is a Delhi-NCR
+                based hackathon organization
+                built around one simple idea:
+
+                <br><br>
+
+                Give people the room,
+                tools and pressure to make
+                something real.
+
+                <br><br>
+
+                We organize hackathons,
+                game jams and technical
+                events where ideas have
+                a deadline.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SPRINT & SPAWN
+===================================================== -->
+
+<section class="feature">
+
+    <div class="feature-grid">
+
+
+        <div class="poster">
+
+            <div class="poster-title">
+
+                SPRINT
+
+                <br>
+
+                &
+
+                <br>
+
+                SPAWN
+
+            </div>
+
+        </div>
+
+
+        <div class="feature-info">
+
+            <div class="eyebrow" style="color:#F02A24">
+
+                PAST EVENT /
+                06 SEPTEMBER 2026
+
+            </div>
+
+
+            <h2>
+
+                12 HOURS.
+
+                <br>
+
+                ZERO
+
+                <br>
+
+                EXCUSES.
+
+            </h2>
+
+
+            <p>
+
+                Sprint & Spawn was a
+                12-hour high-octane hackathon
+                held at PW NSP Pitampura.
+
+                <br><br>
+
+                Builders competed across
+                Game Development and
+                Web Development.
+
+            </p>
+
+
+            <div class="stats">
+
+
+                <div class="stat">
+
+                    <span class="stat-number">
+                        270
+                    </span>
+
+                    <span class="stat-label">
+                        APPLICATIONS
+                    </span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <span class="stat-number">
+                        150
+                    </span>
+
+                    <span class="stat-label">
+                        BUILDERS
+                    </span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <span class="stat-number">
+                        12H
+                    </span>
+
+                    <span class="stat-label">
+                        HACKATHON
+                    </span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <span class="stat-number">
+                        02
+                    </span>
+
+                    <span class="stat-label">
+                        TRACKS
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+            <a
+                href="#"
+                class="btn btn-red"
+            >
+                VIEW EVENT →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     UPCOMING EVENTS
+===================================================== -->
+
+<section id="events">
+
+    <div class="container">
+
+
+        <div class="events-heading">
+
+            <div>
+
+                <div class="eyebrow">
+                    UPCOMING
+                </div>
+
+                <h2>
+
+                    NEXT
+
+                    <br>
+
+                    UP.
+
+                </h2>
+
+            </div>
+
+
+            <p>
+
+                Three new hackathons
+                are coming to Delhi-NCR.
+
+                Applications are open to
+                everyone. Attendance is
+                selected based on venue
+                capacity.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="event-grid">
+
+
+            <!-- FALLING SUN -->
+
+            <article class="event-card falling">
+
+                <div>
+
+                    <div class="event-number">
+                        01 / OCT 2026
+                    </div>
+
+
+                    <h3>
+                        FALLING
+                        <br>
+                        SUN
+                    </h3>
+
+
+                    <p>
+                        Web Dev
+                        · Game Dev
+                        · Hardware
+                    </p>
+
+                </div>
+
+
+                <div class="event-bottom">
+
+                    <span class="capacity">
+                        CAPACITY / 200
+                    </span>
+
+
+                    <a
+                        href="#"
+                        class="btn"
+                    >
+                        EXPLORE →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- COMPILE -->
+
+            <article class="event-card compile">
+
+                <div>
+
+                    <div class="event-number">
+                        02 / NOV 2026
+                    </div>
+
+
+                    <h3>
+                        COMPILE
+                        <br>
+                        DELHI
+                    </h3>
+
+
+                    <p>
+                        Agentic AI
+                    </p>
+
+                </div>
+
+
+                <div class="event-bottom">
+
+                    <span class="capacity">
+                        CAPACITY / 100
+                    </span>
+
+
+                    <a
+                        href="#"
+                        class="btn"
+                    >
+                        EXPLORE →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- BLUEPRINT -->
+
+            <article class="event-card blueprint">
+
+                <div>
+
+                    <div class="event-number">
+                        03 / NOV 2026
+                    </div>
+
+
+                    <h3>
+                        BLUEPRINT
+                        <br>
+                        DELHI
+                    </h3>
+
+
+                    <p>
+                        Creative Web
+                    </p>
+
+                </div>
+
+
+                <div class="event-bottom">
+
+                    <span class="capacity">
+                        CAPACITY / 150
+                    </span>
+
+
+                    <a
+                        href="#"
+                        class="btn btn-red"
+                    >
+                        EXPLORE →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     NUMBERS
+===================================================== -->
+
+<section class="numbers">
+
+    <div class="container">
+
+        <div class="eyebrow">
+            THE RECEIPTS
+        </div>
+
+
+        <div class="number-grid">
+
+
+            <div class="number">
+
+                <strong>
+                    270
+                </strong>
+
+                <span>
+                    APPLICATIONS
+                </span>
+
+            </div>
+
+
+            <div class="number">
+
+                <strong>
+                    150
+                </strong>
+
+                <span>
+                    BUILDERS
+                </span>
+
+            </div>
+
+
+            <div class="number">
+
+                <strong>
+                    300+
+                </strong>
+
+                <span>
+                    STUDENTS REACHED
+                </span>
+
+            </div>
+
+
+            <div class="number">
+
+                <strong>
+                    03
+                </strong>
+
+                <span>
+                    HACKATHONS NEXT
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PARTNERS
+===================================================== -->
+
+<section
+    class="partners"
+    id="partners"
+>
+
+    <div class="container">
+
+
+        <div class="partner-header">
+
+            <div>
+
+                <div class="eyebrow">
+                    BUILT WITH
+                </div>
+
+                <h2>
+                    OUR
+                    <br>
+                    PARTNERS.
+                </h2>
+
+            </div>
+
+
+            <p style="max-width:300px;color:#777;line-height:1.6">
+
+                People and organizations
+                that helped make Sprint &
+                Spawn happen.
+
+            </p>
+
+        </div>
+
+
+        <div class="partner-list">
+
+            <div class="partner">
+                FUELER
+            </div>
+
+            <div class="partner">
+                CODING MAFIA
+            </div>
+
+            <div class="partner">
+                GEN.XYZ
+            </div>
+
+            <div class="partner">
+                CODECRAFTERS
+            </div>
+
+            <div class="partner">
+                PARTNER 05
+            </div>
+
+            <div class="partner">
+                PARTNER 06
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     BUSINESS CTA
+===================================================== -->
+
+<section
+    class="business"
+    id="contact"
+>
+
+    <div class="container business-content">
+
+        <div class="eyebrow" style="color:#000">
+
+            COLLEGES /
+            COMPANIES /
+            BRANDS
+
+        </div>
+
+
+        <h2>
+
+            GOT A
+
+            <br>
+
+            ROOM?
+
+            <br>
+
+            LET'S
+
+            <br>
+
+            BUILD.
+
+        </h2>
+
+
+        <p>
+
+            Bring OverclockedDevs to your
+            campus, company or community.
+
+            We design and run hackathons,
+            game jams and technical events
+            that bring builders into the room.
+
+        </p>
+
+
+        <a
+            href="mailto:hello@overclockeddevs.com"
+            class="btn"
+            style="
+                background:#0D0D0D;
+                color:white;
+                border-color:#0D0D0D;
+            "
+        >
+            START A CONVERSATION ↗
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div class="container">
+
+
+        <div class="footer-top">
+
+
+            <div>
+
+                <img
+                    src="OCd-logo.png"
+                    class="footer-logo"
+                    alt="OverclockedDevs"
+                >
+
+
+                <p class="footer-description">
+
+                    OverclockedDevs.
+
+                    <br>
+
+                    Hackathons.
+                    Game jams.
+                    Builder events.
+
+                    <br>
+
+                    Delhi-NCR.
+
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+
+                <div class="footer-column">
+
+                    <strong>
+                        EXPLORE
+                    </strong>
+
+                    <a href="#events">
+                        Events
+                    </a>
+
+                    <a href="#story">
+                        About OCd
+                    </a>
+
+                    <a href="#partners">
+                        Partners
+                    </a>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <strong>
+                        WORK WITH US
+                    </strong>
+
+                    <a href="#contact">
+                        Host an Event
+                    </a>
+
+                    <a href="#contact">
+                        Sponsor
+                    </a>
+
+                    <a href="#contact">
+                        Partner
+                    </a>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <strong>
+                        SOCIAL
+                    </strong>
+
+                    <!-- CHANGE THESE -->
+
+                    <a href="#">
+                        Instagram ↗
+                    </a>
+
+                    <a href="#">
+                        LinkedIn ↗
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <span>
+                © 2026 OVERCLOCKEDDEVS
+            </span>
+
+            <span>
+                KEEP THE CLOCK RUNNING.
+            </span>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+</body>
+</html>
